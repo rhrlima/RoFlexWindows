@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1732541048282459199}
   - component: {fileID: 2144715014521796681}
   m_Layer: 5
-  m_Name: DragHandle
+  m_Name: Drag Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
