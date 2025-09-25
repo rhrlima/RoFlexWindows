@@ -87,7 +87,6 @@ GameObject:
   - component: {fileID: 6505899825480980619}
   - component: {fileID: 8084989354662692606}
   - component: {fileID: 1547240721757709000}
-  - component: {fileID: 4078581493448815839}
   m_Layer: 5
   m_Name: Window
   m_TagString: Untagged
@@ -166,18 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebc4320b42850984085fa8328acbc17a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4078581493448815839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3522398549414836747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 890883769e971524c8ee1c62054e0008, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  resetToCenter: 1
 --- !u!1 &3582863460491112143
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 890883769e971524c8ee1c62054e0008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBeingDragged: 0
 --- !u!1 &4287957204290898945
 GameObject:
   m_ObjectHideFlags: 0

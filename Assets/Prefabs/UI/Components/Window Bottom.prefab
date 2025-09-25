@@ -255,6 +255,22 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8084989354662692606, guid: d43724824a9fc85438e5e17bf29019b9, type: 3}
+      propertyPath: m_Maskable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084989354662692606, guid: d43724824a9fc85438e5e17bf29019b9, type: 3}
+      propertyPath: m_FillCenter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084989354662692606, guid: d43724824a9fc85438e5e17bf29019b9, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084989354662692606, guid: d43724824a9fc85438e5e17bf29019b9, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9078073089635349434, guid: d43724824a9fc85438e5e17bf29019b9, type: 3}
       propertyPath: m_SizeDelta.y
       value: 24
