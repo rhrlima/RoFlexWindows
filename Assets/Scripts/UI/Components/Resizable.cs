@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ResizeHandle : MonoBehaviour, IBeginDragHandler, IDragHandler
+public class Resizable : MonoBehaviour, IBeginDragHandler, IDragHandler
 {
     [SerializeField] private RectTransform window;
     [SerializeField] private Vector2 minSize = new(100, 100);

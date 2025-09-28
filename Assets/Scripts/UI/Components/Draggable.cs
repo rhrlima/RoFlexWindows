@@ -6,7 +6,7 @@ public class Draggable : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoin
 {
     private Canvas canvas;
     private RectTransform window;
-    public bool isBeingDragged = false;
+    private bool isBeingDragged = false;
 
     public void Start()
     {
