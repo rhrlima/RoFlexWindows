@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
     public PartyModal partyModal;
     public FriendModal friendModal;
     public DealModal dealModal;
+    public MessageModal messageModal;
+    public StoreModal storeModal;
 
     void Update()
     {
@@ -29,6 +31,16 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             dealModal.ShowModal("Faker", "ABC123456", 89);
+        }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            messageModal.ShowModal("Failed to connect to Server.");
+        }
+
+         if (Input.GetKeyDown(KeyCode.H))
+        {
+            storeModal.ShowModal();
         }
     }
 }
