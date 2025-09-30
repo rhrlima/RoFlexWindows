@@ -5,8 +5,9 @@ using UnityEngine.Events;
 public class UIManager : MonoBehaviour
 {
     public Window baseWindow;
-    public ModalWindow modalWindow;
     public PartyModal partyModal;
+    public FriendModal friendModal;
+    public DealModal dealModal;
 
     void Update()
     {
@@ -17,30 +18,17 @@ public class UIManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            modalWindow.ShowModal(
-                "Message",
-                "<color=#007700>Faker</color> wants to be friends with you.",
-                new List<string> { "OK", "NO", "WTF" },
-                new List<UnityAction> {
-                    modalWindow.HideWindow,
-                    modalWindow.HideWindow,
-                    modalWindow.HideWindow,
-                }
-            );
+            partyModal.ShowModal("Greatest Group");
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            partyModal.ShowModal(
-                "Message",
-                "<color=#007700>(WTF Group)</color> is sending you an invite. Accept?",
-                new List<string> { "Yes", "cancel", "???" },
-                new List<UnityAction> {
-                    partyModal.HideWindow,
-                    partyModal.HideWindow,
-                    partyModal.HideWindow,
-                }
-            );
+            friendModal.ShowModal("Faker");
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            dealModal.ShowModal("Faker", "ABC123456", 89);
         }
     }
 }
