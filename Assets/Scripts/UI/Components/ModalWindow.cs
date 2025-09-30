@@ -7,21 +7,26 @@ using UnityEngine.UI;
 
 public class ModalWindow : Window
 {
-    [SerializeField] private TextMeshProUGUI titleText;
-    [SerializeField] private TextMeshProUGUI messageText;
-    [SerializeField] private List<Button> buttonsText;
+    [SerializeField] protected TextMeshProUGUI titleText;
+    [SerializeField] protected TextMeshProUGUI messageText;
+    [SerializeField] protected List<Button> buttons;
+    [SerializeField] protected List<UnityEvent> actions;
 
-    public void ShowModal(string title, string message, List<string> buttons, List<UnityAction> actions)
+    public void Start()
     {
-        titleText.text = title;
-        messageText.text = message;
+        var count = Mathf.Min(buttons.Count, actions.Count);
 
-        for (int i = 0; i < buttonsText.Count; i++)
+        for (int i = 0; i < count; i++)
         {
-            buttonsText[i].GetComponentInChildren<TextMeshProUGUI>(true).text = buttons[i];
-            buttonsText[i].onClick.AddListener(actions[i]);
-        }
+            if (i >= count) break;
 
+            var buttonAction = actions[i];
+            buttons[i].onClick.AddListener(() => { buttonAction.Invoke(); });
+        }
+    }
+
+    public void ShowModal()
+    {
         ShowWindow();
     }
 }
