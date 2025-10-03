@@ -139,7 +139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4917044213173503788, guid: 394e7ce0d19529647b4b4a0549b036ec, type: 3}
       propertyPath: m_Name
-      value: Friend Modal Variant
+      value: Friend Modal
       objectReference: {fileID: 0}
     - target: {fileID: 5049635685105421947, guid: 394e7ce0d19529647b4b4a0549b036ec, type: 3}
       propertyPath: m_Pivot.x

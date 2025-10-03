@@ -265,7 +265,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: win_v_tab
+      name: tab_v_on
       rect:
         serializedVersion: 2
         x: 16
@@ -274,7 +274,7 @@ TextureImporter:
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 3, z: 0, w: 3}
+      border: {x: 3, y: 3, z: 3, w: 3}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -286,7 +286,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: win_h_tab
+      name: tab_h_on
       rect:
         serializedVersion: 2
         x: 32
@@ -295,13 +295,55 @@ TextureImporter:
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 3, y: 0, z: 3, w: 0}
+      border: {x: 3, y: 3, z: 3, w: 3}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 910177a4f01665e4fa8769a2c3e9eedf
       internalID: 151012789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tab_v_off
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 5, y: 3, z: 3, w: 3}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45434fa419ca9064cb11d15c4ef84914
+      internalID: -77387923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tab_h_off
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 3, y: 3, z: 3, w: 5}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b148b174fe9ee224c85742d851259853
+      internalID: -668223527
       vertices: []
       indices: 
       edges: []
@@ -321,9 +363,11 @@ TextureImporter:
       sys_close: 1650314019
       sys_empty: 350412602
       sys_min: 682410832
+      tab_h_off: -668223527
+      tab_h_on: 151012789
+      tab_v_off: -77387923
+      tab_v_on: 1712444593
       win_drag_handle: 1642846749
-      win_h_tab: 151012789
-      win_v_tab: 1712444593
       window_bg: -1784297439
       window_bg2: 2071895570
       window_bg_footer: -662714518
