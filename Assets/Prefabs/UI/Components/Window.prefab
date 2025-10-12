@@ -93,6 +93,9 @@ MonoBehaviour:
   maxSize: {x: 1000, y: 1000}
   snapToStep: 1
   stepSize: {x: 50, y: 50}
+  OnResize:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2273085870969095132
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +446,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &7697473447266455674
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -892,7 +895,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 1
+  m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0

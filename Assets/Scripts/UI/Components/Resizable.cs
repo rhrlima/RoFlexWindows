@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
-public class Resizable : MonoBehaviour, IBeginDragHandler, IDragHandler
+public class Resizable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     [SerializeField] private RectTransform window;
     [SerializeField] private Vector2 minSize = new(100, 100);
@@ -11,6 +13,7 @@ public class Resizable : MonoBehaviour, IBeginDragHandler, IDragHandler
     private Vector2 startMousePos;
     private Vector2 startWinPos;
     private Vector2 startWinSize;
+    public UnityEvent OnResize;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -23,6 +26,8 @@ public class Resizable : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
         if (eventData.button != PointerEventData.InputButton.Left)
             return;
+
+        var offset = new Vector2(40, 50);
 
         var mouseDelta = eventData.position - startMousePos;
         var newWinSize = startWinSize + new Vector2(
@@ -38,8 +43,8 @@ public class Resizable : MonoBehaviour, IBeginDragHandler, IDragHandler
             var currStepSize = new Vector2Int(
                 Mathf.RoundToInt(stepCount.x),
                 Mathf.RoundToInt(stepCount.y)
-            );
-            newWinSize = currStepSize * stepSize;
+            );  
+            newWinSize = currStepSize * stepSize + offset;
         }
 
         newWinSize.x = Mathf.Clamp(newWinSize.x, minSize.x, maxSize.x);
@@ -52,5 +57,13 @@ public class Resizable : MonoBehaviour, IBeginDragHandler, IDragHandler
         var wp = window.pivot;
 
         window.anchoredPosition = startWinPos + new Vector2(wp.x * dSize.x, -wp.y * dSize.y);
+
+        OnResize.Invoke();
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        // Debug.Log($"END DRAG: MOUSE {eventData.position} WIN POS {window.anchoredPosition} WIN SIZE {window.sizeDelta}");
+        // Debug.Log($"DIFF: MOUSE {startMousePos-eventData.position} WIN POS {startWinPos-window.anchoredPosition} WIN SIZE {startWinSize-window.sizeDelta}");
     }
 }

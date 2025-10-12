@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4612275118244786365, guid: bb2a3165b16da464888997bc33e98068, type: 3}
       propertyPath: m_Name
-      value: Scroll Panel Variant
+      value: Scroll Panel V
       objectReference: {fileID: 0}
     - target: {fileID: 4612275118244786365, guid: bb2a3165b16da464888997bc33e98068, type: 3}
       propertyPath: m_IsActive
