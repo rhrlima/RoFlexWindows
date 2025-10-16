@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,8 +9,15 @@ public class Draggable : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoin
 
     public void Start()
     {
+        // Canvas ref for scaling calculations
         canvas = FindAnyObjectByType<Canvas>();
-        window = transform.parent as RectTransform;
+        // Window ref that will be dragged
+        window = GetComponentInParent<Window>().transform as RectTransform;
+    }
+
+    public void StartDrag()
+    {
+        isBeingDragged = true;
     }
 
     public void EndDrag()
@@ -32,11 +38,9 @@ public class Draggable : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoin
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        window.SetAsLastSibling();
-
         eventData.useDragThreshold = false;
-
-        isBeingDragged = true;
+        window.SetAsLastSibling();
+        StartDrag();
     }
 
     public void OnPointerUp(PointerEventData eventData)

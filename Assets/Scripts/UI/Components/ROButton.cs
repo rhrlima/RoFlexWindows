@@ -1,7 +1,7 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Button))]
 public class ROButton : MonoBehaviour
 {
     private IWindow window;
@@ -12,7 +12,7 @@ public class ROButton : MonoBehaviour
 
         if (window == null)
         {
-            Debug.LogError("BUtton failed to find IWindow component in parent.");
+            Debug.LogError("Button failed to find IWindow component in parent.");
         }
 
         GetComponent<Button>()?.onClick.AddListener(OnButtonClicked);

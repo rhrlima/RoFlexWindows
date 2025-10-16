@@ -14,7 +14,7 @@ public class Window : MonoBehaviour, IWindow, IPointerDownHandler
     private Resizable resizeComponent;
 
 
-    public void Awake()
+    protected virtual void Awake()
     {
         draggableComponent = GetComponentInChildren<Draggable>(true);
         resizeComponent = GetComponentInChildren<Resizable>(true);
@@ -64,9 +64,9 @@ public class Window : MonoBehaviour, IWindow, IPointerDownHandler
     public void ShowWindow()
     {
         // TODO manager to close using ESC
-        // var mgr = UiManager.Instance;
-        // if (!mgr.WindowStack.Contains(this))
-        //     mgr.WindowStack.Add(this);
+        var mgr = WindowManager.GetInstance();
+        if (!mgr.Contains(this))
+            mgr.PushWindow(this);
 
         if (resetToCenter)
             CenterWindow();
@@ -92,6 +92,7 @@ public class Window : MonoBehaviour, IWindow, IPointerDownHandler
 
     public void FitWindowIntoPlayArea()
     {
-        
+        //TODO
+        Debug.LogWarning("NOT IMPLEMENTED");
     }
 }

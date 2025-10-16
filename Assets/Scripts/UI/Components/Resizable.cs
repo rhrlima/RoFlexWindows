@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
-public class Resizable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class Resizable : MonoBehaviour, IDragHandler, IBeginDragHandler
 {
     [SerializeField] private RectTransform window;
     [SerializeField] private Vector2 minSize = new(100, 100);
@@ -27,12 +27,15 @@ public class Resizable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         if (eventData.button != PointerEventData.InputButton.Left)
             return;
 
-        var offset = new Vector2(40, 50);
+        eventData.useDragThreshold = false;
+
+        var offset = new Vector2(40, 50); // FIXME offset can vary depending on window type
 
         var mouseDelta = eventData.position - startMousePos;
         var newWinSize = startWinSize + new Vector2(
             mouseDelta.x / window.transform.lossyScale.x,
-            -mouseDelta.y / window.transform.lossyScale.y);
+            -mouseDelta.y / window.transform.lossyScale.y
+        );
 
         if (snapToStep)
         {
@@ -59,11 +62,5 @@ public class Resizable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         window.anchoredPosition = startWinPos + new Vector2(wp.x * dSize.x, -wp.y * dSize.y);
 
         OnResize.Invoke();
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        // Debug.Log($"END DRAG: MOUSE {eventData.position} WIN POS {window.anchoredPosition} WIN SIZE {window.sizeDelta}");
-        // Debug.Log($"DIFF: MOUSE {startMousePos-eventData.position} WIN POS {startWinPos-window.anchoredPosition} WIN SIZE {startWinSize-window.sizeDelta}");
     }
 }

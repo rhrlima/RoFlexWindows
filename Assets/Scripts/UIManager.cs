@@ -1,46 +1,33 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class UIManager : MonoBehaviour
+public sealed class UIManager : MonoBehaviour
 {
-    public Window baseWindow;
-    public PartyModal partyModal;
-    public FriendModal friendModal;
-    public DealModal dealModal;
-    public MessageModal messageModal;
-    public StoreModal storeModal;
+    public InputWindow inputWindow;
+    public MessageModal modal;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        var mgr = WindowManager.GetInstance();
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !mgr.Empty())
         {
-            baseWindow.ToggleVisibility();
+            var window = mgr.PopWindow();
+            window.HideWindow();
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            partyModal.ShowModal("Greatest Group");
+            inputWindow.ShowWindow((value) => {});
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            friendModal.ShowModal("Faker");
+            inputWindow.ShowWindow((value) => {}, onlyNumbers: true);
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            dealModal.ShowModal("Faker", "ABC123456", 89);
-        }
-
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            messageModal.ShowModal("Failed to connect to Server.");
-        }
-
-         if (Input.GetKeyDown(KeyCode.H))
-        {
-            storeModal.ShowModal();
+            modal.ShowModal("Simple modal window.");
         }
     }
 }
