@@ -723,7 +723,7 @@ GameObject:
   - component: {fileID: 8900207221843868690}
   - component: {fileID: 7227823932298432753}
   m_Layer: 5
-  m_Name: Scroll Panel
+  m_Name: Scroll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -912,7 +912,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 326153723004960470}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.8333333
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1034,10 +1034,10 @@ RectTransform:
   m_Father: {fileID: 2518431002900597492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 600}
-  m_Pivot: {x: 0.5, y: 1}
+  m_SizeDelta: {x: 600, y: 600}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &7032935570712211881
 CanvasRenderer:
   m_ObjectHideFlags: 0

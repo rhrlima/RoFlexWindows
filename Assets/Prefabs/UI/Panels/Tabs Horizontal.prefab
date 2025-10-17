@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 8398759713553201592}
   - component: {fileID: 4990011592164597232}
   m_Layer: 5
-  m_Name: H Tab Panel
+  m_Name: Tabs Horizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

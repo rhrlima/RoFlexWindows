@@ -38,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4612275118244786365, guid: bb2a3165b16da464888997bc33e98068, type: 3}
       propertyPath: m_Name
-      value: Scroll Panel H
+      value: Scroll Horizontal
       objectReference: {fileID: 0}
     - target: {fileID: 4632609821794881550, guid: bb2a3165b16da464888997bc33e98068, type: 3}
       propertyPath: m_Type
@@ -82,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5645083337651709583, guid: bb2a3165b16da464888997bc33e98068, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 600
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 5645083337651709583, guid: bb2a3165b16da464888997bc33e98068, type: 3}
       propertyPath: m_SizeDelta.y
@@ -190,7 +190,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7152119384346383048, guid: bb2a3165b16da464888997bc33e98068, type: 3}
       propertyPath: m_Size
-      value: 0.85333335
+      value: 0.512
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152119384346383048, guid: bb2a3165b16da464888997bc33e98068, type: 3}
+      propertyPath: m_Value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7227823932298432753, guid: bb2a3165b16da464888997bc33e98068, type: 3}
       propertyPath: m_Enabled
