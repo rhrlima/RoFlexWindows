@@ -684,6 +684,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: icon_card2
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 65
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1b3d3b6db25e2f4bb540f24ae039da1
+      internalID: -1292426286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_card1
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 65
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11e96896d39b610448a0c30e9e1828a5
+      internalID: 2061718525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -700,6 +742,8 @@ TextureImporter:
       arrow_right: 346096896
       arrow_up: -1525723177
       button: 115454951
+      icon_card1: 2061718525
+      icon_card2: -1292426286
       icon_chest: -2068596400
       icon_lock: 504392763
       icon_magn: 1266318484

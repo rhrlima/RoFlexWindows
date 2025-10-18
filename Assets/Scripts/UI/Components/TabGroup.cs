@@ -5,9 +5,8 @@ public class TabGroup : MonoBehaviour
 {
     [SerializeField] private GameObject buttonGroup;
     [SerializeField] private GameObject panelGroup;
-
-    private List<TabButton> buttons;
-    private List<TabPanel> panels;
+    protected List<TabButton> buttons;
+    protected List<TabPanel> panels;
 
     public void Start()
     {
@@ -24,19 +23,19 @@ public class TabGroup : MonoBehaviour
         }
     }
 
-    public void OnTabEnter(TabButton button)
+    public virtual void OnTabEnter(TabButton button)
     {
         ResetTabs();
         button.SetActive(true);
         panels[button.transform.GetSiblingIndex()].gameObject.SetActive(true);
     }
 
-    public void OnTabExit(TabButton button)
+    public virtual void OnTabExit(TabButton button)
     {
 
     }
 
-    public void OnTabSelected(TabButton button)
+    public virtual void OnTabSelected(TabButton button)
     {
 
     }

@@ -5,15 +5,21 @@ using UnityEngine.Events;
 
 public class Resizable : MonoBehaviour, IDragHandler, IBeginDragHandler
 {
-    [SerializeField] private RectTransform window;
     [SerializeField] private Vector2 minSize = new(100, 100);
-    [SerializeField] private Vector2 maxSize = new(1000, 1000);
+    [SerializeField] private Vector2 maxSize = new(400, 400);
     [SerializeField] private bool snapToStep = false;
     [SerializeField] private Vector2 stepSize = new(50, 50);
+    [SerializeField] private Vector2 offset = new(40, 50);
+    private RectTransform window;
     private Vector2 startMousePos;
     private Vector2 startWinPos;
     private Vector2 startWinSize;
     public UnityEvent OnResize;
+
+    private void Awake()
+    {
+        window = GetComponentInParent<Window>().transform as RectTransform;
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -29,25 +35,14 @@ public class Resizable : MonoBehaviour, IDragHandler, IBeginDragHandler
 
         eventData.useDragThreshold = false;
 
-        var offset = new Vector2(40, 50); // FIXME offset can vary depending on window type
-
-        var mouseDelta = eventData.position - startMousePos;
-        var newWinSize = startWinSize + new Vector2(
-            mouseDelta.x / window.transform.lossyScale.x,
-            -mouseDelta.y / window.transform.lossyScale.y
-        );
+        // grabs mouse difference and inverts Y axis
+        var mouseDelta = (eventData.position - startMousePos) * new Vector2(1, -1);
+        var newWinSize = startWinSize + mouseDelta / window.transform.lossyScale;
 
         if (snapToStep)
         {
-            var stepCount = new Vector2(
-                newWinSize.x / stepSize.x,
-                newWinSize.y / stepSize.y
-            );
-            var currStepSize = new Vector2Int(
-                Mathf.RoundToInt(stepCount.x),
-                Mathf.RoundToInt(stepCount.y)
-            );  
-            newWinSize = currStepSize * stepSize + offset;
+            var stepCount = Vector2Int.RoundToInt((newWinSize - offset) / stepSize);
+            newWinSize = stepCount * stepSize + offset;
         }
 
         newWinSize.x = Mathf.Clamp(newWinSize.x, minSize.x, maxSize.x);

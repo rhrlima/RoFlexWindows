@@ -45,10 +45,7 @@ public class Draggable : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoin
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        window.anchoredPosition = new(
-            Mathf.Round(window.anchoredPosition.x),
-            Mathf.Round(window.anchoredPosition.y)
-        );
+        window.anchoredPosition = Vector2Int.RoundToInt(window.anchoredPosition);
         EndDrag();
     }
 }

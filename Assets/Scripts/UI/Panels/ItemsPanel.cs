@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class ItemsPanel : MonoBehaviour
@@ -22,7 +21,6 @@ public class ItemsPanel : MonoBehaviour
     }
     public ItemEntry slotPrefab;
     public List<ItemEntry> items;
-    public TextMeshProUGUI numItemsText;
 
     public void Start()
     {
@@ -33,34 +31,36 @@ public class ItemsPanel : MonoBehaviour
         UpdateGrid();
     }
 
-    public void OnValidate()
-    {
-        if (numItemsText == null)
-            return;
-
-        numItemsText.text = $"{numItems}/100";
-    }
-
     private void UpdateGrid()
     {
-        for (int i = 0; i < numSlots; i++)
+        while (transform.childCount < numSlots)
         {
-            if (items.Count < numSlots)
-            {
-                var item = Instantiate(slotPrefab, transform);
+            var item = Instantiate(slotPrefab, transform);
+
+            if (transform.childCount < items.Count)
                 items.Add(item);
 
-                if (i < numItems)
-                {
-                    items[i].itemAmount = 1;
-                    items[i].OnValidate();
-                }
-            }
+            // Debug.Log($"ADDING {transform.childCount}/{numSlots}");
         }
+
+        for (int i = 0; i < numItems; i++)
+        {
+            items[i].itemAmount = 1;
+            items[i].OnValidate();
+        }
+    }
+
+    public void Update()
+    {
+        // OnGridChange();
     }
 
     public void OnGridChange()
     {
+        // try to avoid redo all for disabled panels
+        if (!isActiveAndEnabled)
+            return;
+
         if (winRect == null || !winRect.gameObject.activeSelf)
             return;
 
@@ -71,6 +71,8 @@ public class ItemsPanel : MonoBehaviour
 
     private void CalcTotalSlots()
     {
+        //FIXME improve offset calculation 40,50
+
         int cols = Mathf.FloorToInt((winRect.sizeDelta.x - 40) / 32);
 
         int panelHeight = (int)Mathf.Max(
@@ -88,13 +90,25 @@ public class ItemsPanel : MonoBehaviour
 
     private void ClearSlots()
     {
-        for (int i = 0; i < numSlots; i++)
+        // delete extra slots
+
+        while (transform.childCount > numSlots)
         {
-            var index = numSlots - i - 1;
+            var index = transform.childCount - 1;
             var obj = transform.GetChild(index);
-            Destroy(obj.gameObject);
+            DestroyImmediate(obj.gameObject);
+
+            // Debug.Log($"DELETING {transform.childCount}/{numSlots}");
         }
 
-        items.Clear();
+        // for (int i = 0; i < numSlots; i++)
+        // {
+        //     var index = numSlots - i - 1;
+        //     var obj = transform.GetChild(index);
+        //     DestroyImmediate(obj.gameObject);
+        //     Debug.Log($"DELETING {transform.childCount}/{numSlots}");
+        // }
+
+        // items.Clear();
     }
 }

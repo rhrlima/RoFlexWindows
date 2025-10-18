@@ -94,7 +94,6 @@ MonoBehaviour:
   _numItems: 0
   slotPrefab: {fileID: 4311539116922789835}
   items: []
-  numItemsText: {fileID: 0}
 --- !u!1001 &3960011359362079443
 PrefabInstance:
   m_ObjectHideFlags: 0

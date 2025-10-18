@@ -30,3 +30,6 @@ public class ModalWindow : Window
         ShowWindow();
     }
 }
+
+//TODO maybe rework to have each modal assign the fields it has, instead of lists
+// Most modals are not that flexible, and be simplified
