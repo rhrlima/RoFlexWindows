@@ -10,7 +10,7 @@ public class Resizable : MonoBehaviour, IDragHandler, IBeginDragHandler
     [SerializeField] private bool snapToStep = false;
     [SerializeField] private Vector2 stepSize = new(50, 50);
     [SerializeField] private Vector2 offset = new(40, 50);
-    private RectTransform window;
+    [SerializeField] private RectTransform window;
     private Vector2 startMousePos;
     private Vector2 startWinPos;
     private Vector2 startWinSize;
@@ -18,7 +18,8 @@ public class Resizable : MonoBehaviour, IDragHandler, IBeginDragHandler
 
     private void Awake()
     {
-        window = GetComponentInParent<Window>().transform as RectTransform;
+        if (window == null) // if not set
+            window = GetComponentInParent<Window>().transform as RectTransform;
     }
 
     public void OnBeginDrag(PointerEventData eventData)

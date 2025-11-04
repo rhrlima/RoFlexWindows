@@ -93,6 +93,7 @@ MonoBehaviour:
   snapToStep: 1
   stepSize: {x: 50, y: 50}
   offset: {x: 40, y: 50}
+  window: {fileID: 0}
   OnResize:
     m_PersistentCalls:
       m_Calls: []

@@ -4,8 +4,7 @@ using UnityEngine.UI;
 
 public class ScrollPanel : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject contentPanel;
+    [SerializeField] private GameObject contentPanel;
 
     public void Start()
     {

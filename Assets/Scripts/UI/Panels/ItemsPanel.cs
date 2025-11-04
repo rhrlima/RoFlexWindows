@@ -46,7 +46,7 @@ public class ItemsPanel : MonoBehaviour
         for (int i = 0; i < numItems; i++)
         {
             items[i].itemAmount = 1;
-            items[i].OnValidate();
+            items[i].Refresh();
         }
     }
 

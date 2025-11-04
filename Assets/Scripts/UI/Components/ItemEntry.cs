@@ -10,7 +10,7 @@ public class ItemEntry : MonoBehaviour
     private TextMeshProUGUI itemAmountText;
     public int itemAmount;
 
-    public void OnValidate()
+    public void Refresh()
     {
         itemAmountText.text = itemAmount.ToString();
         itemSprite.gameObject.SetActive(itemAmount > 0);
