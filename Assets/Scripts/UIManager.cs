@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public sealed class UIManager : MonoBehaviour
 {
     public InputWindow inputWindow;
     public MessageModal modal;
+    public ListModal listModal;
 
     void Update()
     {
@@ -27,7 +29,8 @@ public sealed class UIManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            modal.ShowModal("Simple modal window.");
+            // modal.ShowModal("Simple modal window.");
+            listModal.ShowModal(new List<string>() {"Chaos", "Iris", "Loki"});
         }
     }
 }

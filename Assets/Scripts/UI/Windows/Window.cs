@@ -3,21 +3,19 @@ using UnityEngine.EventSystems;
 
 public class Window : MonoBehaviour, IWindow, IPointerDownHandler
 {
-    // Window Options
-    [SerializeField] private bool resetToCenter = true;
-    [SerializeField] private bool isDraggable = true;
-    [SerializeField] private bool isResizable = true;
+    [SerializeField] private bool resetToCenter;
+    [SerializeField] private bool isDraggable;
+    [SerializeField] private bool isResizable;
 
-
-    // Internal 
     private Draggable draggableComponent;
     private Resizable resizeComponent;
-
 
     protected virtual void Awake()
     {
         draggableComponent = GetComponentInChildren<Draggable>(true);
         resizeComponent = GetComponentInChildren<Resizable>(true);
+
+        OnValidate();
     }
 
     private void OnValidate()
@@ -54,14 +52,14 @@ public class Window : MonoBehaviour, IWindow, IPointerDownHandler
 
     public void ToggleResisable()
     {
-        if (resizeComponent != null && isResizable != resizeComponent.enabled)
+        if (resizeComponent != null)
         {
             resizeComponent.gameObject.SetActive(isResizable);
             resizeComponent.enabled = isResizable;
         }
     }
 
-    public void ShowWindow()
+    public virtual void ShowWindow()
     {
         // TODO manager to close using ESC
         var mgr = WindowManager.GetInstance();
@@ -79,7 +77,7 @@ public class Window : MonoBehaviour, IWindow, IPointerDownHandler
         gameObject.SetActive(true);
     }
 
-    public void HideWindow()
+    public virtual void HideWindow()
     {
         gameObject.SetActive(false);
     }

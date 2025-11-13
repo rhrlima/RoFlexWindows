@@ -32,4 +32,4 @@ public class ModalWindow : Window
 }
 
 //TODO maybe rework to have each modal assign the fields it has, instead of lists
-// Most modals are not that flexible, and be simplified
+// Most modals are not that flexible, and can be simplified
