@@ -67,8 +67,8 @@ public class ListPanel : MonoBehaviour
             newItem.OptionText = $"Option {i + 1}";
 
             newItem.OnSelectEvent.AddListener((ListItem) => HandleOnOptionSelect(newItem));
-            newItem.OnSubmitEvent.AddListener((ListItem) => _onOptionSubmitEvent.Invoke(newItem));
-            newItem.OnClickEvent.AddListener((ListItem) => _onOptionClickEvent.Invoke(newItem));
+            newItem.OnSubmitEvent.AddListener((ListItem) => HandleOnOptionSubmit(newItem));
+            newItem.OnClickEvent.AddListener((ListItem) => HandleOnOptionClick(newItem));
         }
     }
 
@@ -76,6 +76,16 @@ public class ListPanel : MonoBehaviour
     {
         _onOptionSelectEvent.Invoke(option);
         autoScroll.FitOptiontoView(option.Index);
+    }
+
+    private void HandleOnOptionSubmit(ListItem option)
+    {
+        _onOptionSubmitEvent.Invoke(option);
+    }
+
+    private void HandleOnOptionClick(ListItem option)
+    {
+        _onOptionClickEvent.Invoke(option);
     }
 
     public void SelectOption(int index)
