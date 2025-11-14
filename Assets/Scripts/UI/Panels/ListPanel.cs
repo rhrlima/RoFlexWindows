@@ -1,36 +1,29 @@
-/*
-arrow navigation vs scroll bar
-auto scroll when navigating the list (disable navigation in scroll component)
-*/
-
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ListPanel : MonoBehaviour
 {
+    public AutoScroll autoScroll;
+    public int numOptions;
     [SerializeField] private List<ListItem> listOptions;
     [SerializeField] private ListItem listItemPrefab;
-    public int numOptions;
-    private int selectedIndex = -1;
-
     [SerializeField] private ListItemEvent _onOptionSelectEvent;
     [SerializeField] private ListItemEvent _onOptionSubmitEvent;
     [SerializeField] private ListItemEvent _onOptionClickEvent;
-
-    public AutoScroll autoScroll;
 
     public ListItemEvent OnOptionSelectEvent
     {
         get => _onOptionSelectEvent;
         set => _onOptionSelectEvent = value;
     }
+
     public ListItemEvent OnOptionSubmitEvent
     {
         get => _onOptionSubmitEvent;
         set => _onOptionSubmitEvent = value;
     }
+
     public ListItemEvent OnOptionClickEvent
     {
         get => _onOptionClickEvent;
@@ -70,7 +63,7 @@ public class ListPanel : MonoBehaviour
         for (int i = 0; i < numOptions; i++)
         {
             ListItem newItem = Instantiate(listItemPrefab, transform);
-            newItem.index = i;
+            newItem.Index = i;
             newItem.OptionText = $"Option {i + 1}";
 
             newItem.OnSelectEvent.AddListener((ListItem) => HandleOnOptionSelect(newItem));
@@ -82,21 +75,7 @@ public class ListPanel : MonoBehaviour
     private void HandleOnOptionSelect(ListItem option)
     {
         _onOptionSelectEvent.Invoke(option);
-        // FitOptiontoView(option.index);
-    }
-
-    public void RefreshOptions(int newIndex)
-    {
-        if (newIndex < 0 || newIndex >= listOptions.Count) return;
-
-        if (newIndex == selectedIndex) return;
-
-        if (selectedIndex >= 0 && selectedIndex < listOptions.Count)
-            listOptions[selectedIndex].OnOptionExit();
-
-        listOptions[newIndex].OnOptionEnter();
-
-        selectedIndex = newIndex;
+        autoScroll.FitOptiontoView(option.Index);
     }
 
     public void SelectOption(int index)
@@ -104,12 +83,5 @@ public class ListPanel : MonoBehaviour
         GameObject option = transform.GetChild(index).gameObject;
         var item = option.GetComponent<ListItem>();
         item.ObtainSelectionFocus();
-
-        // FitOptiontoView(index);
-    }
-
-    public int GetSelectedOption()
-    {
-        return selectedIndex;
     }
 }
