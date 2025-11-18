@@ -1,48 +1,61 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
-public class ListModal : Window, IModalWindow
+// look at InputWindow, for a delegate callback example
+
+public class ListModal : Window
 {
-    private ListPanel listPanel;
+    private Action<ListItem> _onConfirmAction;
+    private Action<ListItem> _onCancelAction;
 
-    private void Start()
+    [SerializeField] private ListPanel listPanel;
+    [SerializeField] private Button confirmButton;
+    [SerializeField] private Button cancelButton;
+    [SerializeField] private UnityEvent _onConfirmEvent;
+    [SerializeField] private UnityEvent _onCancelEvent;
+
+    public UnityEvent OnConfirmEvent
     {
-        listPanel = GetComponentInChildren<ListPanel>();
-
-        if (listPanel == null)
-            Debug.LogError("Content Panel of type 'ListPanel' not found.");
+        get => _onConfirmEvent;
+        set => _onConfirmEvent = value;
     }
 
-    private void Update()
+    public UnityEvent OnCancelEvent
     {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            OnConfirm();
-        }
+        get => _onCancelEvent;
+        set => _onCancelEvent = value;
     }
 
-    public override void ShowWindow()
+    public void ShowModal(List<string> options,
+        Action<ListItem> onConfirm,
+        Action<ListItem> onClick = null,
+        Action<ListItem> onSelect = null,
+        Action<ListItem> onCancel = null
+    )
     {
-        listPanel.SelectOption(0);
-        base.ShowWindow();
+        ShowWindow();
+
+        listPanel.SetOptions(options);
+        listPanel._onOptionSubmitAction = onConfirm;
+        listPanel._onOptionClickAction = onClick;
+        listPanel._onOptionSelectAction = onSelect;
+
+        _onConfirmAction = onConfirm;
+        _onCancelAction = onCancel;
     }
 
     public void OnConfirm()
     {
-        var selectedValue = listPanel.GetSelectedOption();
-        Debug.Log($"SELECTED OPTION: {selectedValue}");
+        _onConfirmEvent.Invoke();
         HideWindow();
     }
 
     public void OnCancel()
     {
-        listPanel.SelectOption(0);
+        _onCancelEvent.Invoke();
         HideWindow();
-    }
-
-    public void ShowModal(List<string> options)
-    {
-        // listPanel.SetOptions(options);
-        ShowWindow();
     }
 }
