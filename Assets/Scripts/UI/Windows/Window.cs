@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 
 public class Window : MonoBehaviour, IWindow, IPointerDownHandler
 {
+    [Header("Window Settings")]
     [SerializeField] private bool resetToCenter;
     [SerializeField] private bool isDraggable;
     [SerializeField] private bool isResizable;

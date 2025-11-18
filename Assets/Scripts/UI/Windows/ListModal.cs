@@ -8,12 +8,8 @@ using UnityEngine.UI;
 
 public class ListModal : Window
 {
-    private Action<ListItem> _onConfirmAction;
-    private Action<ListItem> _onCancelAction;
-
+    [Header("List Settings")]
     [SerializeField] private ListPanel listPanel;
-    [SerializeField] private Button confirmButton;
-    [SerializeField] private Button cancelButton;
     [SerializeField] private UnityEvent _onConfirmEvent;
     [SerializeField] private UnityEvent _onCancelEvent;
 
@@ -42,9 +38,6 @@ public class ListModal : Window
         listPanel._onOptionSubmitAction = onConfirm;
         listPanel._onOptionClickAction = onClick;
         listPanel._onOptionSelectAction = onSelect;
-
-        _onConfirmAction = onConfirm;
-        _onCancelAction = onCancel;
     }
 
     public void OnConfirm()
