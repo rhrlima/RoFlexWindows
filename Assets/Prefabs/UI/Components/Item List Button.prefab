@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4672d35b28f01345bfc43a87375f3b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doubleClickThreshold: 0.3
   _optionText: {fileID: 4965388566024093427}
   _onSelectEvent:
     m_PersistentCalls:
