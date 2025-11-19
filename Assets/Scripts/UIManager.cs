@@ -3,8 +3,7 @@ using UnityEngine;
 
 public sealed class UIManager : MonoBehaviour
 {
-    public InputWindow inputWindow;
-    public MessageModal modal;
+    public ListModal listWindow;
     public ListModal listModal;
 
     void Update()
@@ -19,18 +18,20 @@ public sealed class UIManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            inputWindow.ShowWindow((value) => {});
+            listWindow.ShowModal(new List<string>() {"Chaos", "Iris", "Loki", "Chaos", "Iris", "Loki", "Chaos", "Iris", "Loki"}, (item) =>
+            {
+                Debug.Log($"Selected option: {item.OptionText} at index {item.Index}");
+                listWindow.HideWindow();
+            });
         }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            inputWindow.ShowWindow((value) => {}, onlyNumbers: true);
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            // modal.ShowModal("Simple modal window.");
-            listModal.ShowModal(new List<string>() {"Chaos", "Iris", "Loki"});
+            listModal.ShowModal(new List<string>() {"Chaos", "Iris", "Loki", "Chaos", "Iris", "Loki", "Chaos", "Iris", "Loki"}, (item) =>
+            {
+                Debug.Log($"Selected option: {item.OptionText} at index {item.Index}");
+                listModal.HideWindow();
+            });
         }
     }
 }
