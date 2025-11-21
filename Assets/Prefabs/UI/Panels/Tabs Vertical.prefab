@@ -194,7 +194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3716798729988750211, guid: 4743297beeb71e44a89d6471c9253361, type: 3}
       propertyPath: m_Name
-      value: V Tab Panel
+      value: Tabs Vertical
       objectReference: {fileID: 0}
     - target: {fileID: 3798426611958609229, guid: 4743297beeb71e44a89d6471c9253361, type: 3}
       propertyPath: m_Sprite

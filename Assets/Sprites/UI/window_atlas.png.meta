@@ -693,7 +693,7 @@ TextureImporter:
         width: 18
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -714,7 +714,7 @@ TextureImporter:
         width: 18
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -722,6 +722,90 @@ TextureImporter:
       bones: []
       spriteID: 11e96896d39b610448a0c30e9e1828a5
       internalID: 2061718525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arrow_right_small
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 36
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e34b6911a083764e82984afe84ada1e
+      internalID: -2075001367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arrow_left_small
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 36
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 061998c42ac23b242beb84d66ede67ac
+      internalID: -1490061010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skill_placeholder
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 84
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b58d783eb68ee354c82582eee3a7cd11
+      internalID: 82759030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvup_button
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 84
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97ce64a77e84a364abed721284bdd3cd
+      internalID: 42986792
       vertices: []
       indices: 
       edges: []
@@ -739,7 +823,9 @@ TextureImporter:
     nameFileIdTable:
       arrow_down: 1919977392
       arrow_left: -932461098
+      arrow_left_small: -1490061010
       arrow_right: 346096896
+      arrow_right_small: -2075001367
       arrow_up: -1525723177
       button: 115454951
       icon_card1: 2061718525
@@ -749,11 +835,13 @@ TextureImporter:
       icon_magn: 1266318484
       item_base: -815061958
       item_placeholder: -1159011950
+      lvup_button: 42986792
       pan_round: 1732866873
       pan_square: 2071895570
       placeholder: 975374147
       scroll_back: -1590021368
       scroll_bar: -412156856
+      skill_placeholder: 82759030
       sys_close: 1650314019
       sys_empty: 350412602
       sys_min: 682410832
