@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 3820483276324311077}
   - component: {fileID: 7536021101519463798}
   m_Layer: 5
-  m_Name: Equipment Window
+  m_Name: Equipment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
