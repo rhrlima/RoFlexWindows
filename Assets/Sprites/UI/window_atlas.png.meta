@@ -798,7 +798,7 @@ TextureImporter:
         width: 24
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -806,6 +806,27 @@ TextureImporter:
       bones: []
       spriteID: 97ce64a77e84a364abed721284bdd3cd
       internalID: 42986792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pan_round_solid
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 112
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 8, y: 8, z: 8, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 462a7e5c61910f14ea75fcc3f22b9889
+      internalID: -1480078069
       vertices: []
       indices: 
       edges: []
@@ -837,6 +858,7 @@ TextureImporter:
       item_placeholder: -1159011950
       lvup_button: 42986792
       pan_round: 1732866873
+      pan_round_solid: -1480078069
       pan_square: 2071895570
       placeholder: 975374147
       scroll_back: -1590021368
