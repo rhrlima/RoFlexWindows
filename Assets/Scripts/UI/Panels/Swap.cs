@@ -1,57 +1,94 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class SwapPanel : MonoBehaviour
+public class SwapPanel : IPanel
 {
-    public List<GameObject> panels;
-    public int activePanelIndex = 0;
+    [Header("Swap Panel Settings")]
+    public List<SwapablePanel> panels;
+    public List<int> groups;
+    public int activeGroup = 0;
+    private int selectedIndex = 0;
 
-    public void Start()
+    private void Start()
     {
         AutoFillEntries();
-        SetActivePanel(activePanelIndex);
+        SwapByIndex(0);
     }
 
-    public void SetActivePanel(int index)
+    public void SwapByGroup(int group)
+    {
+        if (!groups.Contains(group)) return;
+        SetActiveGroup(group);
+    }
+
+    public void SwapByIndex(int index)
+    {
+        if (index < 0 || index >= groups.Count) return;
+        SwapByGroup(groups[index]);
+    }
+
+    private void SetActiveGroup(int group)
     {
         if (panels == null || panels.Count == 0) return;
-        if (index < 0 || index >= panels.Count) return;
 
-        activePanelIndex = index;
+        activeGroup = group;
+        selectedIndex = groups.IndexOf(group);
 
         for (int i = 0; i < panels.Count; i++)
         {
-            panels[i].SetActive(i == activePanelIndex);
+            panels[i].TogglePanel(panels[i].group == group);
         }
     }
 
-    public void ToggleNextPanel()
+    public void GetNextGroup()
     {
-        if (panels == null || panels.Count == 0) return;
-
-        activePanelIndex = (activePanelIndex + 1) % panels.Count;
-        SetActivePanel(activePanelIndex);
+        var index = (selectedIndex + 1) % groups.Count;
+        SwapByIndex(index);
     }
 
-    public void TogglePreviousPanel()
+    public void GetPreviousGroup()
     {
-        if (panels == null || panels.Count == 0) return;
-
-        activePanelIndex = (activePanelIndex - 1 + panels.Count) % panels.Count;
-        SetActivePanel(activePanelIndex);
+        var index = (selectedIndex - 1 + groups.Count) % groups.Count;
+        SwapByIndex(index);
     }
 
-    void AutoFillEntries()
+    private void AutoFillEntries()
     {
-        panels ??= new List<GameObject>();
+        panels ??= new List<SwapablePanel>();
         if (panels.Count == 0)
         {
             for (int i = 0; i < transform.childCount; i++)
             {
-                var ch = transform.GetChild(i) as RectTransform;
-                if (ch != null) panels.Add(ch.gameObject);
+                var rect = transform.GetChild(i) as RectTransform;
+                if (rect != null) panels.Add(new SwapablePanel()
+                {
+                    rect = rect,
+                    group = i,
+                    isActive = false
+                });
             }
-            return;
         }
+        if (groups == null || groups.Count == 0)
+        {
+            groups = panels
+                .Select(p => p.group)
+                .Distinct()
+                .ToList();    
+        }
+    }
+}
+
+[Serializable]
+public class SwapablePanel
+{
+    public RectTransform rect;
+    public int group;
+    public bool isActive;
+    public void TogglePanel(bool isActive)
+    {
+        rect.gameObject.SetActive(isActive);
+        this.isActive = isActive;
     }
 }
