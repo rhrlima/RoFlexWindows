@@ -6,10 +6,13 @@ using UnityEngine.UI;
 // [ExecuteAlways]
 public class BasicInfo : Window
 {
-    [Header("Swap Panels")]
-    public List<GameObject> panelsA;
-    public List<GameObject> panelsB;
-    public bool isMinimized = false;
+    private enum WindowMode
+    {
+        Maximized,
+        Minimized
+    }
+    public bool isMinimized;
+    [SerializeField] private SwapPanel swapPanelController;
 
     [Header("Maximized Components")]
     public TextMeshProUGUI playerNameTextMax;
@@ -56,30 +59,17 @@ public class BasicInfo : Window
         }
     }
 
-    public void Start()
+    private void Start()
     {
-        SwapPanels();
-    }
-
-    public void SwapPanels()
-    {
-
-        var count = Mathf.Max(panelsA.Count, panelsB.Count);
-
-        for (int i = 0; i < count; i++)
-        {
-            bool isActive = panelsA[i].activeSelf;
-
-            if (i < panelsA.Count) panelsA[i].SetActive(!isActive);
-            if (i < panelsB.Count) panelsB[i].SetActive(isActive);
-        }
-
-        isMinimized = !isMinimized;
+        isMinimized = false;
         UpdateUI();
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
+        if (swapPanelController != null)
+            isMinimized = swapPanelController.activeGroup == (int)WindowMode.Minimized;
+
         // Maximized
         playerNameTextMax.text = playerName;
         jobNameTextMax.text = jobName;

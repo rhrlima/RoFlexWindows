@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SwapPanel : IPanel
 {
@@ -10,6 +11,7 @@ public class SwapPanel : IPanel
     public List<int> groups;
     public int activeGroup = 0;
     private int selectedIndex = 0;
+    [SerializeField] private UnityEvent onSwapEvent;
 
     private void Start()
     {
@@ -40,6 +42,8 @@ public class SwapPanel : IPanel
         {
             panels[i].TogglePanel(panels[i].group == group);
         }
+
+        onSwapEvent?.Invoke();
     }
 
     public void GetNextGroup()

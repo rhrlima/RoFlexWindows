@@ -69,7 +69,7 @@ public class FlexPanel : MonoBehaviour
             hlg.childControlHeight = true;
             hlg.childForceExpandHeight = true;
         }
-        
+
         // Apply LayoutElement settings per entry, mapped to the main axis chosen
         foreach (var e in entries)
         {

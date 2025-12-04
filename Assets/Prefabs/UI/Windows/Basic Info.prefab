@@ -367,12 +367,8 @@ MonoBehaviour:
   resetToCenter: 1
   isDraggable: 1
   isResizable: 0
-  panelsA:
-  - {fileID: 8515606802265848483}
-  - {fileID: 8060500065540204576}
-  panelsB:
-  - {fileID: 3220340170468491216}
   isMinimized: 0
+  swapPanelController: {fileID: 0}
   playerNameTextMax: {fileID: 8694341105208450985}
   jobNameTextMax: {fileID: 5947922065682137728}
   baseLevelTextMax: {fileID: 5446013983850240990}
