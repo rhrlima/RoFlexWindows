@@ -377,7 +377,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 24, y: 0}
-  m_SizeDelta: {x: 9, y: 11}
+  m_SizeDelta: {x: 12, y: 12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6489461966988672693
 CanvasRenderer:
@@ -407,7 +407,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1856416338, guid: 552acdb6bec35e64ab8e87384d05c396, type: 3}
+  m_Sprite: {fileID: -1792674730, guid: 552acdb6bec35e64ab8e87384d05c396, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 2621161808244176060}
   - component: {fileID: 6379141575092349795}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Lock Group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -756,7 +756,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -24, y: 0}
-  m_SizeDelta: {x: 9, y: 11}
+  m_SizeDelta: {x: 12, y: 12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7704653626148092119
 CanvasRenderer:

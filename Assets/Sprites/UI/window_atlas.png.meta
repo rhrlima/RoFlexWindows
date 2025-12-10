@@ -559,13 +559,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: icon_lock
+      name: icon_lock_closed
       rect:
         serializedVersion: 2
-        x: 116
+        x: 115
         y: 50
-        width: 9
-        height: 11
+        width: 12
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -584,7 +584,7 @@ TextureImporter:
       name: icon_magn
       rect:
         serializedVersion: 2
-        x: 130
+        x: 146
         y: 50
         width: 12
         height: 12
@@ -866,6 +866,72 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: radio_back
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 66
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9b172ddc0dfd584d96464355850a1aa
+      internalID: -1910394986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: radio_front
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 66
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4b6c6ecb6fb30e438503c041b9efe31
+      internalID: 1313501187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_lock_open
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 50
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6183555d4ecd6a348907a23347a3daff
+      internalID: -1792674730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -890,7 +956,8 @@ TextureImporter:
       icon_card1: 2061718525
       icon_card2: -1292426286
       icon_chest: -2068596400
-      icon_lock: 504392763
+      icon_lock_closed: 1856416338
+      icon_lock_open: -1792674730
       icon_magn: 1266318484
       item_base: -815061958
       item_placeholder: -1159011950
@@ -899,6 +966,8 @@ TextureImporter:
       pan_round_solid: -1480078069
       pan_square: 2071895570
       placeholder: 975374147
+      radio_back: -1910394986
+      radio_front: 1313501187
       scroll_back: -1590021368
       scroll_bar: -412156856
       skill_placeholder: 82759030
