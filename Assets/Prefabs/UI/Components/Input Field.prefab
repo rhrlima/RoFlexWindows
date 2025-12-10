@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -8, y: -8}
+  m_SizeDelta: {x: -8, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6658396190177092691
 CanvasRenderer:
@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Enter text...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8880bbc0de8a97b46a5b05bc2f6db24d, type: 2}
-  m_sharedMaterial: {fileID: -7458139221149273687, guid: 8880bbc0de8a97b46a5b05bc2f6db24d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fee9bff6f73e88d4a8a05cbc999f2ef6, type: 2}
+  m_sharedMaterial: {fileID: -2718199928434579994, guid: fee9bff6f73e88d4a8a05cbc999f2ef6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -193,7 +193,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -8, y: -8}
+  m_SizeDelta: {x: -8, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &66459022176802219
 CanvasRenderer:
@@ -225,8 +225,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8880bbc0de8a97b46a5b05bc2f6db24d, type: 2}
-  m_sharedMaterial: {fileID: -7458139221149273687, guid: 8880bbc0de8a97b46a5b05bc2f6db24d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fee9bff6f73e88d4a8a05cbc999f2ef6, type: 2}
+  m_sharedMaterial: {fileID: -2718199928434579994, guid: fee9bff6f73e88d4a8a05cbc999f2ef6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -463,7 +463,7 @@ MonoBehaviour:
   m_CaretWidth: 1
   m_ReadOnly: 0
   m_RichText: 1
-  m_GlobalFontAsset: {fileID: 11400000, guid: 8880bbc0de8a97b46a5b05bc2f6db24d, type: 2}
+  m_GlobalFontAsset: {fileID: 11400000, guid: fee9bff6f73e88d4a8a05cbc999f2ef6, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
   m_KeepTextSelectionVisible: 0
