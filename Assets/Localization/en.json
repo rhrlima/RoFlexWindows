@@ -1,0 +1,16 @@
+{
+    "name": "English Locale",
+    "version": "0.0.1",
+    "languageName": "English",
+    "languageCode": "en",
+    "data": [
+        {
+            "group": "test",
+            "entries": [
+                {"key": "confirm", "value": "Confirm"},
+                {"key": "cancel", "value": "Cancel"},
+                {"key": "message", "value": "This is a localized message."}
+            ]
+        }
+    ]
+}

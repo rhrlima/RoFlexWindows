@@ -1,0 +1,16 @@
+{
+    "name": "Brazilian Portuguese",
+    "version": "0.0.1",
+    "languageName": "Português Brasileiro",
+    "languageCode": "pr-BR",
+    "data": [
+        {
+            "group": "test",
+            "entries": [
+                {"key": "confirm", "value": "Confirmar"},
+                {"key": "cancel", "value": "Cancelar"},
+                {"key": "message", "value": "Esta é uma mensagem localizada."}
+            ]
+        }
+    ]
+}
