@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,15 +27,15 @@ public class LocaleTest : MonoBehaviour, ILocalizable
         }
         else if (localeIndex == 1)
         {
-            Loader.Instance.SetLocale("pr-BR");
+            Loader.Instance.SetLocale("pt-BR");
         }
         else
         {
             Loader.Instance.SetLocale("es");
         }
 
-        message.text = Loader.Instance.GetLocalizedString("test.message");
-        confirm.text = Loader.Instance.GetLocalizedString("test.confirm");
-        cancel.text = Loader.Instance.GetLocalizedString("test.cancel");
+        // message.text = Loader.Instance.GetLocalizedString("test.message");
+        // confirm.text = Loader.Instance.GetLocalizedString("test.confirm");
+        // cancel.text = Loader.Instance.GetLocalizedString("test.cancel");
     }
 }

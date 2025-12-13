@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 public class Loader : MonoBehaviour
 {
@@ -40,6 +42,15 @@ public class Loader : MonoBehaviour
 
     public void SetLocale(string localeCode)
     {
-        activeLocaleCode = localeCode;
+        StartCoroutine(ChangeLocaleCoroutine(localeCode));
+        // LocalizationSettings.SelectedLocale = localeCode;
+    }
+
+    private IEnumerator ChangeLocaleCoroutine(string localeCode)
+    {
+        yield return LocalizationSettings.InitializationOperation;
+
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.GetLocale(localeCode);
+        Debug.Log(LocalizationSettings.SelectedLocale);
     }
 }
