@@ -27,6 +27,10 @@ MonoBehaviour:
     m_Key: test.cancel
     m_Metadata:
       m_Items: []
+  - m_Id: 46254682660864
+    m_Key: text.
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

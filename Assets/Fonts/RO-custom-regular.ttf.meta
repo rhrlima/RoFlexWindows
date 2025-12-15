@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5b93267d4960c9e4d895e11d41b4df96
+guid: 8cd59b2859770ff4c8a991c10f440075
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,10 +9,10 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - RO-custom
+  - RO-custom-regular
   fallbackFontReferences: []
   customCharacters: 
-  fontRenderingMode: 0
+  fontRenderingMode: 2
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
   shouldRoundAdvanceValue: 1

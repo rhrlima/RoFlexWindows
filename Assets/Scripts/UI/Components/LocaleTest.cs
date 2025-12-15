@@ -1,41 +1,45 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Localization.Settings;
 
-public class LocaleTest : MonoBehaviour, ILocalizable
+public class LocaleTest : MonoBehaviour
 {
     public TMP_Dropdown dropdown;
-    public TMP_Text message;
-    public TMP_Text confirm;
-    public TMP_Text cancel;
+    private List<string> localeCodes;
 
-    private void Start()
+    public void Awake()
     {
-        OnLocaleChanged();
+        StartCoroutine(WaitLocalizationSetup());
     }
 
     public void OnLocaleChanged()
     {
-        if (Loader.Instance == null) return;
+        var index = dropdown.value;
+        var localeCode = localeCodes[index];
 
-        var localeIndex = dropdown.value;
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.GetLocale(localeCode);
+        Debug.Log($"Locale changed to: {LocalizationSettings.SelectedLocale}");
+    }
 
-        if (localeIndex == 0)
+    private IEnumerator WaitLocalizationSetup()
+    {
+        yield return LocalizationSettings.InitializationOperation;
+
+        Debug.Log("Localization initialized.");
+
+        localeCodes = new();
+
+        dropdown.options.Clear();
+        foreach (var locale in LocalizationSettings.AvailableLocales.Locales)
         {
-            Loader.Instance.SetLocale("en");
-        }
-        else if (localeIndex == 1)
-        {
-            Loader.Instance.SetLocale("pt-BR");
-        }
-        else
-        {
-            Loader.Instance.SetLocale("es");
+            dropdown.options.Add(new TMP_Dropdown.OptionData(locale.LocaleName));
+            localeCodes.Add(locale.Identifier.Code);
         }
 
-        // message.text = Loader.Instance.GetLocalizedString("test.message");
-        // confirm.text = Loader.Instance.GetLocalizedString("test.confirm");
-        // cancel.text = Loader.Instance.GetLocalizedString("test.cancel");
+        Debug.Log("Setup finished.");
+
+        OnLocaleChanged();
     }
 }
