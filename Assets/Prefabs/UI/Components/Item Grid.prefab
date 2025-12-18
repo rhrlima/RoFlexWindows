@@ -110,6 +110,46 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1900134609242849460, guid: c3da169c58c5cda44bdfbc6d256a0036, type: 3}
+      propertyPath: m_text
+      value: 99999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900134609242849460, guid: c3da169c58c5cda44bdfbc6d256a0036, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b0ad3f591f0f7dc41af0b65b7f0a4c8d, type: 2}
+    - target: {fileID: 1900134609242849460, guid: c3da169c58c5cda44bdfbc6d256a0036, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900134609242849460, guid: c3da169c58c5cda44bdfbc6d256a0036, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900134609242849460, guid: c3da169c58c5cda44bdfbc6d256a0036, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900134609242849460, guid: c3da169c58c5cda44bdfbc6d256a0036, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 1002888019574939657, guid: b0ad3f591f0f7dc41af0b65b7f0a4c8d, type: 2}
+    - target: {fileID: 1900134609242849460, guid: c3da169c58c5cda44bdfbc6d256a0036, type: 3}
+      propertyPath: m_characterSpacing
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900134609242849460, guid: c3da169c58c5cda44bdfbc6d256a0036, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900134609242849460, guid: c3da169c58c5cda44bdfbc6d256a0036, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900134609242849460, guid: c3da169c58c5cda44bdfbc6d256a0036, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
     - target: {fileID: 3381554150413090688, guid: c3da169c58c5cda44bdfbc6d256a0036, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -192,11 +232,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3478299148982774402, guid: c3da169c58c5cda44bdfbc6d256a0036, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4357925406499201566, guid: c3da169c58c5cda44bdfbc6d256a0036, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8172057583720704370, guid: c3da169c58c5cda44bdfbc6d256a0036, type: 3}
       propertyPath: m_Name

@@ -190,7 +190,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3325213899804150534, guid: 4743297beeb71e44a89d6471c9253361, type: 3}
       propertyPath: m_lineSpacing
-      value: -12
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325213899804150534, guid: 4743297beeb71e44a89d6471c9253361, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 3370306263361208269, guid: 4743297beeb71e44a89d6471c9253361, type: 3}
       propertyPath: m_MinWidth
@@ -350,7 +354,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6006782512197677194, guid: 4743297beeb71e44a89d6471c9253361, type: 3}
       propertyPath: m_lineSpacing
-      value: -12
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6006782512197677194, guid: 4743297beeb71e44a89d6471c9253361, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 6359846069959725623, guid: 4743297beeb71e44a89d6471c9253361, type: 3}
       propertyPath: m_text
@@ -358,7 +366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6359846069959725623, guid: 4743297beeb71e44a89d6471c9253361, type: 3}
       propertyPath: m_lineSpacing
-      value: -12
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6359846069959725623, guid: 4743297beeb71e44a89d6471c9253361, type: 3}
       propertyPath: m_wordSpacing
@@ -375,6 +383,10 @@ PrefabInstance:
     - target: {fileID: 6359846069959725623, guid: 4743297beeb71e44a89d6471c9253361, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6359846069959725623, guid: 4743297beeb71e44a89d6471c9253361, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 6367494266838201916, guid: 4743297beeb71e44a89d6471c9253361, type: 3}
       propertyPath: m_MinWidth
