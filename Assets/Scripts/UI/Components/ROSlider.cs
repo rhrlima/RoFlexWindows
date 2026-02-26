@@ -4,15 +4,22 @@ using UnityEngine.UI;
 
 public class ROSlider : MonoBehaviour
 {
+    [SerializeField]
     private Slider slider;
 
-    private void Start()
+    public float Value
     {
-        if (slider == null)
-        {
-            slider = GetComponentInChildren<Slider>(true);
-        }
+        get { return slider.value; }
+        set { slider.value = value; }
     }
+
+    // private void Start()
+    // {
+    //     if (slider == null)
+    //     {
+    //         slider = GetComponentInChildren<Slider>(true);
+    //     }
+    // }
 
     public void AddByValue(float amount)
     {

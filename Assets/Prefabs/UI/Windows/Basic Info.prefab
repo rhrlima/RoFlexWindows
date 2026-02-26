@@ -510,6 +510,7 @@ MonoBehaviour:
   isResizable: 0
   isMinimized: 0
   swapPanelController: {fileID: 0}
+  playerData: {fileID: 0}
   playerNameTextMax: {fileID: 8694341105208450985}
   jobNameTextMax: {fileID: 5947922065682137728}
   baseLevelTextMax: {fileID: 5446013983850240990}
@@ -517,28 +518,20 @@ MonoBehaviour:
   baseExpSlider: {fileID: 0}
   jobExpSlider: {fileID: 0}
   hpSlider: {fileID: 831319458266618954}
+  hpText: {fileID: 0}
   hpPercentageText: {fileID: 3648509991647689843}
   spSlider: {fileID: 3294955737482097139}
+  spText: {fileID: 0}
   spPercentageText: {fileID: 1927398345914836714}
   weightText: {fileID: 1851990911256395521}
   zenyText: {fileID: 1352776807312721991}
-  playerNameTextMin: {fileID: 2457195128384573718}
-  basicInfoText: {fileID: 2015363197094605}
-  playerName: Ric Ric
-  jobName: Swordman
-  baseLevel: 99
-  jobLevel: 11
-  currentBaseExp: 504
-  maxBaseExp: 1000
-  currentJobExp: 50
-  maxJobExp: 100
-  currentHP: 2565
-  maxHP: 5000
-  currentSP: 300
-  maxSP: 999
-  currentWeight: 1000
-  maxWeight: 5000
-  currentZeny: 123456
+  min_playerNameText: {fileID: 0}
+  min_jobNameText: {fileID: 0}
+  min_baseLvText: {fileID: 0}
+  min_jobLvText: {fileID: 0}
+  min_HPText: {fileID: 0}
+  min_SPText: {fileID: 0}
+  min_baseExpText: {fileID: 0}
 --- !u!114 &6288446495586345667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2933,17 +2926,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7243b6d6a523c85438b82b3a7b63f6ac, type: 3}
---- !u!114 &2015363197094605 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2210949001570692935, guid: 7243b6d6a523c85438b82b3a7b63f6ac, type: 3}
-  m_PrefabInstance: {fileID: 2209568196180370826}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &8482652583493879954 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7715115886510026008, guid: 7243b6d6a523c85438b82b3a7b63f6ac, type: 3}
@@ -3548,17 +3530,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62491abb117ac4d4a829b7f0b5bc1a92, type: 3}
---- !u!114 &2457195128384573718 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8034223500828975595, guid: 62491abb117ac4d4a829b7f0b5bc1a92, type: 3}
-  m_PrefabInstance: {fileID: 5577424772229198077}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &8700650125438850329 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3879874681160000996, guid: 62491abb117ac4d4a829b7f0b5bc1a92, type: 3}
