@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Flex.UI;
 
 [ExecuteAlways]
 public class BasicInfo : Window
@@ -20,12 +21,12 @@ public class BasicInfo : Window
     public TextMeshProUGUI jobNameTextMax;
     public TextMeshProUGUI baseLevelTextMax;
     public TextMeshProUGUI jobLevelTextMax;
-    public Slider baseExpSlider;
-    public Slider jobExpSlider;
-    public Slider hpSlider;
+    public ROSlider baseExpSlider;
+    public ROSlider jobExpSlider;
+    public ROSlider hpSlider;
     public TMP_Text hpText;
     public TextMeshProUGUI hpPercentageText;
-    public Slider spSlider;
+    public ROSlider spSlider;
     public TMP_Text spText;
     public TextMeshProUGUI spPercentageText;
     public TextMeshProUGUI weightText;

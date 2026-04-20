@@ -1,6 +1,6 @@
-using System;
 using TMPro;
 using UnityEngine;
+using Flex.UI;
 
 public class PlayerDataUI : MonoBehaviour
 {
@@ -38,8 +38,11 @@ public class PlayerDataUI : MonoBehaviour
         spInput.text = playerData.maxSp.ToString();
         spSlider.Value = (float)playerData.currentSp / playerData.maxSp;
 
-        baseLvInput.text = playerData.baseLevel.ToString();
-        jobLvInput.text = playerData.jobLevel.ToString();
+        baseLvInput.text = playerData.maxBaseLevel.ToString();
+        baseLvSlider.Value = (float)playerData.baseLevel / playerData.maxBaseLevel;
+
+        jobLvInput.text = playerData.maxJobLevel.ToString();
+        jobLvSlider.Value = (float)playerData.jobLevel / playerData.maxJobLevel;
 
         baseExpInput.text = playerData.maxBaseExp.ToString();
         baseExpSlider.Value = (float)playerData.currentBaseExp / playerData.maxBaseExp;

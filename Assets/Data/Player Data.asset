@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: Player Data
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   playerName: Ric Ric
-  currentHp: 1941
+  jobName: Swordman
+  currentHp: 1208
   maxHp: 5000
   currentSp: 1000
   maxSp: 1000
-  baseLevel: 59
-  maxBaseLevel: 59
-  jobLevel: 10
-  maxJobLevel: 10
-  currentBaseExp: 0
+  baseLevel: 43
+  maxBaseLevel: 99
+  jobLevel: 13
+  maxJobLevel: 70
+  currentBaseExp: 1000
   maxBaseExp: 1000
   currentJobExp: 1000
   maxJobExp: 1000
-  currentWeight: 774
+  currentWeight: 879
   maxWeight: 2300
-  currentZeny: 3660709
+  currentZeny: 4622520
   maxZeny: 9999999
