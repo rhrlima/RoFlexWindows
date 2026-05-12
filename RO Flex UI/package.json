@@ -1,0 +1,21 @@
+{
+    "name": "com.ricric.roflexui",
+    "version": "1.0.0",
+    "displayName": "RO Flex UI",
+    "description": "Modular RO-based UI framework for Unity.",
+    "unity": "2022.1",
+    "author": {
+        "name": "RicRic"
+    },
+    "dependencies": {
+        "com.unity.ugui": "1.0.0"
+    },
+    "samples": [
+        {
+            "displayName": "Fonts",
+            "description": "Defaults RO style fonts used.",
+            "path": "Samples~/Fonts"
+        }
+    ],
+    "hideInEditor": false
+}
