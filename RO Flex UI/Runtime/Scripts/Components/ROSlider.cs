@@ -1,17 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnitySlider = UnityEngine.UI.Slider;
 
 namespace RO_Flex_UI.Components
 {
     public class ROSlider : MonoBehaviour
     {
         [SerializeField] private Button decreaseButton;
-        [SerializeField] private UnitySlider slider;
+        [SerializeField] private Slider slider;
         [SerializeField] private Button increaseButton;
-        private UnitySlider.Direction direction = UnitySlider.Direction.LeftToRight;
+        private Slider.Direction direction = Slider.Direction.LeftToRight;
         [HideInInspector][SerializeField] private float stepPercent = 0.1f; // 10%
-        [HideInInspector][SerializeField] private UnitySlider.SliderEvent onValueChanged = new();
+        [HideInInspector][SerializeField] private Slider.SliderEvent onValueChanged = new();
 
         private void Awake()
         {
@@ -41,30 +40,30 @@ namespace RO_Flex_UI.Components
 
             switch (direction)
             {
-                case UnitySlider.Direction.LeftToRight:
+                case Slider.Direction.LeftToRight:
                     {
-                        slider.direction = UnitySlider.Direction.LeftToRight;
+                        slider.direction = Slider.Direction.LeftToRight;
                         rect.localRotation = Quaternion.identity;
                         break;
                     }
 
-                case UnitySlider.Direction.RightToLeft:
+                case Slider.Direction.RightToLeft:
                     {
-                        slider.direction = UnitySlider.Direction.RightToLeft;
+                        slider.direction = Slider.Direction.RightToLeft;
                         rect.localRotation = Quaternion.identity;
                         break;
                     }
 
-                case UnitySlider.Direction.BottomToTop:
+                case Slider.Direction.BottomToTop:
                     {
-                        slider.direction = UnitySlider.Direction.LeftToRight;
+                        slider.direction = Slider.Direction.LeftToRight;
                         rect.localRotation = Quaternion.Euler(0f, 0f, 90f);
                         break;
                     }
 
-                case UnitySlider.Direction.TopToBottom:
+                case Slider.Direction.TopToBottom:
                     {
-                        slider.direction = UnitySlider.Direction.RightToLeft;
+                        slider.direction = Slider.Direction.RightToLeft;
                         rect.localRotation = Quaternion.Euler(0f, 0f, 90f);
                         break;
                     }
@@ -126,7 +125,7 @@ namespace RO_Flex_UI.Components
         {
             float step = (slider.maxValue - slider.minValue) * stepPercent;
 
-            if (slider.direction == UnitySlider.Direction.RightToLeft)
+            if (slider.direction == Slider.Direction.RightToLeft)
                 step *= -1f;
 
             return step;
@@ -178,7 +177,7 @@ namespace RO_Flex_UI.Components
                 increaseButton.interactable = interactable;
         }
 
-        public void SetDirection(UnitySlider.Direction direction)
+        public void SetDirection(Slider.Direction direction)
         {
             if (slider == null)
                 return;
@@ -218,7 +217,7 @@ namespace RO_Flex_UI.Components
             set => stepPercent = value;
         }
 
-        public UnitySlider.Direction Direction
+        public Slider.Direction Direction
         {
             get => direction;
             set
