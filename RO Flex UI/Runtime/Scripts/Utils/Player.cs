@@ -13,21 +13,21 @@ namespace RO_Flex_UI.Samples
         [Header("UI Components")]
         public TMP_InputField playerNameInput;
         public TMP_InputField jobNameInput;
-        public ROSlider hpSlider;
+        public Slider hpSlider;
         public TMP_InputField hpInput;
-        public ROSlider spSlider;
+        public Slider spSlider;
         public TMP_InputField spInput;
-        public ROSlider baseLvSlider;
+        public Slider baseLvSlider;
         public TMP_InputField baseLvInput;
-        public ROSlider jobLvSlider;
+        public Slider jobLvSlider;
         public TMP_InputField jobLvInput;
-        public ROSlider baseExpSlider;
+        public Slider baseExpSlider;
         public TMP_InputField baseExpInput;
-        public ROSlider jobExpSlider;
+        public Slider jobExpSlider;
         public TMP_InputField jobExpInput;
-        public ROSlider weightSlider;
+        public Slider weightSlider;
         public TMP_InputField weightInput;
-        public ROSlider zenySlider;
+        public Slider zenySlider;
         public TMP_InputField zenyInput;
 
         public void Start()

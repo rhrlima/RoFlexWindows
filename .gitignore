@@ -80,5 +80,8 @@ crashlytics-build.properties
 #-------------------
 
 .vscode
+
 NOTES.md
+
 Samples/
+Generated/
