@@ -30,6 +30,7 @@ namespace RoFlexUI.Editor
         }}
 ";
 
+        [InitializeOnLoadMethod]
         [MenuItem("Tools/RO Flex UI/Regenerate Prefab Menu")]
         public static void BakeMenu()
         {
