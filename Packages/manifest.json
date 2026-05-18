@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.ricric.roflexui": "file:../RO Flex UI",
+    "com.unity.2d.enhancers": "1.0.0",
     "com.unity.2d.pixel-perfect": "5.1.1",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.collab-proxy": "2.11.3",

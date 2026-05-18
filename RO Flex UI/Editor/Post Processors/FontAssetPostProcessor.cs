@@ -1,23 +1,18 @@
 using System.Linq;
 using UnityEditor;
+using UnityEngine;
 
 namespace RO_Flex_UI.Editor
 {
     public class FontAssetPostprocessor : AssetPostprocessor
     {
-        private static readonly string[] ValidFontExtensions =
-        {
-            ".ttf",
-            ".otf"
-        };
-
+        private static readonly string[] ValidFontExtensions = { ".ttf", ".otf" };
         private static void OnPostprocessAllAssets(
             string[] importedAssets,
             string[] deletedAssets,
             string[] movedAssets,
             string[] movedFromAssetPaths)
         {
-            PrefabMenuGenerator.BakeMenu();
             OnPostprocessFonts(importedAssets, deletedAssets, movedAssets, movedFromAssetPaths);
         }
 

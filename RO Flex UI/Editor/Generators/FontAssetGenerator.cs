@@ -3,7 +3,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.TextCore.LowLevel;
 using System.IO;
-using TMPro.EditorUtilities;
 
 namespace RO_Flex_UI.Editor
 {
@@ -23,7 +22,6 @@ namespace RO_Flex_UI.Editor
             {
                 var path = AssetDatabase.GUIDToAssetPath(guid);
                 Generate(path);
-                // Generate2(path);
             }
         }
 
