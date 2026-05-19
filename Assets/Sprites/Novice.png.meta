@@ -1,0 +1,2649 @@
+fileFormatVersion: 2
+guid: 4ef6a271a1632d141885174fdbb356e9
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 0
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 811
+        width: 36
+        height: 72
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e60abe9720f413b48b79ca617ba7e738
+      internalID: -1050566469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_1
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 811
+        width: 28
+        height: 71
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3456323ced5d2b4cba946f5068973c8
+      internalID: -1658784180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_2
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 811
+        width: 32
+        height: 66
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2c182c1d330e8942b955298b2884fc9
+      internalID: -978480941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_3
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 811
+        width: 37
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcd3309d729e338458b000b8f4ff6096
+      internalID: -1460829742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 811
+        width: 34
+        height: 68
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4d947c7dfbf4b94cbedb1fe7cba9f34
+      internalID: 327684484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_5
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 811
+        width: 46
+        height: 60
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8ef0211dcdf42d4d8547f81375fb61a
+      internalID: 1985841955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_6
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 811
+        width: 56
+        height: 57
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c453256aab43be34ebd8e83a06630133
+      internalID: -228649424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_7
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 811
+        width: 55
+        height: 42
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b0d6ddda91da574aa3d86bf1546b64c
+      internalID: 1039989332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_8
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 811
+        width: 53
+        height: 39
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59ac7f16900c4a54094e7fefe37c0689
+      internalID: -1430008394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_9
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 811
+        width: 46
+        height: 41
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b72a78dba66fac542b90752a895b03f4
+      internalID: -1419517793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_10
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 811
+        width: 34
+        height: 63
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f688dd5f48c1764091e530aeff686ec
+      internalID: 680380237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_11
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 811
+        width: 34
+        height: 56
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae7aee3873295e74b84269f5d9e9a5c4
+      internalID: 168497551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_12
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 811
+        width: 34
+        height: 63
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8674f26ccf29f744a5abd4d290a8cae
+      internalID: 166988969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_13
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 711
+        width: 38
+        height: 69
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 123612dea74953641b6f85de8dd14e1d
+      internalID: -1423200182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_14
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 711
+        width: 36
+        height: 69
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fcaafc1084bae84d974269c2699492c
+      internalID: 1367231554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_15
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 711
+        width: 33
+        height: 69
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c357bb273f1b4c347a8a2ad4928a8d6e
+      internalID: 281644781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_16
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 711
+        width: 36
+        height: 70
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8853e879b9f510a45b369733fee2e9c5
+      internalID: 93051285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_17
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 711
+        width: 38
+        height: 69
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bd99a375e2cab945a6dd274c465240d
+      internalID: -632331288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_18
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 711
+        width: 36
+        height: 69
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8dcf3bd1c67f0942ab4548aada9bff7
+      internalID: -1267580514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_19
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 711
+        width: 34
+        height: 70
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0323198d6106d29439cc2df64d30dff0
+      internalID: -632563507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_20
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 710
+        width: 36
+        height: 71
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9f7fd9ad722d634c9c839ab866e8185
+      internalID: -1686390619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_21
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 711
+        width: 39
+        height: 60
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5371979721f0ba4c9e1519de8c8e076
+      internalID: -1697190221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_22
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 711
+        width: 40
+        height: 56
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76868b955102df6499c4e79e5fa59208
+      internalID: -282831754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_23
+      rect:
+        serializedVersion: 2
+        x: 749
+        y: 711
+        width: 40
+        height: 60
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5172987605541c34393287778b83e91d
+      internalID: 706984702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_24
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 609
+        width: 30
+        height: 71
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03313a1354348a647ac0620b96c386bd
+      internalID: 1256944887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_25
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 609
+        width: 36
+        height: 68
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45cc8335f3245714f9af1db9351da9b1
+      internalID: -517435149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_26
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 609
+        width: 41
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ea2e0ac253ef434688036e72ff54421
+      internalID: -258762171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_27
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 609
+        width: 38
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6667c023ba8c5f4eae37c608c62f7fc
+      internalID: -1628621084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_28
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 609
+        width: 30
+        height: 65
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 644f718d3f30ed44db1122f681bdac84
+      internalID: -612947188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_29
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 609
+        width: 34
+        height: 66
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55d7516320285414cbf8e908f633e9fb
+      internalID: -1043938592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_30
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 609
+        width: 39
+        height: 66
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 115a366d51ec2c24f84bbf6959abe87f
+      internalID: -1338574098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_31
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 609
+        width: 35
+        height: 69
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cd99d627941d4548ab44e33a15728b8
+      internalID: -1083921415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_32
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 609
+        width: 50
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2f5a3a2baf64ef4dbaef357b4df0717
+      internalID: -1831875115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_33
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 609
+        width: 49
+        height: 69
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4989e0bf9d4fe3947853239f8d71b9ac
+      internalID: -368238210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_34
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 609
+        width: 45
+        height: 68
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0869f33db49d53543acdf3e99c852d3b
+      internalID: -473943371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_35
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 609
+        width: 52
+        height: 55
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5a04881a1e40344d8ceb4b24cfc4db1
+      internalID: -1257528731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_36
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 609
+        width: 51
+        height: 54
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b173337c959fadc4b91c7452a0f56518
+      internalID: -810338341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_37
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 511
+        width: 28
+        height: 65
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b36ddb550b20b7747bec40d7fcb4b2d0
+      internalID: -420509973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_38
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 511
+        width: 34
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64f59072c9cfe7b4595fba1010f16701
+      internalID: -962670350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_39
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 511
+        width: 48
+        height: 62
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fa3b5a3809951a4097a8189e7185ba4
+      internalID: -309413549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_40
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 511
+        width: 40
+        height: 63
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77896e73fe0dca642a584d21c110ad3d
+      internalID: -1954463454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_41
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 511
+        width: 29
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e8ebf88deb456448978144fe4115cdf
+      internalID: 416456634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_42
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 511
+        width: 32
+        height: 61
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d0ee43b60a910c4a86278d2efeb2ba8
+      internalID: -1989686311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_43
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 511
+        width: 44
+        height: 62
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f54d0abb32bc36648bbcffac47c89ff7
+      internalID: 1542961692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_44
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 511
+        width: 34
+        height: 63
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 366c7e4e62ffb5c4e861c557c9fa3ce1
+      internalID: -1282515237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_45
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 511
+        width: 36
+        height: 68
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4432ad64a61c9d48abe73ac8a44f528
+      internalID: -553843610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_46
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 511
+        width: 42
+        height: 75
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5111bdc857cc0064c8b3ea65daac9f4c
+      internalID: -1002926955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_47
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 511
+        width: 41
+        height: 77
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f8eeb597a60dea47b9da3f4c3f6c42f
+      internalID: -411391949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_48
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 511
+        width: 38
+        height: 59
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0a75e81d0c1e3541be68754841973de
+      internalID: 1797224531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_49
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 511
+        width: 38
+        height: 58
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20235d6853535ca468584e24609a411c
+      internalID: -1071295321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_50
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 411
+        width: 28
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea8a178ba04f8154da77e6968042410b
+      internalID: -350200571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_51
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 411
+        width: 36
+        height: 65
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc07481542ca1a9448eb63b592e40ca5
+      internalID: -2036956384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_52
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 411
+        width: 43
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ca1de17758d4af45b61395c463b798b
+      internalID: -2008162767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_53
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 411
+        width: 41
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1fb56b815790314eb709e742995efeb
+      internalID: 1488787945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_54
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 411
+        width: 29
+        height: 67
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 077840901c55be84fbf38ea9e568bb27
+      internalID: 1605415620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_55
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 411
+        width: 31
+        height: 67
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a7c16c7491a05e43971e9f558931c3c
+      internalID: 668147958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_56
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 411
+        width: 35
+        height: 67
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20917840790c8044989c68d2258fc49c
+      internalID: -364431118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_57
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 411
+        width: 32
+        height: 67
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89e47c907ec47a94dafbaa3c118178b0
+      internalID: -552138505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_58
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 411
+        width: 27
+        height: 60
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 749adb197efbba54b9af44bdcb5e8b8e
+      internalID: 1897343831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_59
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 411
+        width: 31
+        height: 61
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ccda0b910760c34e86063be3442464d
+      internalID: -824139159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_60
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 411
+        width: 34
+        height: 58
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9c7d250326fc6c46b39bbbc11fb73e0
+      internalID: -1967664699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_61
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 411
+        width: 65
+        height: 53
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 146c8aed3f8d9f3458cb60a1a75cec46
+      internalID: -1980405827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_62
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 309
+        width: 33
+        height: 63
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e11c7037b985fb4eb642c20e973f2a1
+      internalID: -1876940101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_63
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 309
+        width: 32
+        height: 69
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36176a95be6f749429b39d5775929039
+      internalID: 45323329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_64
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 309
+        width: 31
+        height: 66
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed8e898cfece54b488238dedb680a652
+      internalID: 1167592210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_65
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 309
+        width: 32
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4eed5f4b0208d5d4abc6babe8f81449d
+      internalID: 339067902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_66
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 309
+        width: 33
+        height: 63
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd49ba88e3333c844ab413d5f251449d
+      internalID: -214692134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_67
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 309
+        width: 32
+        height: 69
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ffd4d2386428e44589275550f3ca782
+      internalID: 1643951529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_68
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 309
+        width: 31
+        height: 66
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f727d531c99f7cb43a464c5e47652191
+      internalID: 287124468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_69
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 309
+        width: 32
+        height: 65
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07b0e027cd11cdf429bbbfc0b1e76ab4
+      internalID: 1558429197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_70
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 309
+        width: 43
+        height: 59
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72e1c8543d1a5a44896946a7514c92c3
+      internalID: 219928005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_71
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 309
+        width: 43
+        height: 59
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19fa2411638683c4ba501c94c4320618
+      internalID: -453863752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_72
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 309
+        width: 47
+        height: 54
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86634a5594cecdd408983dce426240b8
+      internalID: -264743155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_73
+      rect:
+        serializedVersion: 2
+        x: 723
+        y: 309
+        width: 66
+        height: 46
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1698d328a3af16c49930f0ab77e21fd6
+      internalID: 475061949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_74
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 213
+        width: 50
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4da9f77b816a2f419781031c916da04
+      internalID: -2019794258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_75
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 213
+        width: 50
+        height: 69
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11a9dcbb491755f44a72aebf2b86d0fd
+      internalID: 1643326959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_76
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 213
+        width: 49
+        height: 73
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9be64ae5a20464d4385fb3b7ba36a38c
+      internalID: 1805759787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_77
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 213
+        width: 48
+        height: 74
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 465a2d2c9e035d44e9470d340c6671a6
+      internalID: -1734647205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_78
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 213
+        width: 48
+        height: 71
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4408dc0fc29f89149b89675dcc93cdc7
+      internalID: -624373119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_79
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 213
+        width: 49
+        height: 66
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4ace0f6d6f612941aa004dba179fdc1
+      internalID: 605078070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_80
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 213
+        width: 51
+        height: 65
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82ddb32d4efeecc45bd5c0296dc57012
+      internalID: 1416713699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_81
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 213
+        width: 55
+        height: 66
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe0bee0173dc2e64597a20463e152e37
+      internalID: -1939804994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_82
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 213
+        width: 55
+        height: 66
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bf7a7469d8a8194f9b3e1f75138ce2f
+      internalID: 1959070690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_83
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 213
+        width: 48
+        height: 57
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31a405076a4dd7949a7baa51710fdc5c
+      internalID: 1787321139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_84
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 213
+        width: 50
+        height: 55
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a81ee4166316bb478e53a94e24184e3
+      internalID: -1604038649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_85
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 213
+        width: 48
+        height: 55
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e079f19f8a9be31459b8e38021d5a7e4
+      internalID: -2084550555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_86
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 111
+        width: 36
+        height: 70
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9864cbb0fd44613429798b32c0296760
+      internalID: -1129261444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_87
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 111
+        width: 37
+        height: 73
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3366cdd9e763a244cacb7c3e4c89910e
+      internalID: 603372641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_88
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 111
+        width: 37
+        height: 76
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26570fe95188bd942addb2f17de370c5
+      internalID: 361814618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_89
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 111
+        width: 37
+        height: 78
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 659fa950101df2c40bc66a73a189f05c
+      internalID: -145351139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_90
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 111
+        width: 37
+        height: 73
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3a13ad018c19864cad3c8a8c2078056
+      internalID: -1629912594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_91
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 111
+        width: 37
+        height: 70
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89d4ceca4d1c06d43b13a4cba5985da7
+      internalID: 1381449561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_92
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 111
+        width: 37
+        height: 77
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af182266c0508cb45bd4cfaf54557e42
+      internalID: -1301603790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_93
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 111
+        width: 37
+        height: 76
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4d376e61d013694d8b1539f48b0039e
+      internalID: -1186529072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_94
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 111
+        width: 37
+        height: 76
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4339b7a65a0bd546a4ece757883fbe3
+      internalID: -1758346179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_95
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 111
+        width: 43
+        height: 61
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52db453fb24536a45bf4a7cef30b99d9
+      internalID: 268618676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_96
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 111
+        width: 42
+        height: 60
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b85439936cb36d41baee32941031fdd
+      internalID: -840002585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_97
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 111
+        width: 39
+        height: 62
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 182094cd3d1fd7445a4460499fd92864
+      internalID: 2099213054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_98
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 11
+        width: 45
+        height: 60
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a2ce4e74255dab4cbf9893723930bae
+      internalID: 1506832320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_99
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 11
+        width: 43
+        height: 63
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17b9643392cef984ebcf60ba4465db85
+      internalID: -867657930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_100
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 11
+        width: 46
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a839a55d67ae20d4183ce14c40dc0358
+      internalID: -1508644699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_101
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 11
+        width: 53
+        height: 63
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f010be3e5c09ed45b0696bb15ae6448
+      internalID: -1898493485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_102
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 11
+        width: 51
+        height: 57
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3215de39062f4649be0acd47749fff7
+      internalID: -908280798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_103
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 11
+        width: 51
+        height: 55
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cf3402bf0e90344fa5b5853a3e10ba4
+      internalID: 1680465372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_104
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 11
+        width: 32
+        height: 74
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c19fd6f3ffa15184ba120e83093a9288
+      internalID: 473686332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_105
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 11
+        width: 38
+        height: 77
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80721367ded2a444e8186ebe33526355
+      internalID: -278013136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_106
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 11
+        width: 38
+        height: 78
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e752a44f0781744092e5703994c3367
+      internalID: -1393989571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_107
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 11
+        width: 39
+        height: 68
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e18a997694a6eb41a2664c34a9c641d
+      internalID: -372756116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_108
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 11
+        width: 45
+        height: 60
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c648cf3287a97d54c907b39e0a0256b0
+      internalID: -2081658072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Ragnarok Online - Classes (Male) - Novice_109
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 11
+        width: 44
+        height: 58
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a3e87ca244bfea4383b85e5bf55a6e4
+      internalID: -673034353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: d95311dc21b13944b827073e05cc8b6e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":60.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":1.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":1,"pivotUnitMode":1,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_0: -1050566469
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_1: -1658784180
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_10: 680380237
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_100: -1508644699
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_101: -1898493485
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_102: -908280798
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_103: 1680465372
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_104: 473686332
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_105: -278013136
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_106: -1393989571
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_107: -372756116
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_108: -2081658072
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_109: -673034353
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_11: 168497551
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_12: 166988969
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_13: -1423200182
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_14: 1367231554
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_15: 281644781
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_16: 93051285
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_17: -632331288
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_18: -1267580514
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_19: -632563507
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_2: -978480941
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_20: -1686390619
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_21: -1697190221
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_22: -282831754
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_23: 706984702
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_24: 1256944887
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_25: -517435149
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_26: -258762171
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_27: -1628621084
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_28: -612947188
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_29: -1043938592
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_3: -1460829742
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_30: -1338574098
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_31: -1083921415
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_32: -1831875115
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_33: -368238210
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_34: -473943371
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_35: -1257528731
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_36: -810338341
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_37: -420509973
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_38: -962670350
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_39: -309413549
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_4: 327684484
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_40: -1954463454
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_41: 416456634
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_42: -1989686311
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_43: 1542961692
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_44: -1282515237
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_45: -553843610
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_46: -1002926955
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_47: -411391949
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_48: 1797224531
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_49: -1071295321
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_5: 1985841955
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_50: -350200571
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_51: -2036956384
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_52: -2008162767
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_53: 1488787945
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_54: 1605415620
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_55: 668147958
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_56: -364431118
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_57: -552138505
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_58: 1897343831
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_59: -824139159
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_6: -228649424
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_60: -1967664699
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_61: -1980405827
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_62: -1876940101
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_63: 45323329
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_64: 1167592210
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_65: 339067902
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_66: -214692134
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_67: 1643951529
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_68: 287124468
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_69: 1558429197
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_7: 1039989332
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_70: 219928005
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_71: -453863752
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_72: -264743155
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_73: 475061949
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_74: -2019794258
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_75: 1643326959
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_76: 1805759787
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_77: -1734647205
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_78: -624373119
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_79: 605078070
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_8: -1430008394
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_80: 1416713699
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_81: -1939804994
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_82: 1959070690
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_83: 1787321139
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_84: -1604038649
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_85: -2084550555
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_86: -1129261444
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_87: 603372641
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_88: 361814618
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_89: -145351139
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_9: -1419517793
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_90: -1629912594
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_91: 1381449561
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_92: -1301603790
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_93: -1186529072
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_94: -1758346179
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_95: 268618676
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_96: -840002585
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_97: 2099213054
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_98: 1506832320
+      PC _ Computer - Ragnarok Online - Classes (Male) - Novice_99: -867657930
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

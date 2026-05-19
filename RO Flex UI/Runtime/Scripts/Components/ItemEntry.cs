@@ -1,0 +1,22 @@
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+namespace RO_Flex_UI.Components
+{
+
+    public class ItemEntry : MonoBehaviour
+    {
+        [SerializeField]
+        private Image itemSprite;
+        [SerializeField]
+        private TextMeshProUGUI itemAmountText;
+        public int itemAmount;
+
+        public void Refresh()
+        {
+            itemAmountText.text = itemAmount.ToString();
+            itemSprite.gameObject.SetActive(itemAmount > 0);
+            itemAmountText.gameObject.SetActive(itemAmount > 0);
+        }
+    }
+}
