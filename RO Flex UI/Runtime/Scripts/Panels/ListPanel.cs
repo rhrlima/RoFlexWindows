@@ -1,5 +1,4 @@
-using System;
-using System.Collections;
+using RO_Flex_UI.Components;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,165 +7,206 @@ namespace RO_Flex_UI.Panels
 {
     public class ListPanel : MonoBehaviour
     {
-        private int _selectedIndex;
-
-        [SerializeField] private bool autoScroll = true;
+        [Header("Layout & Scroll Settings")]
+        // [Tooltip("The rolling content container of the ScrollRect which holds the items.")]
+        private RectTransform contentTransform;
+        [Tooltip("The viewport mask window area of the ScrollRect.")]
         [SerializeField] private RectTransform viewport;
-        [SerializeField] private RectTransform content;
-        [SerializeField] private ListItem listItemPrefab;
-        [SerializeField] private ListItemEvent _onOptionSelectEvent;
-        [SerializeField] private ListItemEvent _onOptionSubmitEvent;
-        [SerializeField] private ListItemEvent _onOptionClickEvent;
 
-        public Action<ListItem> _onOptionSubmitAction;
-        public Action<ListItem> _onOptionClickAction;
-        public Action<ListItem> _onOptionSelectAction;
+        [Header("Template Configuration")]
+        [SerializeField] private ListItem defaultTemplate;
 
-        public int SelectedIndex
+        [Header("Navigation Settings")]
+        [SerializeField] private bool loopNavigation = true;
+        [SerializeField] private bool autoScroll = true;
+
+        // [Header("Runtime State")]
+        private List<ListItem> currentItems = new List<ListItem>();
+
+        public ListItem FocusedItem { get; private set; }
+        public ListItem ActivatedItem { get; private set; }
+
+        private void Awake()
         {
-            get => _selectedIndex;
-            set => _selectedIndex = value;
-        }
+            // Fallback safety if references aren't dragged manually into the inspector
+            if (contentTransform == null && transform is RectTransform)
+                contentTransform = transform as RectTransform;
 
-        public ListItemEvent OnOptionSelectEvent
-        {
-            get => _onOptionSelectEvent;
-            set => _onOptionSelectEvent = value;
-        }
-
-        public ListItemEvent OnOptionSubmitEvent
-        {
-            get => _onOptionSubmitEvent;
-            set => _onOptionSubmitEvent = value;
-        }
-
-        public ListItemEvent OnOptionClickEvent
-        {
-            get => _onOptionClickEvent;
-            set => _onOptionClickEvent = value;
-        }
-
-        public void ClearOptions()
-        {
-            var toDestroy = transform.GetComponentsInChildren<ListItem>(true);
-
-            foreach (ListItem child in toDestroy)
+            // CRUCIAL: Safely disable the template at runtime so it doesn't skew layouts
+            if (defaultTemplate != null)
             {
-                Destroy(child.gameObject);
-            }
-        }
-
-        private IEnumerator SetOptionsRoutine(List<string> options)
-        {
-            ClearOptions();
-            yield return null;
-
-            for (int i = 0; i < options.Count; i++)
-            {
-                ListItem newItem = Instantiate(listItemPrefab, transform);
-                newItem.Index = i;
-                newItem.OptionText = options[i];
-
-                newItem.OnSelectEvent.AddListener((ListItem) => HandleOnOptionSelect(newItem));
-                newItem.OnSubmitEvent.AddListener((ListItem) => HandleOnOptionSubmit(newItem));
-                newItem.OnClickEvent.AddListener((ListItem) => HandleOnOptionClick(newItem));
+                defaultTemplate.gameObject.SetActive(false);
             }
 
+            GrabExistingChildren();
+        }
+
+        public void GrabExistingChildren()
+        {
+            currentItems.Clear();
+            if (contentTransform == null) return;
+
+            foreach (Transform child in contentTransform)
+            {
+                // Skip the default template resting inside the container
+                if (defaultTemplate != null && child == defaultTemplate.transform) continue;
+
+                var item = EnsureListItemRequirements(child.gameObject);
+                if (item != null) RegisterItem(item);
+            }
             UpdateNavigation();
-            SelectOption(0);
         }
 
-        public void SetOptions(List<string> options)
+        private void RegisterItem(ListItem item)
         {
-            StartCoroutine(SetOptionsRoutine(options));
+            if (!currentItems.Contains(item))
+            {
+                currentItems.Add(item);
+                item.BindToPanel(this);
+            }
         }
+
+        private ListItem EnsureListItemRequirements(GameObject targetObj)
+        {
+            if (targetObj == null) return null;
+
+            if (!targetObj.TryGetComponent<Button>(out var btn)) btn = targetObj.AddComponent<Button>();
+            if (!targetObj.TryGetComponent<ListItem>(out var listItem)) listItem = targetObj.AddComponent<ListItem>();
+
+            listItem.EnsureButtonCached();
+            return listItem;
+        }
+
+        public void Clear()
+        {
+            foreach (var item in currentItems)
+            {
+                // Only destroy it if it lives inside an active scene context (prevents deleting pure assets)
+                if (item != null && item.gameObject.scene.name != null)
+                    Destroy(item.gameObject);
+            }
+            currentItems.Clear();
+            FocusedItem = null;
+            ActivatedItem = null;
+        }
+
+        // --- Simplified Generation APIs ---
+
+        public void SetOptions<TData>(IEnumerable<TData> data, System.Action<ListItem, TData> onBind, ListItem specificTemplate = null)
+        {
+            Clear();
+            ListItem template = specificTemplate != null ? specificTemplate : defaultTemplate;
+            if (template == null || contentTransform == null) return;
+
+            foreach (var dataEntry in data)
+            {
+                ListItem instance = Instantiate(template, contentTransform);
+                instance.gameObject.SetActive(true); // Force instance on, keeping template off
+                RegisterItem(instance);
+                onBind?.Invoke(instance, dataEntry);
+            }
+            UpdateNavigation();
+        }
+
+        public void AddCustomObjects(IEnumerable<GameObject> objects)
+        {
+            if (contentTransform == null) return;
+
+            foreach (var obj in objects)
+            {
+                if (obj == null) continue;
+                if (obj.transform.parent != contentTransform) obj.transform.SetParent(contentTransform, false);
+
+                obj.SetActive(true);
+                ListItem itemComponent = EnsureListItemRequirements(obj);
+                RegisterItem(itemComponent);
+            }
+            UpdateNavigation();
+        }
+
+        // --- Dynamic Navigation & Scrolling Layout Systems ---
 
         public void UpdateNavigation()
         {
-            ListItem[] children = GetComponentsInChildren<ListItem>(true);
+            if (contentTransform == null) return;
 
-            if (children.Length < 2) return;
+            List<ListItem> validItems = new List<ListItem>();
 
-            for (int i = 0; i < children.Length; i++)
+            foreach (Transform child in contentTransform)
             {
-                var item = children[i];
-                var nav = item.GetComponent<Button>().navigation;
+                if (defaultTemplate != null && child == defaultTemplate.transform) continue;
+                if (!child.gameObject.activeInHierarchy) continue;
 
-                nav.selectOnUp = children[(i - 1 + children.Length) % children.Length].GetComponent<Button>();
-                nav.selectOnDown = children[(i + 1) % children.Length].GetComponent<Button>();
+                if (child.TryGetComponent<ListItem>(out var item) && item.TargetButton != null)
+                {
+                    validItems.Add(item);
+                }
+            }
 
-                item.gameObject.GetComponent<Button>().navigation = nav;
+            currentItems = validItems;
+            int count = currentItems.Count;
+            if (count < 2) return;
+
+            for (int i = 0; i < count; i++)
+            {
+                ListItem item = currentItems[i];
+                Button currentButton = item.TargetButton;
+
+                Navigation cleanNav = new Navigation { mode = Navigation.Mode.Explicit };
+
+                if (i == 0)
+                    cleanNav.selectOnUp = loopNavigation ? currentItems[count - 1].TargetButton : null;
+                else
+                    cleanNav.selectOnUp = currentItems[i - 1].TargetButton;
+
+                if (i == count - 1)
+                    cleanNav.selectOnDown = loopNavigation ? currentItems[0].TargetButton : null;
+                else
+                    cleanNav.selectOnDown = currentItems[i + 1].TargetButton;
+
+                cleanNav.selectOnLeft = null;
+                cleanNav.selectOnRight = null;
+
+                currentButton.navigation = cleanNav;
             }
         }
 
-        private void HandleOnOptionSelect(ListItem option)
+        public void NotifyItemFocused(ListItem item)
         {
-            FitOptiontoView(option.Index);
-            SelectedIndex = option.Index;
-
-            _onOptionSelectEvent?.Invoke(option);
-            _onOptionSelectAction?.Invoke(option);
+            FocusedItem = item;
+            FitOptionToView(item);
         }
 
-        private void HandleOnOptionSubmit(ListItem option)
+        public void NotifyItemActivated(ListItem item)
         {
-            SelectedIndex = option.Index;
-
-            _onOptionSubmitEvent?.Invoke(option);
-            _onOptionSubmitAction?.Invoke(option);
+            ActivatedItem = item;
+            Debug.Log($"[ListPanel] Activated UI Item: {item.name}");
         }
 
-        private void HandleOnOptionClick(ListItem option)
+        public void FitOptionToView(ListItem item)
         {
-            SelectedIndex = option.Index;
+            if (!autoScroll || viewport == null || contentTransform == null) return;
 
-            _onOptionClickEvent?.Invoke(option);
-            _onOptionClickAction?.Invoke(option);
-        }
-
-        public void SelectOption(int index)
-        {
-            SelectedIndex = index;
-
-            GameObject option = transform.GetChild(index).gameObject;
-            var item = option.GetComponent<ListItem>();
-            item.ObtainSelectionFocus();
-        }
-
-        public void ConfirmOption()
-        {
-            var option = transform.GetChild(SelectedIndex).gameObject;
-            var item = option.GetComponent<ListItem>();
-
-            _onOptionSubmitAction?.Invoke(item);
-            _onOptionSubmitAction?.Invoke(item);
-        }
-
-        public void FitOptiontoView(int index)
-        {
-            if (!autoScroll) return;
-
-            var itemRect = transform.GetChild(index).transform as RectTransform;
+            RectTransform itemRect = item.transform as RectTransform;
+            if (itemRect == null) return;
 
             float itemHeight = itemRect.rect.height;
             float itemYPos = itemRect.localPosition.y;
-
             float viewportHeight = viewport.rect.height;
 
-            // makes sure the content default position is zero (top aligned)
-            float currentContentY = content.localPosition.y - viewportHeight / 2;
+            float currentContentY = contentTransform.localPosition.y - viewportHeight / 2;
 
             float targetTopY = currentContentY + itemYPos;
             float targetBottomY = -itemYPos + itemHeight - viewportHeight - currentContentY;
 
             if (targetBottomY > 0)
             {
-                content.localPosition += new Vector3(0, targetBottomY, 0);
+                contentTransform.localPosition += new Vector3(0, targetBottomY, 0);
             }
 
             if (targetTopY > 0)
             {
-                content.localPosition -= new Vector3(0, targetTopY, 0);
+                contentTransform.localPosition -= new Vector3(0, targetTopY, 0);
             }
         }
     }
