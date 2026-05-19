@@ -6,6 +6,7 @@ namespace RO_Flex_UI.Components
 {
     public class SkillEntry : MonoBehaviour
     {
+        [Header("Containers")]
         public TextMeshProUGUI skillNameText;
         public TextMeshProUGUI skillLevelText;
         public TextMeshProUGUI skillCostText;
