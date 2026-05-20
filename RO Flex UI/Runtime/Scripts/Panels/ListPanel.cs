@@ -48,11 +48,15 @@ namespace RO_Flex_UI.Panels
 
             foreach (Transform child in contentTransform)
             {
-                // Skip the default template resting inside the container
-                if (defaultTemplate != null && child == defaultTemplate.transform) continue;
+                // Only grab it if it's active (meaning it's a visible editor asset, not a sleeping template)
+                if (!child.gameObject.activeInHierarchy) continue;
 
                 var item = EnsureListItemRequirements(child.gameObject);
-                if (item != null) RegisterItem(item);
+                if (item != null && !currentItems.Contains(item))
+                {
+                    item.BindToPanel(this);
+                    currentItems.Add(item);
+                }
             }
             UpdateNavigation();
         }
@@ -128,45 +132,50 @@ namespace RO_Flex_UI.Panels
 
         public void UpdateNavigation()
         {
-            if (contentTransform == null) return;
+            // Clean out any null references that might have been destroyed upstream
+            currentItems.RemoveAll(item => item == null);
 
-            List<ListItem> validItems = new List<ListItem>();
-
-            foreach (Transform child in contentTransform)
-            {
-                if (defaultTemplate != null && child == defaultTemplate.transform) continue;
-                if (!child.gameObject.activeInHierarchy) continue;
-
-                if (child.TryGetComponent<ListItem>(out var item) && item.TargetButton != null)
-                {
-                    validItems.Add(item);
-                }
-            }
-
-            currentItems = validItems;
             int count = currentItems.Count;
-            if (count < 2) return;
+            if (count < 2) return; // No navigation paths to map if there's only 1 or 0 items
 
             for (int i = 0; i < count; i++)
             {
                 ListItem item = currentItems[i];
                 Button currentButton = item.TargetButton;
 
-                Navigation cleanNav = new Navigation { mode = Navigation.Mode.Explicit };
+                if (currentButton == null) continue;
 
+                // Wipe out past configurations cleanly via a pristine struct instantiation
+                Navigation cleanNav = new Navigation
+                {
+                    mode = Navigation.Mode.Explicit
+                };
+
+                // Link Previous (Up) based strictly on currentItems positioning
                 if (i == 0)
+                {
                     cleanNav.selectOnUp = loopNavigation ? currentItems[count - 1].TargetButton : null;
+                }
                 else
+                {
                     cleanNav.selectOnUp = currentItems[i - 1].TargetButton;
+                }
 
+                // Link Next (Down) based strictly on currentItems positioning
                 if (i == count - 1)
+                {
                     cleanNav.selectOnDown = loopNavigation ? currentItems[0].TargetButton : null;
+                }
                 else
+                {
                     cleanNav.selectOnDown = currentItems[i + 1].TargetButton;
+                }
 
+                // Hard lock horizontal pathways so selection stays bound inside this specific list panel
                 cleanNav.selectOnLeft = null;
                 cleanNav.selectOnRight = null;
 
+                // Apply back onto the UI Button
                 currentButton.navigation = cleanNav;
             }
         }

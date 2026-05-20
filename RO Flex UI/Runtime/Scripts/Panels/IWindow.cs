@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RO_Flex_UI.Components
+namespace RO_Flex_UI.Panels
 {
     public interface IWindow
     {

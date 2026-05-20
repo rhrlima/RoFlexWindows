@@ -2,7 +2,7 @@ using RO_Flex_UI.Components;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace RO_Flex_UI.Windows
+namespace RO_Flex_UI.Panels
 {
     public class Window : MonoBehaviour, IWindow, IPointerDownHandler
     {
@@ -73,9 +73,9 @@ namespace RO_Flex_UI.Windows
         public virtual void ShowWindow()
         {
             // TODO manager to close using ESC
-            var mgr = WindowManager.GetInstance();
-            if (!mgr.Contains(this))
-                mgr.PushWindow(this);
+            // var mgr = WindowManager.GetInstance();
+            // if (!mgr.Contains(this))
+            //     mgr.PushWindow(this);
 
             if (resetToCenter)
                 CenterWindow();

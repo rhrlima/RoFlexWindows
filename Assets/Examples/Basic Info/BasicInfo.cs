@@ -1,12 +1,10 @@
 using RO_Flex_UI.Components;
 using RO_Flex_UI.Panels;
-using RO_Flex_UI.Samples;
 using TMPro;
 using UnityEngine;
 
-namespace RO_Flex_UI.Windows
+namespace RO_Flex_UI.Samples
 {
-    [ExecuteAlways]
     public class BasicInfo : Window
     {
         public enum WindowMode
@@ -134,7 +132,7 @@ namespace RO_Flex_UI.Windows
             baseExpSlider.SetValueWithoutNotify((float)cbexp / mbexp);
 
             // minimized
-            min_baseExpText.text = $"/{Mathf.RoundToInt((float)cbexp / mbexp * 100)}%";
+            min_baseExpText.text = $"/{(float)cbexp / mbexp * 100:0.00}%";
         }
 
         private void HandleJobExpChanged(long cjexp, long mjexp)

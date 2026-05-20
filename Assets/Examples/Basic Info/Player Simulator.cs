@@ -1,11 +1,10 @@
 using TMPro;
 using UnityEngine;
 using RO_Flex_UI.Components;
-using RO_Flex_UI.Samples;
 
 namespace RO_Flex_UI.Samples
 {
-    public class PlayerDataUI : MonoBehaviour
+    public class PlayerSimulator : MonoBehaviour
     {
         [Header("Player Data Object")]
         public PlayerData playerData;
