@@ -1,0 +1,16 @@
+repos:
+  - repo: local
+    hooks:
+      - id: dotnet-format-whitespace
+        name: dotnet format whitespace
+        entry: dotnet format whitespace ROFlexUI.csproj
+        language: system
+        files: \.cs$
+        pass_filenames: false
+
+      - id: dotnet-format-style
+        name: dotnet format style
+        entry: dotnet format style ROFlexUI.csproj
+        language: system
+        files: \.cs$
+        pass_filenames: false

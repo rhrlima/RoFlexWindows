@@ -38,6 +38,14 @@ indent_size = 2
 # Dotnet code style settings:
 [*.{cs,vb}]
 
+# 1. Bloqueia a regra de estilo de código (Grau: Nenhum)
+csharp_style_prefer_readonly_fields = false:none
+dotnet_style_readonly_field = false:none
+
+# 2. Bloqueia o diagnóstico do compilador de sugerir ou aplicar a mudança
+dotnet_diagnostic.IDE0044.severity = none
+dotnet_diagnostic.RCS1169.severity = none
+
 # IDE0055: Fix formatting
 dotnet_diagnostic.IDE0055.severity = warning
 
@@ -157,7 +165,7 @@ dotnet_diagnostic.IDE0036.severity = warning
 dotnet_diagnostic.IDE0043.severity = warning
 
 # IDE0044: Make field readonly
-dotnet_diagnostic.IDE0044.severity = warning
+# dotnet_diagnostic.IDE0044.severity = warning
 
 # RS0016: Only enable if API files are present
 dotnet_public_api_analyzer.require_api_files = true

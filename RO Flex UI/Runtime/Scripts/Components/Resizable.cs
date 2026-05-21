@@ -1,7 +1,7 @@
+﻿using RO_Flex_UI.Panels;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.Events;
-using RO_Flex_UI.Panels;
+using UnityEngine.EventSystems;
 
 namespace RO_Flex_UI.Components
 {

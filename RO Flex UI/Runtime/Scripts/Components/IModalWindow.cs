@@ -1,4 +1,4 @@
-namespace RO_Flex_UI.Components
+﻿namespace RO_Flex_UI.Components
 {
     public interface IModalWindow
     {
