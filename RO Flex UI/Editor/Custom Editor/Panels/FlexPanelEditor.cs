@@ -46,29 +46,25 @@ namespace RO_Flex_UI.Editor
         {
             var go = panelTarget.gameObject;
 
-            if (go.TryGetComponent<VerticalLayoutGroup>(out var vlg))
-                DestroyImmediate(vlg);
-
-            if (go.TryGetComponent<HorizontalLayoutGroup>(out var hlg))
-                DestroyImmediate(hlg);
+            if (go.TryGetComponent<HorizontalOrVerticalLayoutGroup>(out var layoutGroup))
+                DestroyImmediate(layoutGroup);
 
             if (newOrientation == FlexPanel.Orientation.Vertical)
             {
-                vlg = go.AddComponent<VerticalLayoutGroup>();
-                vlg.childControlHeight = true;
-                vlg.childForceExpandHeight = false;
-                vlg.childControlWidth = true;
-                vlg.childForceExpandWidth = true;
+                layoutGroup = go.AddComponent<VerticalLayoutGroup>();
+                layoutGroup.childForceExpandWidth = true;
+                layoutGroup.childForceExpandHeight = false;
             }
 
             if (newOrientation == FlexPanel.Orientation.Horizontal)
             {
-                hlg = go.AddComponent<HorizontalLayoutGroup>();
-                hlg.childControlWidth = true;
-                hlg.childForceExpandWidth = false;
-                hlg.childControlHeight = true;
-                hlg.childForceExpandHeight = true;
+                layoutGroup = go.AddComponent<HorizontalLayoutGroup>();
+                layoutGroup.childForceExpandWidth = false;
+                layoutGroup.childForceExpandHeight = true;
             }
+
+            layoutGroup.childControlWidth = true;
+            layoutGroup.childControlHeight = true;
         }
     }
 }

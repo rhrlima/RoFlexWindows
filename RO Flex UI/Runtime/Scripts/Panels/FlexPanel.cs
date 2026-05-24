@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace RO_Flex_UI.Panels
 {
-    [ExecuteAlways]
+    // [ExecuteAlways]
     public class FlexPanel : MonoBehaviour
     {
         public enum Orientation { Vertical, Horizontal }
@@ -27,7 +25,7 @@ namespace RO_Flex_UI.Panels
 
         [Header("Layout settings")]
         [SerializeField] private float spacing = 0f;
-        private Orientation orientation = Orientation.Vertical;
+        [SerializeField, HideInInspector] private Orientation orientation = Orientation.Vertical;
 
         public Orientation LayoutOrientation
         {
@@ -46,62 +44,31 @@ namespace RO_Flex_UI.Panels
         {
             AutoFillEntries();
 
-            if (gameObject.TryGetComponent<VerticalLayoutGroup>(out var vlg))
-                vlg.spacing = spacing;
+            if (TryGetComponent<HorizontalOrVerticalLayoutGroup>(out var layoutGroup))
+            {
+                layoutGroup.spacing = spacing;
+            }
 
-            if (gameObject.TryGetComponent<HorizontalLayoutGroup>(out var hlg))
-                hlg.spacing = spacing;
-
-            // Apply LayoutElement settings per entry, mapped to the main axis chosen
             foreach (var entry in entries)
             {
-                if (entry == null || entry.rect == null) continue;
+                if (entry == null || entry.rect == null)
+                    continue;
 
-                var le = entry.rect.GetComponent<LayoutElement>();
-                if (le == null) le = entry.rect.gameObject.AddComponent<LayoutElement>();
+                var layoutElement = entry.rect.GetComponent<LayoutElement>();
+
+                if (layoutElement == null)
+                    layoutElement = entry.rect.gameObject.AddComponent<LayoutElement>();
+
+                ResetLayoutElement(layoutElement);
 
                 if (orientation == Orientation.Vertical)
                 {
-                    // main axis = height
-                    if (entry.mode == SizeMode.Fixed)
-                    {
-                        le.minHeight = entry.fixedSize;
-                        le.preferredHeight = entry.fixedSize;
-                        le.flexibleHeight = 0f;
-                    }
-                    else
-                    {
-                        le.minHeight = -1f;
-                        le.preferredHeight = -1f;
-                        le.flexibleHeight = Mathf.Max(0f, entry.proportion);
-                    }
-
-                    // keep cross axis unset so layout group can expand/squash it
-                    le.minWidth = -1f;
-                    le.preferredWidth = -1f;
+                    ApplyVertical(entry, layoutElement);
                 }
-                else // Horizontal
+                else
                 {
-                    // main axis = width
-                    if (entry.mode == SizeMode.Fixed)
-                    {
-                        le.minWidth = entry.fixedSize;
-                        le.preferredWidth = entry.fixedSize;
-                        le.flexibleWidth = 0f;
-                    }
-                    else
-                    {
-                        le.minWidth = -1f;
-                        le.preferredWidth = -1f;
-                        le.flexibleWidth = Mathf.Max(0f, entry.proportion);
-                    }
-
-                    // keep cross axis unset so layout group can expand/squash it
-                    le.minHeight = -1f;
-                    le.preferredHeight = -1f;
+                    ApplyHorizontal(entry, layoutElement);
                 }
-
-                le.ignoreLayout = false;
             }
         }
 
@@ -126,6 +93,49 @@ namespace RO_Flex_UI.Panels
                     var ch = transform.GetChild(i) as RectTransform;
                     if (ch != null) entries[i].rect = ch;
                 }
+            }
+        }
+
+        private static void ResetLayoutElement(LayoutElement layoutElement)
+        {
+            layoutElement.minWidth = -1f;
+            layoutElement.preferredWidth = -1f;
+            layoutElement.flexibleWidth = -1f;
+
+            layoutElement.minHeight = -1f;
+            layoutElement.preferredHeight = -1f;
+            layoutElement.flexibleHeight = -1f;
+
+            layoutElement.ignoreLayout = false;
+        }
+
+        private static void ApplyVertical(Entry entry, LayoutElement layoutElement)
+        {
+            if (entry.mode == SizeMode.Fixed)
+            {
+                layoutElement.minHeight = entry.fixedSize;
+                layoutElement.preferredHeight = entry.fixedSize;
+                layoutElement.flexibleHeight = 0f;
+            }
+            else
+            {
+                layoutElement.flexibleHeight =
+                    Mathf.Max(0f, entry.proportion);
+            }
+        }
+
+        private static void ApplyHorizontal(Entry entry, LayoutElement layoutElement)
+        {
+            if (entry.mode == SizeMode.Fixed)
+            {
+                layoutElement.minWidth = entry.fixedSize;
+                layoutElement.preferredWidth = entry.fixedSize;
+                layoutElement.flexibleWidth = 0f;
+            }
+            else
+            {
+                layoutElement.flexibleWidth =
+                    Mathf.Max(0f, entry.proportion);
             }
         }
     }

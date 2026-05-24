@@ -29,6 +29,14 @@ namespace RO_Flex_UI.Panels
             OnValidate();
         }
 
+        private void OnEnable()
+        {
+            if (resetToCenter)
+                CenterWindow();
+            else
+                FitWindowIntoPlayArea();
+        }
+
         private void OnValidate()
         {
             ToggleDraggable();
@@ -77,15 +85,11 @@ namespace RO_Flex_UI.Panels
             // if (!mgr.Contains(this))
             //     mgr.PushWindow(this);
 
-            if (resetToCenter)
-                CenterWindow();
-            else
-                FitWindowIntoPlayArea();
-
             // bring it forward
             transform.SetAsLastSibling();
 
-            gameObject.SetActive(true);
+            if (!isActiveAndEnabled)
+                gameObject.SetActive(true);
         }
 
         public virtual void HideWindow()
@@ -102,7 +106,7 @@ namespace RO_Flex_UI.Panels
         public void FitWindowIntoPlayArea()
         {
             //TODO
-            Debug.LogWarning("NOT IMPLEMENTED");
+            Debug.LogWarning("Window.FitWindowIntoPlayArea NOT IMPLEMENTED");
         }
     }
 }
