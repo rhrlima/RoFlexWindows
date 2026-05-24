@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using RO_Flex_UI.Panels;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace RO_Flex_UI.Components
@@ -18,15 +19,15 @@ namespace RO_Flex_UI.Components
 
             if (window == null)
             {
-                Debug.LogError("Draggable must have a RectTranform assigned.");
-                // var parent = GetComponentInParent<IWindow>(true);
-                // if (parent == null)
-                // {
-                //     Debug.LogError("Draggable must be a child of a IWindow.");
-                //     return;
-                // }
+                // Debug.LogError("Draggable must have a RectTranform assigned.");
+                var parent = GetComponentInParent<IWindow>(true);
+                if (parent == null)
+                {
+                    Debug.LogError("Draggable must be a child of a IWindow.");
+                    return;
+                }
 
-                // window = parent.transform as RectTransform;
+                window = parent.transform;
             }
         }
 

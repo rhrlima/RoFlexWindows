@@ -34,7 +34,7 @@ namespace RO_Flex_UI.Components
                     return;
                 }
 
-                window = parent.transform as RectTransform;
+                window = parent.transform;
             }
         }
 
