@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: win_round1
+      name: win_round_stripes
       rect:
         serializedVersion: 2
         x: 0
@@ -251,7 +251,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pan_square
+      name: pan_square_outline
       rect:
         serializedVersion: 2
         x: 64
@@ -625,7 +625,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pan_round
+      name: pan_round_outline
       rect:
         serializedVersion: 2
         x: 96
@@ -647,7 +647,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: win_round2_stripes
+      name: win_round_stripes_2
       rect:
         serializedVersion: 2
         x: 32
@@ -691,7 +691,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: win_round2
+      name: win_round
       rect:
         serializedVersion: 2
         x: 32
@@ -717,9 +717,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 120
-        y: 65
+        y: 64
         width: 18
-        height: 15
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -845,7 +845,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pan_round_solid
+      name: pan_round
       rect:
         serializedVersion: 2
         x: 128
@@ -977,15 +977,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: window_atlas_0
+      name: icon_lv_up
       rect:
         serializedVersion: 2
-        x: 135
-        y: 37
+        x: 126
+        y: 96
         width: 20
-        height: 18
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -994,6 +994,28 @@ TextureImporter:
       bones: []
       spriteID: 7ba3f50d7699dd044bb0c53ae779fedb
       internalID: 1641339414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_lv_down
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 80
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15ce28cb940dd3c4ca5a675d73223ecb
+      internalID: 160701311
       vertices: []
       indices: 
       edges: []
@@ -1024,13 +1046,15 @@ TextureImporter:
       icon_chest: -2068596400
       icon_lock_closed: 1856416338
       icon_lock_open: -1792674730
+      icon_lv_down: 160701311
+      icon_lv_up: 1641339414
       icon_magn: 1266318484
       item_base: -815061958
       item_placeholder: -1159011950
       lvup_button: 42986792
-      pan_round: 1732866873
-      pan_round_solid: -1480078069
-      pan_square: 2071895570
+      pan_round: -1480078069
+      pan_round_outline: 1732866873
+      pan_square_outline: 2071895570
       placeholder_0: 975374147
       placeholder_1: 1102809587
       placeholder_2: 1132992311
@@ -1047,12 +1071,11 @@ TextureImporter:
       tab_v_off: -77387923
       tab_v_on: 1712444593
       win_drag_handle: 1642846749
-      win_round1: -1784297439
-      win_round2: -1006069780
-      win_round2_stripes: 111697105
+      win_round: -1006069780
+      win_round_stripes: -1784297439
+      win_round_stripes_2: 111697105
       win_top_blue: 2003877820
       win_top_round: -868292548
-      window_atlas_0: 1641339414
       window_bg_footer: -662714518
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

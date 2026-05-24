@@ -1,4 +1,4 @@
-namespace RO_Flex_UI.Windows
+﻿namespace RO_Flex_UI.Windows
 {
     public class StoreModal : ModalWindow
     {
