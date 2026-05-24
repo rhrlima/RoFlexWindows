@@ -619,6 +619,7 @@ GameObject:
   - component: {fileID: 7114051093387040896}
   - component: {fileID: 5133687877095156321}
   - component: {fileID: 7944436882582445409}
+  - component: {fileID: 5302834591911968169}
   m_Layer: 5
   m_Name: Header
   m_TagString: Untagged
@@ -733,3 +734,16 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &5302834591911968169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9004260117060939176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 890883769e971524c8ee1c62054e0008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ROFlexUI::RO_Flex_UI.Components.Draggable
+  window: {fileID: 0}
