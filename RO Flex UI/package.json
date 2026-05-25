@@ -15,6 +15,11 @@
             "displayName": "Fonts",
             "description": "Defaults RO style fonts used.",
             "path": "Samples~/Fonts"
+        },
+        {
+            "displayName": "Classic UI Demo",
+            "description": "Example Windows using classic UI style.",
+            "path": "Samples/Demos/Classic UI"
         }
     ],
     "hideInEditor": false

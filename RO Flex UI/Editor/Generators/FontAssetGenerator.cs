@@ -51,11 +51,16 @@ namespace RO_Flex_UI.Editor
             fontAsset.hideFlags = HideFlags.None;
             fontAsset.atlasTexture.hideFlags = HideFlags.None;
 
-            fontAsset.TryAddCharacters(characters, true);
+            fontAsset.TryAddCharacters(characters, out var missingCharacters);
+
+            if (!string.IsNullOrEmpty(missingCharacters))
+            {
+                Debug.LogWarning($"Missing characters in {sourceFont.name}: {missingCharacters}");
+            }
+
             fontAsset.atlasPopulationMode = AtlasPopulationMode.Static;
 
             fontAsset.atlasTexture.name = sourceFont.name + " Atlas";
-
             fontAsset.atlasTexture.filterMode = FilterMode.Point;
             fontAsset.atlasTexture.wrapMode = TextureWrapMode.Clamp;
 
