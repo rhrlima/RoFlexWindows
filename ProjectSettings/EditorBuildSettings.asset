@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Examples/ClassicUIWindows.unity
+    path: Packages/com.ricric.roflexui/Samples/Demos/Classic UI/Classic UI.unity
     guid: 3e5c23e9b43837b4894d3fc7e50862f1
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}

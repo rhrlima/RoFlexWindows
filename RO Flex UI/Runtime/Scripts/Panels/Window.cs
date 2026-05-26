@@ -106,7 +106,7 @@ namespace RO_Flex_UI.Panels
         public void FitWindowIntoPlayArea()
         {
             //TODO
-            Debug.LogWarning("Window.FitWindowIntoPlayArea NOT IMPLEMENTED");
+            // Debug.LogWarning("Window.FitWindowIntoPlayArea NOT IMPLEMENTED");
         }
     }
 }
