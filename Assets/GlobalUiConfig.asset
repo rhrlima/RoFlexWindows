@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: GlobalUiConfig
+  m_EditorClassIdentifier: Assembly-CSharp:RO_Flex_UI.Config:GlobalUiConfig
+  placeholderSprite: {fileID: 975374147, guid: 552acdb6bec35e64ab8e87384d05c396, type: 3}
+  spriteEntries:
+  - id: 0
+    sprite: {fileID: 0}
+  - id: 1
+    sprite: {fileID: 1732866873, guid: 552acdb6bec35e64ab8e87384d05c396, type: 3}
+  - id: 2
+    sprite: {fileID: 115454951, guid: 552acdb6bec35e64ab8e87384d05c396, type: 3}
