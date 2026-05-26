@@ -18,13 +18,9 @@ namespace RO_Flex_UI.Panels
 
         protected virtual void Awake()
         {
+            // if components are null, behavior is ignored
             draggableComponent = GetComponentInChildren<Draggable>(true);
-            if (draggableComponent == null)
-                Debug.LogWarning("Draggable component not found in children. Option ignored.", this);
-
             resizeComponent = GetComponentInChildren<Resizable>(true);
-            if (resizeComponent == null)
-                Debug.LogWarning("Resizable component not found in children. Option ignored.", this);
 
             OnValidate();
         }
