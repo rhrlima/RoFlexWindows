@@ -19,7 +19,7 @@
         {
             "displayName": "Classic UI Demo",
             "description": "Example Windows using classic UI style.",
-            "path": "Samples/Demos/Classic UI"
+            "path": "Samples~/Demos/Classic UI"
         }
     ],
     "hideInEditor": false
