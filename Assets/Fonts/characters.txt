@@ -1,6 +1,0 @@
-abcdefghijklmnopqrstuvwxyzç
-ABCDEFGHIJKLMNOPQRSTUVWXYZÇ
- 0123456789<>[]{}()\/
-.,:;~`'"!?@#$%^&*-_=+|
-áéíóúàèìòùâêîôûäëïöüãõñ
-ÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÄËÏÖÜÃÕÑ
