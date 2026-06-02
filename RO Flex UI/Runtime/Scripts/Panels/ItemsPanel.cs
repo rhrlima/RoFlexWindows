@@ -1,114 +1,211 @@
 ﻿using RO_Flex_UI.Components;
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 namespace RO_Flex_UI.Panels
 {
+    // TODO add custom editor
+    [RequireComponent(typeof(GridLayoutGroup), typeof(RectTransform))]
     public class ItemsPanel : MonoBehaviour
     {
-        [SerializeField] private RectTransform winRect;
-        public int numSlots;
-        [SerializeField] private int _numItems;
-        public int numItems
-        {
-            get { return _numItems; }
-            set
-            {
-                if (_numItems != value)
-                {
-                    _numItems = value;
-                    OnGridChange();
-                }
-            }
-        }
-        public ItemEntry slotPrefab;
-        public List<ItemEntry> items;
+        [Header("Panel References")]
+        [SerializeField] private RectTransform windowRect;
+        [Tooltip("Border size to the content panel.")]
+        [SerializeField] private RectOffset windowOffset; // FIXME calculate this
+        [SerializeField] private RectTransform panelRect;
+        [SerializeField] private RectTransform viewportRect;
+        private GridLayoutGroup gridLayout;
+        private Resizable resizable;
 
-        public void Start()
+        [Space]
+        [SerializeField] public ItemEntry slotPrefab;
+
+        [Space]
+        [Header("Grid Config")]
+        [SerializeField] private int maxSlots = 100;
+        [SerializeField] private int numItems; //TODO wire to Scriptable objects on item info
+        public int NumItems => numItems;
+        [SerializeField] private int MinColumns = 5;
+        [SerializeField] private int MaxColumns = 10;
+        [SerializeField] private int MinRows = 5;
+        [SerializeField] private int MaxRows = 10;
+
+        private int numSlots;
+        private List<ItemEntry> items;
+        private bool isUpdatingGrid = false;
+        private bool hasPendingGridChange;
+        private Vector2 lastWindowSize;
+
+        public void Awake()
         {
-            if (winRect == null || !winRect.gameObject.activeSelf)
+            EnsureReferences();
+            SetMinMaxSize();
+
+            StartCoroutine(InitializeGrid());
+        }
+
+        private IEnumerator InitializeGrid()
+        {
+            yield return null;
+
+            if (panelRect != null)
+            {
+                LayoutRebuilder.ForceRebuildLayoutImmediate(panelRect);
+            }
+
+            OnGridChange();
+        }
+
+        private void Update()
+        {
+            if (panelRect != null && GetRectSize(panelRect) != lastWindowSize)
+                hasPendingGridChange = true;
+
+            if (!hasPendingGridChange)
                 return;
 
-            CalcTotalSlots();
-            UpdateGrid();
+            hasPendingGridChange = false;
+            OnGridChange();
         }
 
         private void UpdateGrid()
         {
-            while (transform.childCount < numSlots)
+            if (slotPrefab == null)
+                return;
+
+            EnsureSlotPool();
+
+            var visibleCount = Mathf.Min(items.Count, numSlots);
+            for (var i = 0; i < visibleCount; i++)
             {
-                var item = Instantiate(slotPrefab, transform);
-
-                if (transform.childCount < items.Count)
-                    items.Add(item);
-
-                // Debug.Log($"ADDING {transform.childCount}/{numSlots}");
+                items[i].gameObject.SetActive(true);
+                items[i].itemAmount = i < numItems ? 1 : 0;
+                items[i].Refresh();
             }
 
-            for (int i = 0; i < numItems; i++)
+            for (var i = visibleCount; i < items.Count; i++)
             {
-                items[i].itemAmount = 1;
-                items[i].Refresh();
+                items[i].gameObject.SetActive(false);
             }
         }
 
         public void OnGridChange()
         {
             // try to avoid redo all for disabled panels
-            if (!isActiveAndEnabled)
+            if (!isActiveAndEnabled || isUpdatingGrid)
                 return;
 
-            if (winRect == null || !winRect.gameObject.activeSelf)
+            if (panelRect == null || !panelRect.gameObject.activeSelf)
                 return;
 
-            ClearSlots();
-            CalcTotalSlots();
-            UpdateGrid();
+            lastWindowSize = GetRectSize(panelRect);
+            isUpdatingGrid = true;
+
+            try
+            {
+                CalcTotalSlots();
+                UpdateGrid();
+            }
+            finally
+            {
+                isUpdatingGrid = false;
+            }
+        }
+
+        private void OnRectTransformDimensionsChange()
+        {
+            hasPendingGridChange = true;
         }
 
         private void CalcTotalSlots()
         {
-            //FIXME improve offset calculation 40,50
+            var viewportSize = GetRectSize(viewportRect);
+            var padding = gridLayout.padding;
+            var cellSize = gridLayout.cellSize;
+            var spacing = gridLayout.spacing;
 
-            int cols = Mathf.FloorToInt((winRect.sizeDelta.x - 40) / 32);
+            var availableWidth = viewportSize.x - (padding.left + padding.right);
+            var availableHeight = viewportSize.y - (padding.top + padding.bottom);
 
-            int panelHeight = (int)Mathf.Max(
-                winRect.sizeDelta.y,
-                Mathf.CeilToInt((float)numItems / cols) * 32 + 50
-            );
+            var columns = Mathf.Clamp(Mathf.FloorToInt((availableWidth + spacing.x) / (cellSize.x + spacing.x)), MinColumns, MaxColumns);
+            var rows = Mathf.FloorToInt((availableHeight + spacing.y) / (cellSize.y + spacing.y));
 
-            int rows = Math.Max(
-                Mathf.FloorToInt((panelHeight - 50) / 32),
-                Mathf.CeilToInt((float)numItems / cols)
-            );
-
-            numSlots = Mathf.Max(Mathf.CeilToInt((float)numItems / cols) * cols, rows * cols);
+            // ensure there are enough slots to display full rows for all items
+            var itemsFullRows = Mathf.CeilToInt((float)numItems / Mathf.Max(1, columns)) * columns;
+            numSlots = Mathf.Max(rows * columns, itemsFullRows);
         }
 
-        private void ClearSlots()
+        private void EnsureReferences()
         {
-            // delete extra slots
+            if (items == null)
+                items = new List<ItemEntry>();
 
-            while (transform.childCount > numSlots)
+            if (panelRect == null)
+                panelRect = GetComponent<RectTransform>();
+
+            if (gridLayout == null)
+                gridLayout = GetComponent<GridLayoutGroup>();
+
+            if (windowRect == null)
+                windowRect = GetComponentInParent<IWindow>(true)?.transform;
+
+            if (resizable == null && windowRect != null)
+                resizable = windowRect.GetComponentInChildren<Resizable>(true);
+
+            if (slotPrefab != null && slotPrefab.transform.parent == transform)
+                slotPrefab.gameObject.SetActive(false);
+        }
+
+        private void EnsureSlotPool()
+        {
+            var targetSlots = Mathf.Min(GetMaxSlots(), Mathf.Max(1, numSlots));
+
+            while (items.Count < targetSlots)
             {
-                var index = transform.childCount - 1;
-                var obj = transform.GetChild(index);
-                DestroyImmediate(obj.gameObject);
-
-                // Debug.Log($"DELETING {transform.childCount}/{numSlots}");
+                var item = Instantiate(slotPrefab, transform);
+                item.gameObject.SetActive(false);
+                items.Add(item);
             }
+        }
 
-            // for (int i = 0; i < numSlots; i++)
-            // {
-            //     var index = numSlots - i - 1;
-            //     var obj = transform.GetChild(index);
-            //     DestroyImmediate(obj.gameObject);
-            //     Debug.Log($"DELETING {transform.childCount}/{numSlots}");
-            // }
+        private int GetMaxSlots()
+        {
+            return Mathf.Max(1, maxSlots);
+        }
 
-            // items.Clear();
+        private Vector2 GetRectSize(RectTransform target)
+        {
+            var size = target.rect.size;
+            if (size.x <= 0)
+                size.x = target.sizeDelta.x;
+            if (size.y <= 0)
+                size.y = target.sizeDelta.y;
+
+            return size;
+        }
+
+        private void SetMinMaxSize()
+        {
+            if (windowRect == null || resizable == null)
+                return;
+
+            var padding = gridLayout.padding;
+            var cellSize = gridLayout.cellSize;
+            var spacing = gridLayout.spacing;
+
+            var minWin = new Vector2(
+                MinColumns * cellSize.x + (MinColumns - 1) * spacing.x + padding.horizontal + windowOffset.horizontal,
+                MinRows * cellSize.y + (MinRows - 1) * spacing.y + padding.vertical + windowOffset.vertical);
+
+            var maxWin = new Vector2(
+                MaxColumns * cellSize.x + (MaxColumns - 1) * spacing.x + padding.horizontal + windowOffset.horizontal,
+                MaxRows * cellSize.y + (MaxRows - 1) * spacing.y + padding.vertical + windowOffset.vertical);
+
+            resizable.SetMinSize(minWin);
+            resizable.SetMaxSize(maxWin);
+            windowRect.sizeDelta = minWin;
         }
     }
 }

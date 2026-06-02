@@ -11,7 +11,7 @@ namespace RO_Flex_UI.Components
         [SerializeField] private Vector2 maxSize = new(400, 400);
         [SerializeField] private bool snapToStep = false;
         [SerializeField] private Vector2 stepSize = new(50, 50);
-        [SerializeField] private Vector2 offset = new(40, 50);
+        [SerializeField] private Vector2 borderOffset = new(0, 0);
 
         [Tooltip("Optional. If not set, will try to find a Window component in parents.")]
         [SerializeField] private RectTransform window;
@@ -21,6 +21,8 @@ namespace RO_Flex_UI.Components
         private Vector2 startMousePos;
         private Vector2 startWinPos;
         private Vector2 startWinSize;
+        public Vector2 MinSize => minSize;
+        public Vector2 MaxSize => maxSize;
 
         private void Awake()
         {
@@ -62,8 +64,8 @@ namespace RO_Flex_UI.Components
 
             if (snapToStep)
             {
-                var stepCount = Vector2Int.RoundToInt((newWinSize - offset) / stepSize);
-                newWinSize = stepCount * stepSize + offset;
+                var stepCount = Vector2Int.RoundToInt((newWinSize - borderOffset) / stepSize);
+                newWinSize = stepCount * stepSize + borderOffset;
             }
 
             newWinSize.x = Mathf.Clamp(newWinSize.x, minSize.x, maxSize.x);
@@ -71,13 +73,23 @@ namespace RO_Flex_UI.Components
 
             window.sizeDelta = newWinSize;
 
-            // fix anchor point
+            // FIXME anchor point
             var dSize = newWinSize - startWinSize;
             var wp = window.pivot;
 
             window.anchoredPosition = startWinPos + new Vector2(wp.x * dSize.x, -wp.y * dSize.y);
 
             OnResize.Invoke();
+        }
+
+        public void SetMinSize(Vector2 newMinSize)
+        {
+            minSize = newMinSize;
+        }
+
+        public void SetMaxSize(Vector2 newMaxSize)
+        {
+            maxSize = newMaxSize;
         }
     }
 }
