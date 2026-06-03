@@ -38,7 +38,7 @@ namespace RO_Flex_UI.Panels
         private bool hasPendingGridChange;
         private Vector2 lastWindowSize;
 
-        public void Awake()
+        public void Start()
         {
             EnsureReferences();
             SetMinMaxSize();
@@ -139,8 +139,7 @@ namespace RO_Flex_UI.Panels
 
         private void EnsureReferences()
         {
-            if (items == null)
-                items = new List<ItemEntry>();
+            items ??= new List<ItemEntry>();
 
             if (panelRect == null)
                 panelRect = GetComponent<RectTransform>();
