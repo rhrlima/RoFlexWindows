@@ -1,0 +1,17 @@
+{
+    "name": "RO.FlexUI.Editor",
+    "rootNamespace": "ROFlexUI",
+    "references": [
+        "GUID:f298a362c5427a14abacc5f8333142e5",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

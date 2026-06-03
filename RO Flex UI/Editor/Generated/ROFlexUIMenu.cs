@@ -115,12 +115,6 @@ namespace RoFlexUI.Editor
             CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Components/Toggle.prefab", command.context as GameObject);
         }
 
-        [MenuItem("GameObject/ROFlexUI/Others/Player", false, 10)]
-        public static void Create_Others_Player(MenuCommand command)
-        {
-            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Others/Player.prefab", command.context as GameObject);
-        }
-
         [MenuItem("GameObject/ROFlexUI/Panels/Flex Panel", false, 10)]
         public static void Create_Panels_FlexPanel(MenuCommand command)
         {
@@ -131,6 +125,18 @@ namespace RoFlexUI.Editor
         public static void Create_Panels_GearPanel(MenuCommand command)
         {
             CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Panels/Gear Panel.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Panels/Grid Panel", false, 10)]
+        public static void Create_Panels_GridPanel(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Panels/Grid Panel.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Panels/Item Description Panel", false, 10)]
+        public static void Create_Panels_ItemDescriptionPanel(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Panels/Item Description Panel.prefab", command.context as GameObject);
         }
 
         [MenuItem("GameObject/ROFlexUI/Panels/List Panel", false, 10)]
@@ -161,6 +167,132 @@ namespace RoFlexUI.Editor
         public static void Create_Panels_TabPanelVertical(MenuCommand command)
         {
             CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Panels/Tab Panel Vertical.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Utils/Player Simulator", false, 10)]
+        public static void Create_Utils_PlayerSimulator(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Utils/Player Simulator.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Utils/Player", false, 10)]
+        public static void Create_Utils_Player(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Utils/Player.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Windows/Basic Info", false, 10)]
+        public static void Create_Windows_BasicInfo(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Windows/Basic Info.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Windows/Chat Window", false, 10)]
+        public static void Create_Windows_ChatWindow(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Windows/Chat Window.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Windows/Create Chat", false, 10)]
+        public static void Create_Windows_CreateChat(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Windows/Create Chat.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Windows/Deal Modal", false, 10)]
+        public static void Create_Windows_DealModal(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Windows/Deal Modal.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Windows/Friend Modal", false, 10)]
+        public static void Create_Windows_FriendModal(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Windows/Friend Modal.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Windows/Gear Window", false, 10)]
+        public static void Create_Windows_GearWindow(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Windows/Gear Window.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Windows/Input Modal", false, 10)]
+        public static void Create_Windows_InputModal(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Windows/Input Modal.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Windows/Inventory Window", false, 10)]
+        public static void Create_Windows_InventoryWindow(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Windows/Inventory Window.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Windows/Item Description Window", false, 10)]
+        public static void Create_Windows_ItemDescriptionWindow(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Windows/Item Description Window.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Windows/Main Menu", false, 10)]
+        public static void Create_Windows_MainMenu(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Windows/Main Menu.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Windows/Message Modal", false, 10)]
+        public static void Create_Windows_MessageModal(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Windows/Message Modal.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Windows/Modal Window", false, 10)]
+        public static void Create_Windows_ModalWindow(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Windows/Modal Window.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Windows/Party Modal", false, 10)]
+        public static void Create_Windows_PartyModal(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Windows/Party Modal.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Windows/Skill Bar", false, 10)]
+        public static void Create_Windows_SkillBar(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Windows/Skill Bar.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Windows/Skill Window", false, 10)]
+        public static void Create_Windows_SkillWindow(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Windows/Skill Window.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Windows/Store Modal", false, 10)]
+        public static void Create_Windows_StoreModal(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Windows/Store Modal.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Windows/Text List Modal", false, 10)]
+        public static void Create_Windows_TextListModal(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Windows/Text List Modal.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Windows/Text List Window", false, 10)]
+        public static void Create_Windows_TextListWindow(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Windows/Text List Window.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Windows/Window", false, 10)]
+        public static void Create_Windows_Window(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Windows/Window.prefab", command.context as GameObject);
         }
 
 
