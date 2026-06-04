@@ -1,4 +1,5 @@
 ﻿using RO_Flex_UI.Components;
+using RO_Flex_UI.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -60,7 +61,7 @@ namespace RO_Flex_UI.Panels
 
         private void Update()
         {
-            if (panelRect != null && GetRectSize(panelRect) != lastWindowSize)
+            if (panelRect != null && Tools.GetRectSize(panelRect) != lastWindowSize)
                 hasPendingGridChange = true;
 
             if (!hasPendingGridChange)
@@ -100,7 +101,7 @@ namespace RO_Flex_UI.Panels
             if (panelRect == null || !panelRect.gameObject.activeSelf)
                 return;
 
-            lastWindowSize = GetRectSize(panelRect);
+            lastWindowSize = Tools.GetRectSize(panelRect);
             isUpdatingGrid = true;
 
             try
@@ -121,7 +122,7 @@ namespace RO_Flex_UI.Panels
 
         private void CalcTotalSlots()
         {
-            var viewportSize = GetRectSize(viewportRect);
+            var viewportSize = Tools.GetRectSize(viewportRect);
             var padding = gridLayout.padding;
             var cellSize = gridLayout.cellSize;
             var spacing = gridLayout.spacing;
@@ -174,17 +175,6 @@ namespace RO_Flex_UI.Panels
             return Mathf.Max(1, maxSlots);
         }
 
-        private Vector2 GetRectSize(RectTransform target)
-        {
-            var size = target.rect.size;
-            if (size.x <= 0)
-                size.x = target.sizeDelta.x;
-            if (size.y <= 0)
-                size.y = target.sizeDelta.y;
-
-            return size;
-        }
-
         private void SetMinMaxSize()
         {
             if (windowRect == null || resizable == null)
@@ -202,8 +192,8 @@ namespace RO_Flex_UI.Panels
                 MaxColumns * cellSize.x + (MaxColumns - 1) * spacing.x + padding.horizontal + windowOffset.horizontal,
                 MaxRows * cellSize.y + (MaxRows - 1) * spacing.y + padding.vertical + windowOffset.vertical);
 
-            resizable.SetMinSize(minWin);
-            resizable.SetMaxSize(maxWin);
+            resizable.MinSize = minWin;
+            resizable.MaxSize = maxWin;
             windowRect.sizeDelta = minWin;
         }
     }

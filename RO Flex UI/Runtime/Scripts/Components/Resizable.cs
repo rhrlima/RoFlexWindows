@@ -10,6 +10,7 @@ namespace RO_Flex_UI.Components
         [SerializeField] private Vector2 minSize = new(100, 100);
         [SerializeField] private Vector2 maxSize = new(400, 400);
         [SerializeField] private bool snapToStep = false;
+        [SerializeField] private bool ignoreAnchor = false;
         [SerializeField] private Vector2 stepSize = new(50, 50);
         [SerializeField] private Vector2 borderOffset = new(0, 0);
 
@@ -21,8 +22,6 @@ namespace RO_Flex_UI.Components
         private Vector2 startMousePos;
         private Vector2 startWinPos;
         private Vector2 startWinSize;
-        public Vector2 MinSize => minSize;
-        public Vector2 MaxSize => maxSize;
 
         private void Awake()
         {
@@ -73,23 +72,33 @@ namespace RO_Flex_UI.Components
 
             window.sizeDelta = newWinSize;
 
-            // FIXME anchor point
+            // Keep the window fixed relative to its anchor point when resizing.
+            // ignoreAnchor will always uses a top-left anchor point
             var dSize = newWinSize - startWinSize;
-            var wp = window.pivot;
+            var anchorPoint = ignoreAnchor ? new Vector2(0f, 1f) : (window.anchorMin + window.anchorMax) * 0.5f;
+            var pivotOffset = window.pivot - anchorPoint;
 
-            window.anchoredPosition = startWinPos + new Vector2(wp.x * dSize.x, -wp.y * dSize.y);
+            window.anchoredPosition = startWinPos + Vector2.Scale(dSize, pivotOffset);
 
             OnResize.Invoke();
         }
 
-        public void SetMinSize(Vector2 newMinSize)
+        #region Getter & Setter
+        public Vector2 MinSize
         {
-            minSize = newMinSize;
+            get => minSize;
+            set => minSize = value;
         }
-
-        public void SetMaxSize(Vector2 newMaxSize)
+        public Vector2 MaxSize
         {
-            maxSize = newMaxSize;
+            get => maxSize;
+            set => maxSize = value;
         }
+        public Vector2 StepSize
+        {
+            get => stepSize;
+            set => stepSize = value;
+        }
+        #endregion
     }
 }

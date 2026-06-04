@@ -21,29 +21,25 @@ namespace RO_Flex_UI.Panels
         [SerializeField] private bool autoScroll = true;
 
         // [Header("Runtime State")]
-        private List<ListItem> currentItems = new List<ListItem>();
+        private List<ListItem> listItems = new();
 
         public ListItem FocusedItem { get; private set; }
         public ListItem ActivatedItem { get; private set; }
 
         private void Awake()
         {
-            // Fallback safety if references aren't dragged manually into the inspector
             if (contentTransform == null && transform is RectTransform)
                 contentTransform = transform as RectTransform;
 
-            // CRUCIAL: Safely disable the template at runtime so it doesn't skew layouts
             if (defaultTemplate != null)
-            {
                 defaultTemplate.gameObject.SetActive(false);
-            }
 
             GrabExistingChildren();
         }
 
         public void GrabExistingChildren()
         {
-            currentItems.Clear();
+            listItems.Clear();
             if (contentTransform == null) return;
 
             foreach (Transform child in contentTransform)
@@ -52,10 +48,10 @@ namespace RO_Flex_UI.Panels
                 if (!child.gameObject.activeInHierarchy) continue;
 
                 var item = EnsureListItemRequirements(child.gameObject);
-                if (item != null && !currentItems.Contains(item))
+                if (item != null && !listItems.Contains(item))
                 {
                     item.BindToPanel(this);
-                    currentItems.Add(item);
+                    listItems.Add(item);
                 }
             }
             UpdateNavigation();
@@ -63,9 +59,9 @@ namespace RO_Flex_UI.Panels
 
         private void RegisterItem(ListItem item)
         {
-            if (!currentItems.Contains(item))
+            if (!listItems.Contains(item))
             {
-                currentItems.Add(item);
+                listItems.Add(item);
                 item.BindToPanel(this);
             }
         }
@@ -83,13 +79,13 @@ namespace RO_Flex_UI.Panels
 
         public void Clear()
         {
-            foreach (var item in currentItems)
+            foreach (var item in listItems)
             {
                 // Only destroy it if it lives inside an active scene context (prevents deleting pure assets)
                 if (item != null && item.gameObject.scene.name != null)
                     Destroy(item.gameObject);
             }
-            currentItems.Clear();
+            listItems.Clear();
             FocusedItem = null;
             ActivatedItem = null;
         }
@@ -133,14 +129,14 @@ namespace RO_Flex_UI.Panels
         public void UpdateNavigation()
         {
             // Clean out any null references that might have been destroyed upstream
-            currentItems.RemoveAll(item => item == null);
+            listItems.RemoveAll(item => item == null);
 
-            int count = currentItems.Count;
+            int count = listItems.Count;
             if (count < 2) return; // No navigation paths to map if there's only 1 or 0 items
 
             for (int i = 0; i < count; i++)
             {
-                ListItem item = currentItems[i];
+                ListItem item = listItems[i];
                 Button currentButton = item.TargetButton;
 
                 if (currentButton == null) continue;
@@ -154,21 +150,21 @@ namespace RO_Flex_UI.Panels
                 // Link Previous (Up) based strictly on currentItems positioning
                 if (i == 0)
                 {
-                    cleanNav.selectOnUp = loopNavigation ? currentItems[count - 1].TargetButton : null;
+                    cleanNav.selectOnUp = loopNavigation ? listItems[count - 1].TargetButton : null;
                 }
                 else
                 {
-                    cleanNav.selectOnUp = currentItems[i - 1].TargetButton;
+                    cleanNav.selectOnUp = listItems[i - 1].TargetButton;
                 }
 
                 // Link Next (Down) based strictly on currentItems positioning
                 if (i == count - 1)
                 {
-                    cleanNav.selectOnDown = loopNavigation ? currentItems[0].TargetButton : null;
+                    cleanNav.selectOnDown = loopNavigation ? listItems[0].TargetButton : null;
                 }
                 else
                 {
-                    cleanNav.selectOnDown = currentItems[i + 1].TargetButton;
+                    cleanNav.selectOnDown = listItems[i + 1].TargetButton;
                 }
 
                 // Hard lock horizontal pathways so selection stays bound inside this specific list panel
