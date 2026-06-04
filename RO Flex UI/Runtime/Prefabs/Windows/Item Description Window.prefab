@@ -294,7 +294,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 42235342645587079, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
       propertyPath: m_Size
-      value: 1
+      value: 0.8977274
       objectReference: {fileID: 0}
     - target: {fileID: 253262253473443217, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
       propertyPath: m_AnchorMax.x
@@ -351,6 +351,22 @@ PrefabInstance:
     - target: {fileID: 1544257221583000544, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1756692235489345757, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 1756692235489345757, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 1756692235489345757, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 1762051293721212226, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2933791847730563642, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
       propertyPath: m_AnchorMax.y
@@ -536,6 +552,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5818559734502698498, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
+      propertyPath: m_Size
+      value: 0.18009908
+      objectReference: {fileID: 0}
+    - target: {fileID: 5818559734502698498, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
+      propertyPath: m_Value
+      value: 1.0000001
+      objectReference: {fileID: 0}
     - target: {fileID: 6637245734117864716, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
       propertyPath: m_Name
       value: Item Description Panel
@@ -585,19 +609,46 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7911513044696577821, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911513044696577821, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2052271013126643607, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1728065168081760204, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8210296112920354692}
   m_SourcePrefab: {fileID: 100100000, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
 --- !u!224 &972067841676236111 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3400659578761378027, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
   m_PrefabInstance: {fileID: 2471609040768642468}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3870766151798981224 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1728065168081760204, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
+  m_PrefabInstance: {fileID: 2471609040768642468}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8210296112920354692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3870766151798981224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1001 &7144131102068120486
 PrefabInstance:
   m_ObjectHideFlags: 0

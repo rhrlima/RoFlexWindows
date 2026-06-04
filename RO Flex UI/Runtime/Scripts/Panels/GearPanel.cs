@@ -1,5 +1,4 @@
 ﻿using RO_Flex_UI.Components;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,34 +6,39 @@ namespace RO_Flex_UI.Panels
 {
     public class GearPanel : IPanel
     {
+        [SerializeField] private int slotsPerPanel;
         [SerializeField] private GearSlot template;
         [SerializeField] private RectTransform leftPanel;
         [SerializeField] private RectTransform rightPanel;
 
         private void Awake()
         {
+            if (template == null)
+                Debug.LogError("No prefab of type GearSlot was assigned to template.");
+
             if (leftPanel == null || rightPanel == null)
             {
                 Debug.LogError("Left and Right Panels cannot be null.");
                 return;
             }
 
-            foreach (Transform child in leftPanel)
-                Destroy(child.gameObject);
-
-            foreach (Transform child in rightPanel)
-                Destroy(child.gameObject);
-
+            InitializePanels();
         }
 
-        public void Start()
+        private void InitializePanels()
         {
-            for (var i = 0; i < 10; i++)
+            var placeholder = leftPanel.GetComponentInChildren<GearSlot>();
+            if (placeholder != null) placeholder.gameObject.SetActive(false);
+
+            placeholder = rightPanel.GetComponentInChildren<GearSlot>();
+            if (placeholder != null) placeholder.gameObject.SetActive(false);
+
+            for (var i = 0; i < slotsPerPanel * 2; i++)
             {
-                var instance = Instantiate(template, (i < 5) ? leftPanel : rightPanel);
+                var instance = Instantiate(template, (i < slotsPerPanel) ? leftPanel : rightPanel);
                 instance.gameObject.SetActive(true);
 
-                if (i > 4)
+                if (i >= slotsPerPanel)
                     instance.GetComponent<HorizontalLayoutGroup>().reverseArrangement = true;
             }
         }
