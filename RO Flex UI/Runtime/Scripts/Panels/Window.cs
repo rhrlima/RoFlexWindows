@@ -96,7 +96,9 @@ namespace RO_Flex_UI.Panels
         public void CenterWindow()
         {
             var canvas = gameObject.transform.parent as RectTransform;
-            transform.position = canvas.rect.size / 2f;
+            // transform.position = canvas.rect.size / 2f;
+            // FIXME take into account the anchor
+            transform.position = new Vector3(0, 0, transform.position.z);
         }
 
         public void FitWindowIntoPlayArea()

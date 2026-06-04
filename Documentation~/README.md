@@ -3,6 +3,7 @@
 ## Components
 
 - [Button]()
+- [Draggable](Components/draggable.md)
 
 ## Panels
 

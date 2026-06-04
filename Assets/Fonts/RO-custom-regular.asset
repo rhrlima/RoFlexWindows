@@ -32,14 +32,14 @@ MonoBehaviour:
     m_CapLine: 9
     m_MeanLine: 7
     m_Baseline: 0
-    m_DescentLine: -3.1875
+    m_DescentLine: -4
     m_SuperscriptOffset: 12.8125
     m_SuperscriptSize: 0.5
     m_SubscriptOffset: -3.1875
     m_SubscriptSize: 0.5
-    m_UnderlineOffset: 1.203125
-    m_UnderlineThickness: 0.796875
-    m_StrikethroughOffset: 2.8
+    m_UnderlineOffset: -2
+    m_UnderlineThickness: 1
+    m_StrikethroughOffset: 3
     m_StrikethroughThickness: 0.796875
     m_TabWidth: 4
   m_GlyphTable:
@@ -3662,7 +3662,7 @@ MonoBehaviour:
   fontWeights: []
   normalStyle: 0
   normalSpacingOffset: 0
-  boldStyle: 0.75
+  boldStyle: 1
   boldSpacing: 7
   italicStyle: 35
   tabSize: 10
@@ -3764,7 +3764,7 @@ Material:
     - _UseUIAlphaClip: 0
     - _VertexOffsetX: 0
     - _VertexOffsetY: 0
-    - _WeightBold: 0.5
+    - _WeightBold: 1
     - _WeightNormal: 0
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}

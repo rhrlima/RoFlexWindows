@@ -4,6 +4,12 @@ namespace RO_Flex_UI.Panels
 {
     public class TabsPanel : MonoBehaviour
     {
+        /* TODO
+            dont depend on Flex Panel
+            make orientation just adjust values on LayoutGroup
+            list of tabs/panels? or assign containers?
+        */
+
         // private class ContentTabPanel { }
         // private class TabButton { }
 
