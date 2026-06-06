@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace RO_Flex_UI.Panels
 {
-    public class ListPanel : MonoBehaviour
+    public class ListPanel : IPanel
     {
         [Header("Layout & Scroll Settings")]
         // [Tooltip("The rolling content container of the ScrollRect which holds the items.")]
@@ -20,9 +20,7 @@ namespace RO_Flex_UI.Panels
         [SerializeField] private bool loopNavigation = true;
         [SerializeField] private bool autoScroll = true;
 
-        // [Header("Runtime State")]
         private List<ListItem> listItems = new();
-
         public ListItem FocusedItem { get; private set; }
         public ListItem ActivatedItem { get; private set; }
 
@@ -35,6 +33,11 @@ namespace RO_Flex_UI.Panels
                 defaultTemplate.gameObject.SetActive(false);
 
             GrabExistingChildren();
+        }
+
+        private void OnEnable()
+        {
+            SelectOption(0);
         }
 
         public void GrabExistingChildren()
@@ -213,6 +216,14 @@ namespace RO_Flex_UI.Panels
             {
                 contentTransform.localPosition -= new Vector3(0, targetTopY, 0);
             }
+        }
+
+        public void SelectOption(int index)
+        {
+            if (index >= listItems.Count)
+                return;
+
+            listItems[index].TargetButton.Select();
         }
     }
 }

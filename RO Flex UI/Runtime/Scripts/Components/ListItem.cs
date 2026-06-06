@@ -53,7 +53,7 @@ namespace RO_Flex_UI.Components
             FocusItem();
         }
 
-        private void FocusItem()
+        public void FocusItem()
         {
             OnItemFocused?.Invoke();
             parentPanel?.NotifyItemFocused(this);
