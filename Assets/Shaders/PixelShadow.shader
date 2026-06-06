@@ -1,10 +1,10 @@
-Shader "ROFlexUI/Fonts/Bitmap Pixel Shadow"
+Shader "ROFlexUI/Fonts/Pixel Shadow"
 {
     Properties
     {
-        [PerRendererData] _MainTex("Font Atlas", 2D) = "white" {}
+        [PerRendererData] _MainTex("Font Atlas", 2D) = "black" {}
 
-        _ShadowColor("Shadow Color", Color) = (0, 0, 0, 1)
+        _ShadowColor("Shadow Color", Color) = (1, 1, 1, 1)
         _ShadowOffset("Shadow Offset", Vector) = (1, -1, 0, 0)
 
         // Standard Unity UI stencil properties.

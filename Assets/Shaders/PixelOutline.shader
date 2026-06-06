@@ -1,10 +1,10 @@
-Shader "ROFlexUI/Fonts/Bitmap Pixel Outline"
+Shader "ROFlexUI/Fonts/Pixel Outline"
 {
     Properties
     {
-        [PerRendererData] _MainTex("Font Atlas", 2D) = "white" {}
+        [PerRendererData] _MainTex("Font Atlas", 2D) = "black" {}
 
-        _OutlineColor("Outline Color", Color) = (0, 0, 0, 1)
+        _OutlineColor("Outline Color", Color) = (1, 1, 1, 1)
         _OutlineSize("Outline Size", Float) = 1
         [Enum(No, 0, Yes, 1)] _OutlineMode("Diagonals", Float) = 0
 

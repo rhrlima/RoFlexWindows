@@ -10,15 +10,6 @@ namespace RO_Flex_UI.Editor
     {
         // private const string fontsPath = "Assets/Samples/RO Flex UI";
         private const string fontsPath = "Assets/Fonts";
-        // private const string characters = "abcdefghijklmnopqrstuvwxyzçABCDEFGHIJKLMNOPQRSTUVWXYZÇ 0123456789<>[]{}()\\/.,:;~`'\"!?@#$%^&*-_=+|áéíóúàèìòùâêîôûäëïöüãõñÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÄËÏÖÜÃÕÑ";
-        // private const string characters = "abcdefghijklmnopqrstuvwxyzçABCDEFGHIJKLMNOPQRSTUVWXYZÇ 0123456789";
-
-        private static readonly (string suffix, string shaderName)[] materialPresents = new[]
-        {
-            ("Default Bitmap", "TextMeshPro/Bitmap"),
-            ("Pixel Outline", "RO Flex UI/PixelOutline"),
-            ("Pixel Shadow", "RO Flex UI/PixelShadow")
-        };
 
         [MenuItem("Tools/RO Flex UI/Regenerate TMP Fonts")]
         public static void GenerateAll()
@@ -35,7 +26,8 @@ namespace RO_Flex_UI.Editor
 
         public static void Generate(string fontPath)
         {
-            var sourceFont = AssetDatabase.LoadAssetAtPath<Font>(fontPath);
+            var sourceFont = PrepareSourceFont(fontPath);
+
             if (sourceFont == null)
             {
                 Debug.LogError($"Failed to load font at path: {fontPath}");
@@ -50,8 +42,7 @@ namespace RO_Flex_UI.Editor
                 5,
                 GlyphRenderMode.RASTER_HINTED,
                 256, 256,
-                // AtlasPopulationMode.Dynamic,
-                AtlasPopulationMode.Static,
+                AtlasPopulationMode.Dynamic,
                 true
             );
 
@@ -60,39 +51,19 @@ namespace RO_Flex_UI.Editor
             fontAsset.hideFlags = HideFlags.None;
             fontAsset.atlasTexture.hideFlags = HideFlags.None;
 
-            // fontAsset.TryAddCharacters(characters, out var missingCharacters);
-
-            // if (!string.IsNullOrEmpty(missingCharacters))
-            // {
-            //     Debug.LogWarning($"Missing characters in {sourceFont.name}: {missingCharacters}");
-            // }
-
-            // fontAsset.atlasPopulationMode = AtlasPopulationMode.Static;
-
             fontAsset.atlasTexture.name = sourceFont.name + " Atlas";
             fontAsset.atlasTexture.filterMode = FilterMode.Point;
             fontAsset.atlasTexture.wrapMode = TextureWrapMode.Clamp;
 
-            // var shader1 = Shader.Find("TextMeshPro/Bitmap");
-            // var material1 = new Material(shader1)
-            // {
-            //     name = sourceFont.name + " Bitmap Material"
-            // };
-
-            // material.SetTexture(ShaderUtilities.ID_MainTex, fontAsset.atlasTexture);
-
-            // fontAsset.material = material;
-            // fontAsset.atlasTextures = new[] { fontAsset.atlasTexture };
-
             AssetDatabase.CreateAsset(fontAsset, assetPath);
             AssetDatabase.AddObjectToAsset(fontAsset.atlasTexture, fontAsset);
-            // AssetDatabase.AddObjectToAsset(fontAsset.material, fontAsset);
 
-            CreateMaterialPresets(fontAsset);
+            CreateMaterialPreset(fontAsset, assetPath, "Default", "TextMeshPro/Bitmap", true);
+            CreateMaterialPreset(fontAsset, assetPath, "Outline", "ROFlexUI/Fonts/Pixel Outline");
+            CreateMaterialPreset(fontAsset, assetPath, "Shadow", "ROFlexUI/Fonts/Pixel Shadow");
 
             EditorUtility.SetDirty(fontAsset);
             EditorUtility.SetDirty(fontAsset.atlasTexture);
-            // EditorUtility.SetDirty(material);
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
@@ -100,35 +71,101 @@ namespace RO_Flex_UI.Editor
             Debug.Log($"Successfully generated asset at {assetPath}");
         }
 
-        private static void CreateMaterialPresets(TMP_FontAsset fontAsset)
+        private static Font PrepareSourceFont(string fontPath)
         {
-            foreach (var preset in materialPresents)
+            var importer = AssetImporter.GetAtPath(fontPath) as TrueTypeFontImporter;
+
+            if (importer == null)
             {
-                var shader = Shader.Find(preset.shaderName);
-
-                if (shader == null)
-                {
-                    Debug.LogWarning($"Shader not found: {preset.shaderName}");
-                    continue;
-                }
-
-                var material = new Material(shader)
-                {
-                    name = $"{fontAsset.name} {preset.suffix}"
-                };
-
-                material.SetTexture("_MainTex", fontAsset.atlasTexture);
-
-                AssetDatabase.AddObjectToAsset(material, fontAsset);
-                EditorUtility.SetDirty(material);
-
-                if (fontAsset.material == null || preset.suffix == "Default Bitmap")
-                {
-                    fontAsset.material = material;
-                }
+                Debug.LogError($"Could not find font importer for: {fontPath}");
+                return null;
             }
 
-            EditorUtility.SetDirty(fontAsset);
+            var requiresReimport = false;
+
+            if (!importer.includeFontData)
+            {
+                importer.includeFontData = true;
+                requiresReimport = true;
+            }
+
+            if (importer.fontTextureCase != FontTextureCase.Dynamic)
+            {
+                importer.fontTextureCase = FontTextureCase.Dynamic;
+                requiresReimport = true;
+            }
+
+            if (requiresReimport)
+            {
+                Debug.Log($"Updating import settings for: {fontPath}");
+                importer.SaveAndReimport();
+            }
+
+            return AssetDatabase.LoadAssetAtPath<Font>(fontPath);
+        }
+
+        private static void CreateMaterialPreset(
+            TMP_FontAsset fontAsset,
+            string fontAssetPath,
+            string suffix,
+            string shaderName
+        )
+        {
+            CreateMaterialPreset(fontAsset, fontAssetPath, suffix, shaderName, false);
+        }
+
+        private static void CreateMaterialPreset(
+            TMP_FontAsset fontAsset,
+            string fontAssetPath,
+            string suffix,
+            string shaderName,
+            bool is_default
+        )
+        {
+            var shader = Shader.Find(shaderName);
+
+            if (shader == null)
+            {
+                Debug.LogWarning($"Shader not found: {shaderName}");
+                return;
+            }
+
+            var folder = Path.GetDirectoryName(fontAssetPath);
+            var materialPath = Path.Combine(folder, $"{fontAsset.name} {suffix}.mat").Replace("\\", "/");
+
+            var baseMaterial = fontAsset.material;
+
+            if (baseMaterial == null)
+            {
+                Debug.LogWarning($"Font asset has no base material: {fontAsset.name}");
+                return;
+            }
+
+            var existingMaterial = AssetDatabase.LoadAssetAtPath<Material>(materialPath);
+            if (existingMaterial != null)
+            {
+                if (is_default)
+                    fontAsset.material = existingMaterial;
+
+                return;
+            }
+
+            var material = new Material(baseMaterial)
+            {
+                name = $"{fontAsset.name} {suffix}",
+                shader = shader
+            };
+
+            material.SetTexture(ShaderUtilities.ID_MainTex, fontAsset.atlasTexture);
+
+            AssetDatabase.CreateAsset(material, materialPath);
+
+            if (is_default)
+                fontAsset.material = material;
+
+            EditorUtility.SetDirty(material);
+
+            Debug.Log($"Created TMP material preset: {materialPath}");
         }
     }
 }
