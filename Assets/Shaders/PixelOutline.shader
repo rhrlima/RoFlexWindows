@@ -1,17 +1,13 @@
-Shader "ROFlexUI/Fonts/Bitmap Pixel Shadow"
+Shader "ROFlexUI/Fonts/Bitmap Pixel Outline"
 {
     Properties
     {
         [PerRendererData] _MainTex("Font Atlas", 2D) = "white" {}
 
-        _FaceColor("Face Color", Color) = (1, 1, 1, 1)
-        _ShadowColor("Shadow Color", Color) = (0, 0, 0, 1)
+        _OutlineColor("Outline Color", Color) = (0, 0, 0, 1)
+        _OutlineSize("Outline Size", Float) = 1
+        [Enum(Four, 0, Eight, 1)] _OutlineMode("Outline Mode", Float) = 1
 
-        _ShadowOffset("Shadow Offset", Vector) = (1, -1, 0, 0)
-
-        _Padding("Padding", Float) = 1
-
-        // Standard Unity UI stencil properties.
         _StencilComp ("Stencil Comparison", Float) = 8
         _Stencil ("Stencil ID", Float) = 0
         _StencilOp ("Stencil Operation", Float) = 0
@@ -31,7 +27,7 @@ Shader "ROFlexUI/Fonts/Bitmap Pixel Shadow"
             "IgnoreProjector"= "True"
             "RenderType" = "Transparent"
         }
-    
+
         Stencil
         {
             Ref [_Stencil]
@@ -45,8 +41,6 @@ Shader "ROFlexUI/Fonts/Bitmap Pixel Shadow"
         Cull Off
         ZWrite Off
         ZTest [unity_GUIZTestMode]
-
-        // Standard transparent blending.
         Blend SrcAlpha OneMinusSrcAlpha
         ColorMask [_ColorMask]
 
@@ -79,17 +73,10 @@ Shader "ROFlexUI/Fonts/Bitmap Pixel Shadow"
             };
 
             sampler2D _MainTex;
-
-            // Automatically populated by Unity:
-            // x = 1 / texture width
-            // y = 1 / texture height
-            // z = texture width
-            // w = texture height
             float4 _MainTex_TexelSize;
-
-            fixed4 _FaceColor;
-            fixed4 _ShadowColor;
-            float4 _ShadowOffset;
+            fixed4 _OutlineColor;
+            float _OutlineSize;
+            float _OutlineMode;
             float4 _ClipRect;
 
             VertexToFragment vert(AppData input)
@@ -97,61 +84,48 @@ Shader "ROFlexUI/Fonts/Bitmap Pixel Shadow"
                 VertexToFragment output;
 
                 output.worldPosition = input.vertex;
-
-                output.vertex = UnityPixelSnap(
-                    UnityObjectToClipPos(input.vertex)
-                );
-
+                output.vertex = UnityPixelSnap(UnityObjectToClipPos(input.vertex));
                 output.uv = input.uv;
-
-                output.color = input.color * _FaceColor;
+                output.color = input.color;
 
                 return output;
             }
 
-            fixed4 CompositeShadowBehindFace(
-                fixed4 face,
-                fixed4 shadow
-            )
+            fixed4 CompositeShadowBehindFace(fixed4 face, fixed4 shadow)
             {
                 fixed outputAlpha = face.a + shadow.a * (1 - face.a);
-
-                fixed3 outputRgb = (
-                    face.rgb * face.a + shadow.rgb * shadow.a * (1 - face.a)
-                ) / max(outputAlpha, 0.0001);
-
+                fixed3 outputRgb = lerp(shadow.rgb, face.rgb, face.a);
                 return fixed4(outputRgb, outputAlpha);
             }
 
             fixed4 frag(VertexToFragment input) : SV_Target
             {
                 fixed faceMask = tex2D(_MainTex, input.uv).a;
+                float2 offset = _OutlineSize * _MainTex_TexelSize.xy;
 
-                float2 shadowUvOffset = _ShadowOffset.xy * _MainTex_TexelSize.xy;
+                fixed outlineMask = 0;
+                outlineMask = max(outlineMask, tex2D(_MainTex, input.uv + float2(+offset.x,  0)).a);
+                outlineMask = max(outlineMask, tex2D(_MainTex, input.uv + float2(-offset.x,  0)).a);
+                outlineMask = max(outlineMask, tex2D(_MainTex, input.uv + float2( 0, +offset.y)).a);
+                outlineMask = max(outlineMask, tex2D(_MainTex, input.uv + float2( 0, -offset.y)).a);
 
-                fixed shadowMask = tex2D(_MainTex, input.uv - shadowUvOffset).a;
+                fixed diagMask = 0;
+                diagMask = max(diagMask, tex2D(_MainTex, input.uv + float2(+offset.x, +offset.y)).a);
+                diagMask = max(diagMask, tex2D(_MainTex, input.uv + float2(+offset.x, -offset.y)).a);
+                diagMask = max(diagMask, tex2D(_MainTex, input.uv + float2(-offset.x, +offset.y)).a);
+                diagMask = max(diagMask, tex2D(_MainTex, input.uv + float2(-offset.x, -offset.y)).a);
 
-                fixed4 face = fixed4(
-                    input.color.rgb,
-                    input.color.a * faceMask
-                );
+                outlineMask = max(outlineMask, diagMask * _OutlineMode);
+                outlineMask = saturate(outlineMask - faceMask);
 
-                fixed4 shadow = fixed4(
-                    _ShadowColor.rgb,
-                    _ShadowColor.a * shadowMask
-                );
+                fixed4 face = fixed4(input.color.rgb, input.color.a * faceMask);
+                fixed4 outline = fixed4(_OutlineColor.rgb, _OutlineColor.a * outlineMask);
+                fixed4 outputColor = CompositeShadowBehindFace(face, outline);
 
-                fixed4 outputColor = CompositeShadowBehindFace(face, shadow);
-
-                // Support RectMask2D clipping.
                 #ifdef UNITY_UI_CLIP_RECT
-                outputColor.a *= UnityGet2DClipping(
-                    input.worldPosition.xy,
-                    _ClipRect
-                );
+                outputColor.a *= UnityGet2DClipping(input.worldPosition.xy, _ClipRect);
                 #endif
 
-                // Support alpha clipping when requested by Unity UI.
                 #ifdef UNITY_UI_ALPHACLIP
                 clip(outputColor.a - 0.001);
                 #endif
