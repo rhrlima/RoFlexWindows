@@ -10,6 +10,8 @@ namespace RO_Flex_UI.Panels
         [SerializeField] private bool resetToCenter;
         [SerializeField] private bool isDraggable;
         [SerializeField] private bool isResizable;
+        [SerializeField] private bool keepWindowInScreen = true;
+        [SerializeField] private bool returnToOrigin;
 
         private Draggable draggableComponent;
         private Resizable resizeComponent;
@@ -23,6 +25,7 @@ namespace RO_Flex_UI.Panels
             resizeComponent = GetComponentInChildren<Resizable>(true);
 
             OnValidate();
+            SyncReturnToOriginFlag();
         }
 
         private void OnEnable()
@@ -33,10 +36,25 @@ namespace RO_Flex_UI.Panels
                 FitWindowIntoPlayArea();
         }
 
+        private void LateUpdate()
+        {
+            if (keepWindowInScreen)
+                FitWindowIntoPlayArea();
+        }
+
         private void OnValidate()
         {
             ToggleDraggable();
             ToggleResisable();
+            SyncReturnToOriginFlag();
+        }
+
+        private void SyncReturnToOriginFlag()
+        {
+            if (draggableComponent != null)
+            {
+                draggableComponent.SetReturnToOrigin(returnToOrigin);
+            }
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -88,23 +106,87 @@ namespace RO_Flex_UI.Panels
                 gameObject.SetActive(true);
         }
 
-        public virtual void HideWindow()
+        public void HideWindow()
         {
             gameObject.SetActive(false);
         }
 
+
         public void CenterWindow()
         {
+            var rectTransform = transform as RectTransform;
             var canvas = gameObject.transform.parent as RectTransform;
-            // transform.position = canvas.rect.size / 2f;
-            // FIXME take into account the anchor
-            transform.position = new Vector3(0, 0, transform.position.z);
+
+            if (rectTransform == null || canvas == null)
+                return;
+
+            var canvasSize = canvas.rect.size;
+            var windowSize = rectTransform.rect.size;
+
+            // Calculate the anchor point position in anchored position space
+            // Anchor center normalized to (-0.5, -0.5) to (0.5, 0.5) range
+            var anchorCenterX = (rectTransform.anchorMin.x + rectTransform.anchorMax.x) * 0.5f - 0.5f;
+            var anchorCenterY = (rectTransform.anchorMin.y + rectTransform.anchorMax.y) * 0.5f - 0.5f;
+
+            // Convert anchor offset to canvas space
+            var anchorOffsetX = anchorCenterX * canvasSize.x;
+            var anchorOffsetY = anchorCenterY * canvasSize.y;
+
+            // Account for pivot offset
+            var pivotOffsetX = (rectTransform.pivot.x - 0.5f) * windowSize.x;
+            var pivotOffsetY = (rectTransform.pivot.y - 0.5f) * windowSize.y;
+
+            // Set anchored position to center the window
+            rectTransform.anchoredPosition = new Vector2(
+                pivotOffsetX - anchorOffsetX,
+                pivotOffsetY - anchorOffsetY
+            );
         }
 
         public void FitWindowIntoPlayArea()
         {
-            //TODO
-            // Debug.LogWarning("Window.FitWindowIntoPlayArea NOT IMPLEMENTED");
+            if (!keepWindowInScreen)
+                return;
+
+            var rectTransform = transform as RectTransform;
+            var canvas = gameObject.transform.parent as RectTransform;
+
+            if (rectTransform == null || canvas == null)
+                return;
+
+            // Get window bounds in canvas space
+            var windowRect = rectTransform.rect;
+            var windowPos = rectTransform.anchoredPosition;
+            var canvasRect = canvas.rect;
+
+            // Calculate the visual edges of the window relative to its anchored position
+            // Left/Right edges accounting for window width and pivot
+            var windowLeftOffset = -rectTransform.pivot.x * windowRect.width;
+            var windowRightOffset = (1f - rectTransform.pivot.x) * windowRect.width;
+            var windowBottomOffset = -rectTransform.pivot.y * windowRect.height;
+            var windowTopOffset = (1f - rectTransform.pivot.y) * windowRect.height;
+
+            // Canvas bounds in anchored position space, accounting for the window's anchor
+            // The window's anchor position determines the origin of its anchored position coordinate system
+            var anchorMinX = rectTransform.anchorMin.x;
+            var anchorMaxX = rectTransform.anchorMax.x;
+            var anchorMinY = rectTransform.anchorMin.y;
+            var anchorMaxY = rectTransform.anchorMax.y;
+
+            var canvasMinX = -anchorMinX * canvasRect.width;
+            var canvasMaxX = (1f - anchorMaxX) * canvasRect.width;
+            var canvasMinY = -anchorMaxY * canvasRect.height;
+            var canvasMaxY = (1f - anchorMinY) * canvasRect.height;
+
+            // Clamp position so window stays within canvas
+            var clampedX = Mathf.Clamp(windowPos.x,
+                canvasMinX - windowLeftOffset,
+                canvasMaxX - windowRightOffset);
+            var clampedY = Mathf.Clamp(windowPos.y,
+                canvasMinY - windowBottomOffset,
+                canvasMaxY - windowTopOffset);
+
+            rectTransform.anchoredPosition = new Vector2(clampedX, clampedY);
         }
     }
 }

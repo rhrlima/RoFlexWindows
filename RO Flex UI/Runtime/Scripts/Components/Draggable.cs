@@ -10,7 +10,9 @@ namespace RO_Flex_UI.Components
         private Canvas canvas;
         [Tooltip("Optional. If not set, will try to find a Window component in parents.")]
         [SerializeField] private RectTransform window;
+        [SerializeField] private bool returnToOrigin;
         private bool isBeingDragged = false;
+        private Vector2 originPosition;
 
         public void Start()
         {
@@ -31,6 +33,12 @@ namespace RO_Flex_UI.Components
             }
         }
 
+        private void StoreOriginPosition()
+        {
+            if (window != null)
+                originPosition = window.anchoredPosition;
+        }
+
         public void StartDrag()
         {
             isBeingDragged = true;
@@ -39,6 +47,11 @@ namespace RO_Flex_UI.Components
         public void EndDrag()
         {
             isBeingDragged = false;
+        }
+
+        public void SetReturnToOrigin(bool value)
+        {
+            returnToOrigin = value;
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -60,6 +73,9 @@ namespace RO_Flex_UI.Components
 
             eventData.useDragThreshold = false;
 
+            // Store position before drag starts
+            StoreOriginPosition();
+
             window.transform.SetAsLastSibling();
 
             StartDrag();
@@ -69,7 +85,14 @@ namespace RO_Flex_UI.Components
         {
             if (window == null) return;
 
-            window.anchoredPosition = Vector2Int.RoundToInt(window.anchoredPosition);
+            if (returnToOrigin)
+            {
+                window.anchoredPosition = originPosition;
+            }
+            else
+            {
+                window.anchoredPosition = Vector2Int.RoundToInt(window.anchoredPosition);
+            }
 
             EndDrag();
         }
