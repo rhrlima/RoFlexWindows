@@ -6,7 +6,7 @@ Shader "ROFlexUI/Fonts/Bitmap Pixel Outline"
 
         _OutlineColor("Outline Color", Color) = (0, 0, 0, 1)
         _OutlineSize("Outline Size", Float) = 1
-        [Enum(Four, 0, Eight, 1)] _OutlineMode("Outline Mode", Float) = 1
+        [Enum(No, 0, Yes, 1)] _OutlineMode("Diagonals", Float) = 0
 
         _StencilComp ("Stencil Comparison", Float) = 8
         _Stencil ("Stencil ID", Float) = 0
