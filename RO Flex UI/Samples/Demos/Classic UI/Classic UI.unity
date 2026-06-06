@@ -426,6 +426,7 @@ MonoBehaviour:
   resetToCenter: 0
   isDraggable: 1
   isResizable: 1
+  keepWindowInScreen: 1
 --- !u!1001 &264268841
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1709,7 +1710,7 @@ Canvas:
   m_GameObject: {fileID: 572669006}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 963194227}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
@@ -4786,8 +4787,20 @@ PrefabInstance:
       value: Template
       objectReference: {fileID: 0}
     - target: {fileID: 2457375944503282668, guid: f49504cc4981ef14da437eabc6d37dd0, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 2457375944503282668, guid: f49504cc4981ef14da437eabc6d37dd0, type: 3}
       propertyPath: m_overflowMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2457375944503282668, guid: f49504cc4981ef14da437eabc6d37dd0, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 2457375944503282668, guid: f49504cc4981ef14da437eabc6d37dd0, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3336889063328924364, guid: f49504cc4981ef14da437eabc6d37dd0, type: 3}
       propertyPath: m_Name
