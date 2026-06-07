@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 namespace RO_Flex_UI.Config
@@ -20,7 +21,7 @@ namespace RO_Flex_UI.Config
             }
 
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         }
 
         private void OnDestroy()
@@ -38,6 +39,11 @@ namespace RO_Flex_UI.Config
             }
 
             return activeConfig.GetSprite(id);
+        }
+
+        public TMP_FontAsset GetFont()
+        {
+            return activeConfig.GetDefaultFont();
         }
     }
 }

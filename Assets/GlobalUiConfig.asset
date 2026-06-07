@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: GlobalUiConfig
   m_EditorClassIdentifier: Assembly-CSharp:RO_Flex_UI.Config:GlobalUiConfig
+  defaultFont: {fileID: 11400000, guid: 38d75c30957130545b9b29e06cbd8523, type: 2}
   placeholderSprite: {fileID: 975374147, guid: 552acdb6bec35e64ab8e87384d05c396, type: 3}
   spriteEntries:
   - id: 0

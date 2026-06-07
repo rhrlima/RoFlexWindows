@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace RO_Flex_UI.Config
@@ -21,6 +22,9 @@ namespace RO_Flex_UI.Config
     [CreateAssetMenu(menuName = "Tools/RO Flex UI/Global UI Config", fileName = "GlobalUiConfig")]
     public sealed class GlobalUiConfig : ScriptableObject
     {
+        [Header("Font Configuration")]
+        [SerializeField] private TMP_FontAsset defaultFont;
+
         [Header("Fallback")]
         [SerializeField] private Sprite placeholderSprite;
 
@@ -78,6 +82,11 @@ namespace RO_Flex_UI.Config
 
             Debug.LogWarning($"Sprite ID '{id}' not found in GlobalUiConfig '{name}', and no placeholder is assigned.", this);
             return null;
+        }
+
+        public TMP_FontAsset GetDefaultFont()
+        {
+            return defaultFont;
         }
     }
 }
