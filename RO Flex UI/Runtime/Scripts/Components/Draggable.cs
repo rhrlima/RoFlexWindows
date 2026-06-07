@@ -4,10 +4,11 @@ using UnityEngine.EventSystems;
 
 namespace RO_Flex_UI.Components
 {
-
     public class Draggable : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
     {
         private Canvas canvas;
+        private CanvasGroup canvasGroup;
+        private RectTransform rectTransform;
         [Tooltip("Optional. If not set, will try to find a Window component in parents.")]
         [SerializeField] private RectTransform window;
         [SerializeField] private bool returnToOrigin;
@@ -18,6 +19,8 @@ namespace RO_Flex_UI.Components
         {
             // Canvas ref for scaling calculations
             canvas = FindAnyObjectByType<Canvas>();
+            canvasGroup = GetComponent<CanvasGroup>();
+            rectTransform = GetComponent<RectTransform>();
 
             if (window == null)
             {
@@ -42,11 +45,18 @@ namespace RO_Flex_UI.Components
         public void StartDrag()
         {
             isBeingDragged = true;
+            canvasGroup.alpha = 0.6f;
+            canvasGroup.blocksRaycasts = false;
+
+            transform.SetParent(canvas.transform);
+            transform.SetAsLastSibling();
         }
 
         public void EndDrag()
         {
             isBeingDragged = false;
+            canvasGroup.alpha = 1f;
+            canvasGroup.blocksRaycasts = true;
         }
 
         public void SetReturnToOrigin(bool value)
