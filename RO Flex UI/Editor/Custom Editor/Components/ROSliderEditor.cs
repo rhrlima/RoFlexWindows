@@ -9,9 +9,9 @@ namespace RO_Flex_UI.Editor
     {
         private SerializedProperty stepPercentProperty;
 
-        private SerializedProperty orientationProperty;
-
         private SerializedProperty onValueChangedProperty;
+
+        private SerializedProperty onPointerUpProperty;
 
         private ROSlider sliderTarget;
 
@@ -19,14 +19,16 @@ namespace RO_Flex_UI.Editor
         {
             sliderTarget = (ROSlider)target;
 
+            sliderTarget.EnsureReferences();
+
             stepPercentProperty =
                 serializedObject.FindProperty("stepPercent");
 
-            orientationProperty =
-                serializedObject.FindProperty("direction");
-
             onValueChangedProperty =
                 serializedObject.FindProperty("onValueChanged");
+
+            onPointerUpProperty =
+                serializedObject.FindProperty("onPointerUp");
         }
 
         public override void OnInspectorGUI()
@@ -82,13 +84,19 @@ namespace RO_Flex_UI.Editor
             );
 
             EditorGUILayout.Slider(
-                    stepPercentProperty,
-                    0f,
-                    1f
+                stepPercentProperty,
+                0f,
+                1f
             );
 
             EditorGUILayout.Space();
             EditorGUILayout.PropertyField(onValueChangedProperty);
+            EditorGUILayout.PropertyField(onPointerUpProperty);
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                EditorUtility.SetDirty(sliderTarget);
+            }
         }
     }
 }

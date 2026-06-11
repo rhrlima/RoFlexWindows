@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace RO_Flex_UI.Components
@@ -8,19 +10,40 @@ namespace RO_Flex_UI.Components
         [SerializeField] private Button decreaseButton;
         [SerializeField] private Slider slider;
         [SerializeField] private Button increaseButton;
-        private Slider.Direction direction = Slider.Direction.LeftToRight;
-        [HideInInspector][SerializeField] private float stepPercent = 0.1f; // 10%
-        [HideInInspector][SerializeField] private Slider.SliderEvent onValueChanged = new();
+        private EventTrigger.Entry pointerUpEntry;
+        [HideInInspector][SerializeField] private Slider.Direction direction = Slider.Direction.LeftToRight;
+        [HideInInspector][SerializeField] private float stepPercent = 0.1f;
+        [HideInInspector][SerializeField] private Slider.SliderEvent onValueChanged = new Slider.SliderEvent();
+        [FormerlySerializedAs("onEndDrag")]
+        [HideInInspector][SerializeField] private Slider.SliderEvent onPointerUp = new Slider.SliderEvent();
 
         private void Awake()
         {
-            BindEvents();
-            SyncExternalEvent();
+            if (!EnsureReferences())
+                return;
+
+            ApplyOrientation();
         }
 
-        private void OnDestroy()
+        private void OnEnable()
         {
-            UnbindEvents();
+            if (!EnsureReferences())
+                return;
+
+            decreaseButton.onClick.AddListener(OnDecreaseClicked);
+            increaseButton.onClick.AddListener(OnIncreaseClicked);
+
+            slider.onValueChanged.AddListener(OnSliderValueChanged);
+            pointerUpEntry.callback.AddListener(OnSliderPointerUp);
+        }
+
+        private void OnDisable()
+        {
+            decreaseButton.onClick.RemoveListener(OnDecreaseClicked);
+            increaseButton.onClick.RemoveListener(OnIncreaseClicked);
+
+            slider.onValueChanged.RemoveListener(OnSliderValueChanged);
+            pointerUpEntry.callback.RemoveListener(OnSliderPointerUp);
         }
 
         private void OnValidate()
@@ -29,6 +52,48 @@ namespace RO_Flex_UI.Components
                 return;
 
             stepPercent = Mathf.Clamp(stepPercent, 0.01f, 1f);
+
+            if (MaxValue < MinValue)
+                MaxValue = MinValue;
+
+            Value = Mathf.Clamp(Value, MinValue, MaxValue);
+        }
+
+        public bool EnsureReferences()
+        {
+            if (slider == null)
+            {
+                Debug.LogError($"[{name}] Missing Slider as a child component.");
+                return false;
+            }
+
+            if (decreaseButton == null)
+            {
+                Debug.LogError($"[{name}] Missing Decrease Button as a child component.");
+                return false;
+            }
+
+            if (increaseButton == null)
+            {
+                Debug.LogError($"[{name}] Missing Increase Button as a child component.");
+                return false;
+            }
+
+            var trigger = slider.GetComponent<EventTrigger>();
+            if (trigger == null)
+            {
+                Debug.LogError($"[{name}] Missing EventTrigger as a component of child Slider.");
+                return false;
+            }
+
+            pointerUpEntry = trigger.triggers.Find(entry => entry.eventID == EventTriggerType.PointerUp);
+            if (pointerUpEntry == null)
+            {
+                Debug.LogError($"[{name}] Missing EventTrigger.PointerUp in child Slider component.");
+                return false;
+            }
+
+            return true;
         }
 
         private void ApplyOrientation()
@@ -70,51 +135,20 @@ namespace RO_Flex_UI.Components
             }
         }
 
-        private void BindEvents()
-        {
-            if (decreaseButton != null)
-                decreaseButton.onClick.AddListener(OnDecreaseClicked);
-
-            if (increaseButton != null)
-                increaseButton.onClick.AddListener(OnIncreaseClicked);
-
-            if (slider != null)
-                slider.onValueChanged.AddListener(OnSliderValueChanged);
-        }
-
-        private void UnbindEvents()
-        {
-            if (decreaseButton != null)
-                decreaseButton.onClick.RemoveListener(OnDecreaseClicked);
-
-            if (increaseButton != null)
-                increaseButton.onClick.RemoveListener(OnIncreaseClicked);
-
-            if (slider != null)
-                slider.onValueChanged.RemoveListener(OnSliderValueChanged);
-        }
-
-        private void OnSliderValueChanged(float value)
-        {
-            onValueChanged.Invoke(value);
-        }
-
-        private void SyncExternalEvent()
-        {
-            if (slider == null)
-                return;
-
-            onValueChanged.Invoke(slider.value);
-        }
-
         private void OnDecreaseClicked()
         {
-            ChangeBy(-GetSignedStep());
+            Value += -GetSignedStep();
+
+            // triggers the pointer-up event
+            OnSliderPointerUp(null);
         }
 
         private void OnIncreaseClicked()
         {
-            ChangeBy(GetSignedStep());
+            Value += GetSignedStep();
+
+            // triggers the pointer-up event
+            OnSliderPointerUp(null);
         }
 
         /// <summary>
@@ -123,7 +157,14 @@ namespace RO_Flex_UI.Components
         /// </summary>
         private float GetSignedStep()
         {
-            float step = (slider.maxValue - slider.minValue) * stepPercent;
+            var range = MaxValue - MinValue;
+            var step = range * stepPercent;
+
+            if (slider.wholeNumbers)
+            {
+                step = Mathf.Round(step);
+                step = Mathf.Clamp(step, 1f, range);
+            }
 
             if (slider.direction == Slider.Direction.RightToLeft)
                 step *= -1f;
@@ -131,58 +172,14 @@ namespace RO_Flex_UI.Components
             return step;
         }
 
-        private void ChangeBy(float delta)
+        private void OnSliderValueChanged(float value)
         {
-            SetValue(slider.value + delta);
+            onValueChanged?.Invoke(value);
         }
 
-        public void SetValue(float value)
+        private void OnSliderPointerUp(BaseEventData data)
         {
-            if (slider == null)
-                return;
-
-            value = Mathf.Clamp(value, slider.minValue, slider.maxValue);
-
-            if (slider.wholeNumbers)
-                value = Mathf.Round(value);
-
-            slider.value = value;
-        }
-
-        public float GetValue()
-        {
-            return slider != null ? slider.value : 0f;
-        }
-
-        public void SetRange(float min, float max)
-        {
-            if (slider == null)
-                return;
-
-            slider.minValue = min;
-            slider.maxValue = max;
-
-            SetValue(slider.value);
-        }
-
-        public void SetInteractable(bool interactable)
-        {
-            if (slider != null)
-                slider.interactable = interactable;
-
-            if (decreaseButton != null)
-                decreaseButton.interactable = interactable;
-
-            if (increaseButton != null)
-                increaseButton.interactable = interactable;
-        }
-
-        public void SetDirection(Slider.Direction direction)
-        {
-            if (slider == null)
-                return;
-
-            slider.direction = direction;
+            onPointerUp?.Invoke(slider.value);
         }
 
         #region Proxy Properties
@@ -190,7 +187,7 @@ namespace RO_Flex_UI.Components
         public float Value
         {
             get => slider.value;
-            set => SetValue(value);
+            set => slider.value = value;
         }
 
         public float MinValue
@@ -230,7 +227,12 @@ namespace RO_Flex_UI.Components
         public bool Interactable
         {
             get => slider.interactable;
-            set => slider.interactable = value;
+            set
+            {
+                slider.interactable = value;
+                decreaseButton.interactable = value;
+                increaseButton.interactable = value;
+            }
         }
 
         public void SetValueWithoutNotify(float value)
@@ -239,6 +241,18 @@ namespace RO_Flex_UI.Components
                 return;
 
             slider.SetValueWithoutNotify(value);
+        }
+
+        public Slider.SliderEvent OnValueChanged
+        {
+            get => onValueChanged;
+            set => onValueChanged = value;
+        }
+
+        public Slider.SliderEvent OnPointerUp
+        {
+            get => onPointerUp;
+            set => onPointerUp = value;
         }
 
         #endregion
