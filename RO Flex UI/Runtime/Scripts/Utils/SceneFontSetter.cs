@@ -1,65 +1,67 @@
 ﻿using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace RO_Flex_UI.Utils
 {
-    public static class SceneFontSetter
+    public class SceneFontSetter : MonoBehaviour
     {
-        [MenuItem("Tools/RO Flex UI/Apply Font To Scene Texts")]
-        public static void ApplyFontToSceneTexts()
+        [SerializeField] private TMP_FontAsset fontAsset;
+        [SerializeField] private float fontSize = 16;
+
+        private void Start()
         {
-            const string tmpFontPath = "Assets/Fonts/RO-custom-regular.asset";
+            ApplyFontToSceneTexts();
+        }
 
-            TMP_FontAsset tmpFont = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(tmpFontPath);
-
-            if (tmpFont == null)
+        public void ApplyFontToSceneTexts()
+        {
+            if (fontAsset == null)
             {
-                Debug.LogError($"TMP font not found at path: {tmpFontPath}");
+                Debug.LogError("TMP font not found.", this);
                 return;
             }
 
-            int tmpUiCount = 0;
-            int tmp3dCount = 0;
+            var tmpUiCount = 0;
+            var tmp3dCount = 0;
 
-            foreach (GameObject root in SceneManager.GetActiveScene().GetRootGameObjects())
+            foreach (var root in SceneManager.GetActiveScene().GetRootGameObjects())
             {
-                foreach (TextMeshProUGUI text in root.GetComponentsInChildren<TextMeshProUGUI>(true))
+                foreach (var text in root.GetComponentsInChildren<TextMeshProUGUI>(true))
                 {
-                    Undo.RecordObject(text, "Apply TMP Font");
-
-                    ApplyTmpFontSettings(text, tmpFont);
-
-                    EditorUtility.SetDirty(text);
+                    ApplyTmpFontSettings(text);
                     tmpUiCount++;
                 }
 
-                foreach (TextMeshPro text in root.GetComponentsInChildren<TextMeshPro>(true))
+                foreach (var text in root.GetComponentsInChildren<TextMeshPro>(true))
                 {
-                    Undo.RecordObject(text, "Apply TMP Font");
-
-                    ApplyTmpFontSettings(text, tmpFont);
-
-                    EditorUtility.SetDirty(text);
+                    ApplyTmpFontSettings(text);
                     tmp3dCount++;
                 }
             }
 
-            UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(
-                SceneManager.GetActiveScene()
-            );
-
             Debug.Log(
-                $"Applied fonts. TMP UI: {tmpUiCount}, TMP 3D: {tmp3dCount}"
+                $"Applied font '{fontAsset.name}'. TMP UI: {tmpUiCount}, TMP 3D: {tmp3dCount}",
+                this
             );
         }
 
-        private static void ApplyTmpFontSettings(TMP_Text text, TMP_FontAsset font)
+        private void ApplyTmpFontSettings(TMP_Text text)
         {
-            text.font = font;
-            text.fontSize = 16;
-            text.SetAllDirty();
+#if UNITY_EDITOR
+            Undo.RecordObject(text, "Apply TMP Font");
+#endif
+
+            text.font = fontAsset;
+            text.fontSize = fontSize;
+
+#if UNITY_EDITOR
+            EditorUtility.SetDirty(text);
+#endif
         }
     }
 }
