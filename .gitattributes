@@ -1,0 +1,8 @@
+# Handle line endings automatically for all text files
+* text=auto
+
+# Explicitly declare text files you want to always normalize to LF
+# *.cs text
+# *.json text
+# *.yaml text
+# *.meta text

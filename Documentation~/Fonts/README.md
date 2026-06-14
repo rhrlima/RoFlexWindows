@@ -80,7 +80,7 @@ $€£¥₩₽₹₫₴₲₱¢
 | Descent      | -204  |
 | Pixel Size   | 64    |
 | Contour Type | `Pixel` |
-| Font Type    | `TTF`   |
+| Font Type    | `OTF`   |
 
 ### Unity Asset details
 
