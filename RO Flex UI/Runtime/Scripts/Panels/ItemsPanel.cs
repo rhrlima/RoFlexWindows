@@ -82,8 +82,8 @@ namespace RO_Flex_UI.Panels
             for (var i = 0; i < visibleCount; i++)
             {
                 items[i].gameObject.SetActive(true);
-                items[i].itemAmount = i < numItems ? 1 : 0;
-                items[i].Refresh();
+                // items[i].itemAmount = i < numItems ? 1 : 0;
+                // items[i].Refresh();
             }
 
             for (var i = visibleCount; i < items.Count; i++)

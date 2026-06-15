@@ -53,7 +53,7 @@ namespace RO_Flex_UI.Panels
         {
             if (draggableComponent != null)
             {
-                draggableComponent.SetReturnToOrigin(returnToOrigin);
+                draggableComponent.ReturnToOrigin = returnToOrigin;
             }
         }
 
