@@ -97,6 +97,8 @@ MonoBehaviour:
   resetToCenter: 0
   isDraggable: 1
   isResizable: 1
+  keepWindowInScreen: 0
+  returnToOrigin: 0
 --- !u!114 &8747918305314726246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,7 +111,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 890883769e971524c8ee1c62054e0008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ROFlexUI::RO_Flex_UI.Components.Draggable
-  window: {fileID: 0}
+  targetTransform: {fileID: 6370428290309726767}
+  returnToOrigin: 0
+  onBeginDrag:
+    m_PersistentCalls:
+      m_Calls: []
+  onDrag:
+    m_PersistentCalls:
+      m_Calls: []
+  onEndDrag:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1200989571301254738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -294,7 +306,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 42235342645587079, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
       propertyPath: m_Size
-      value: 0.8977274
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 253262253473443217, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
       propertyPath: m_AnchorMax.x
@@ -328,6 +340,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1406519256526152466, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
+      propertyPath: ignoreAnchor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406519256526152466, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 972067841676236111}
     - target: {fileID: 1544257221583000544, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -554,11 +574,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5818559734502698498, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
       propertyPath: m_Size
-      value: 0.18009908
+      value: 0.18009906
       objectReference: {fileID: 0}
     - target: {fileID: 5818559734502698498, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
       propertyPath: m_Value
-      value: 1.0000001
+      value: 0.78949296
       objectReference: {fileID: 0}
     - target: {fileID: 6637245734117864716, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
       propertyPath: m_Name
@@ -616,7 +636,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7911513044696577821, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 92
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3547511022289674812, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2052271013126643607, guid: fb9c8e231812dda4a8722fb6a1767671, type: 3}
     m_AddedGameObjects: []

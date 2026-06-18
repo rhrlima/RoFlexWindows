@@ -674,6 +674,8 @@ MonoBehaviour:
   resetToCenter: 0
   isDraggable: 1
   isResizable: 1
+  keepWindowInScreen: 1
+  returnToOrigin: 0
 --- !u!1001 &551638876022834791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1504,6 +1506,10 @@ PrefabInstance:
       propertyPath: snapToStep
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 817447187196454163, guid: abd2764d343fdb041b0cc3e928e4f126, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 7858920478243419629}
     - target: {fileID: 1357572283714508407, guid: abd2764d343fdb041b0cc3e928e4f126, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -1806,7 +1812,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Header
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3649134572516950047, guid: 62491abb117ac4d4a829b7f0b5bc1a92, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

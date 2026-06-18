@@ -19,7 +19,7 @@ namespace RO_Flex_UI.Windows
             Debug.Log($"PASS: {passwordInputField.text}");
             Debug.Log($"LIMIT: {limitDropdown.options[limitDropdown.value].text}");
             Debug.Log($"TYPE: {typeDropdown.options[typeDropdown.value].text}");
-            Debug.Log($"TOGGLE: {toggleSwitch.currentValue}");
+            Debug.Log($"TOGGLE: {toggleSwitch.value}");
         }
     }
 }

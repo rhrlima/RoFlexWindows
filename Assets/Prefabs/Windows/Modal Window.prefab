@@ -178,11 +178,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5405390773017456425, guid: c54588aa641f1df4eb3e7c7ed562ca28, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -507.4
+      value: 0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 5405390773017456425, guid: c54588aa641f1df4eb3e7c7ed562ca28, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 276.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5405390773017456425, guid: c54588aa641f1df4eb3e7c7ed562ca28, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -350,6 +350,8 @@ MonoBehaviour:
   resetToCenter: 0
   isDraggable: 1
   isResizable: 0
+  keepWindowInScreen: 1
+  returnToOrigin: 0
 --- !u!224 &8506859421945834444 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8871608788780403358, guid: c54588aa641f1df4eb3e7c7ed562ca28, type: 3}

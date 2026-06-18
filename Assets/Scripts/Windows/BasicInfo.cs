@@ -22,12 +22,12 @@ namespace RO_Flex_UI.Samples
         public TextMeshProUGUI jobNameTextMax;
         public TextMeshProUGUI baseLevelTextMax;
         public TextMeshProUGUI jobLevelTextMax;
-        public ROSlider baseExpSlider;
-        public ROSlider jobExpSlider;
-        public ROSlider hpSlider;
+        public RoSlider baseExpSlider;
+        public RoSlider jobExpSlider;
+        public RoSlider hpSlider;
         public TMP_Text hpText;
         public TextMeshProUGUI hpPercentageText;
-        public ROSlider spSlider;
+        public RoSlider spSlider;
         public TMP_Text spText;
         public TextMeshProUGUI spPercentageText;
         public TextMeshProUGUI weightText;
