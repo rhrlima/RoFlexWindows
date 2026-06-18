@@ -14,3 +14,11 @@ repos:
         language: system
         files: \.cs$
         pass_filenames: false
+
+      - id: dotnet-build
+        name: dotnet build
+        entry: dotnet build ROFlexUI.csproj
+        language: system
+        files: \.cs$
+        pass_filenames: false
+
