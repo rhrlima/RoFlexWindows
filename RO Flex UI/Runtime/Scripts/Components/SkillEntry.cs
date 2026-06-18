@@ -1,12 +1,14 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace RO_Flex_UI.Components
 {
-    public class SkillEntry : MonoBehaviour
+    public class SkillEntry : MonoBehaviour, IComponent
     {
+        public class SkillEvent : UnityEvent { }
+
         [SerializeField] private TextMeshProUGUI skillNameText;
         [SerializeField] private TextMeshProUGUI skillLevelText;
         [SerializeField] private TextMeshProUGUI skillCostText;
@@ -15,40 +17,79 @@ namespace RO_Flex_UI.Components
         [SerializeField] private bool isPassive;
         [SerializeField] private bool isFixedLevel;
 
-        private int currSkillLevel = 0;
-        private int maxSkillLevel = 10;
-
-        public void SetSkillInfo(string name, int level, int maxLevel, int cost, bool isPassive, bool isFixedLevel)
-        {
-            skillNameText.text = name;
-            skillCostText.text = isPassive ? "Passive " : $"Sp: {cost}";
-            skillLevelText.text = isFixedLevel ? $"Lv: {level}" : $"Lv: {level} / {maxLevel}";
-            skillLevelDown.gameObject.SetActive(!isFixedLevel);
-            skillLevelUp.gameObject.SetActive(!isFixedLevel);
-        }
+        public SkillEvent onSkillLevelUp;
+        public SkillEvent onIncreaseLevel;
+        public SkillEvent onDecreaseLevel;
 
         private void Start()
         {
-            skillLevelUp.onClick.AddListener(SkillUp);
-            skillLevelDown.onClick.AddListener(SkillDown);
+            if (!EnsureReferences()) return;
+        }
+        public bool EnsureReferences()
+        {
+            return true;
         }
 
-        private void Update()
+        private void OnEnable()
         {
-            skillCostText.text = isPassive ? "Passive " : $"Sp: 999";
-            skillLevelText.text = isFixedLevel ? $"Lv: {currSkillLevel,2}" : $"Lv: {currSkillLevel,2}/{maxSkillLevel,2}";
-            skillLevelDown.gameObject.SetActive(!isFixedLevel);
-            skillLevelUp.gameObject.SetActive(!isFixedLevel);
+            skillLevelUp.onClick.AddListener(HandleIncreaseLevel);
+            skillLevelDown.onClick.AddListener(HandleDecreaseLevel);
+        }
+        private void OnDisable()
+        {
+            skillLevelUp.onClick.RemoveListener(HandleIncreaseLevel);
+            skillLevelDown.onClick.RemoveListener(HandleDecreaseLevel);
+        }
+        public void HandleIncreaseLevel()
+        {
+            onIncreaseLevel?.Invoke();
         }
 
-        public void SkillUp()
+        public void HandleDecreaseLevel()
         {
-            currSkillLevel = Math.Min(currSkillLevel + 1, maxSkillLevel);
+            onDecreaseLevel?.Invoke();
         }
 
-        public void SkillDown()
+        #region Getter & Setter
+        public string Name
         {
-            currSkillLevel = Math.Max(currSkillLevel - 1, 0);
+            get => skillNameText.text;
+            set => skillNameText.text = value;
         }
+        public string Level
+        {
+            get => skillLevelText.text;
+            set => skillLevelText.text = value;
+        }
+        public string Cost
+        {
+            get
+            {
+                if (isPassive) return "Passive";
+
+                return skillCostText.text;
+            }
+            set
+            {
+                if (isPassive)
+                {
+                    skillCostText.text = "Passive";
+                    return;
+                }
+
+                skillCostText.text = value;
+            }
+        }
+        public bool IsPassive
+        {
+            get => isPassive;
+            set => isPassive = value;
+        }
+        public bool IsFixedLevel
+        {
+            get => isFixedLevel;
+            set => isFixedLevel = value;
+        }
+        #endregion
     }
 }

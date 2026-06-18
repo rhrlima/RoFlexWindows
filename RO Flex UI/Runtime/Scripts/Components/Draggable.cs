@@ -1,100 +1,108 @@
-﻿using RO_Flex_UI.Panels;
+﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 namespace RO_Flex_UI.Components
 {
-
-    public class Draggable : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
+    public class Draggable : MonoBehaviour, IComponent, IBeginDragHandler, IEndDragHandler, IDragHandler
     {
-        private Canvas canvas;
-        [Tooltip("Optional. If not set, will try to find a Window component in parents.")]
-        [SerializeField] private RectTransform window;
+        [Serializable]
+        public class DragEvent : UnityEvent<PointerEventData> { }
+
+        [Tooltip("Transform to be dragged. Defaults to current GameObject.")]
+        [SerializeField] private RectTransform targetTransform;
         [SerializeField] private bool returnToOrigin;
-        private bool isBeingDragged = false;
+        private Canvas canvas;
         private Vector2 originPosition;
+        private bool dragging = false;
+
+        public DragEvent onBeginDrag;
+        public DragEvent onDrag;
+        public DragEvent onEndDrag;
 
         public void Start()
         {
-            // Canvas ref for scaling calculations
-            canvas = FindAnyObjectByType<Canvas>();
+            if (!EnsureReferences()) return;
+        }
 
-            if (window == null)
+        public bool EnsureReferences()
+        {
+            canvas = GetComponentInParent<Canvas>();
+            if (canvas == null)
             {
-                // Debug.LogError("Draggable must have a RectTranform assigned.");
-                var parent = GetComponentInParent<IWindow>(true);
-                if (parent == null)
-                {
-                    Debug.LogError("Draggable must be a child of a IWindow.");
-                    return;
-                }
-
-                window = parent.transform;
+                Debug.LogWarning($"[{name}] Draggable must be placed inside a Canvas.");
+                return false;
             }
+
+            if (targetTransform == null)
+            {
+                targetTransform = transform as RectTransform;
+            }
+
+            return targetTransform != null;
         }
 
         private void StoreOriginPosition()
         {
-            if (window != null)
-                originPosition = window.anchoredPosition;
+            if (targetTransform != null)
+                originPosition = targetTransform.anchoredPosition;
         }
 
-        public void StartDrag()
+        public void OnBeginDrag(PointerEventData eventData)
         {
-            isBeingDragged = true;
-        }
+            if (!EnsureReferences()) return;
 
-        public void EndDrag()
-        {
-            isBeingDragged = false;
-        }
-
-        public void SetReturnToOrigin(bool value)
-        {
-            returnToOrigin = value;
-        }
-
-        public void OnDrag(PointerEventData eventData)
-        {
-            if (window == null) return;
+            if (canvas == null) return;
+            if (targetTransform == null) return;
 
             if (eventData.button != PointerEventData.InputButton.Left)
                 return;
 
-            if (!isBeingDragged)
-                return;
-
-            window.anchoredPosition += eventData.delta / canvas.scaleFactor;
-        }
-
-        public void OnPointerDown(PointerEventData eventData)
-        {
-            if (window == null) return;
-
             eventData.useDragThreshold = false;
 
-            // Store position before drag starts
             StoreOriginPosition();
 
-            window.transform.SetAsLastSibling();
+            //FIXME maybe remove this from here, and add to Window Manager
+            targetTransform.transform.SetAsLastSibling();
 
-            StartDrag();
+            dragging = true;
+
+            onBeginDrag?.Invoke(eventData);
         }
 
-        public void OnPointerUp(PointerEventData eventData)
+        public void OnDrag(PointerEventData eventData)
         {
-            if (window == null) return;
+            if (canvas == null || targetTransform == null) return;
+
+            if (!dragging) return;
+
+            targetTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+
+            onDrag?.Invoke(eventData);
+        }
+
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            if (!dragging) return;
+
+            dragging = false;
+
+            if (targetTransform == null) return;
 
             if (returnToOrigin)
-            {
-                window.anchoredPosition = originPosition;
-            }
-            else
-            {
-                window.anchoredPosition = Vector2Int.RoundToInt(window.anchoredPosition);
-            }
+                targetTransform.anchoredPosition = originPosition;
 
-            EndDrag();
+            onEndDrag?.Invoke(eventData);
         }
+
+        #region Getter & Setter
+        public bool ReturnToOrigin
+        {
+            get => returnToOrigin;
+            set => returnToOrigin = value;
+        }
+        public bool Dragging => dragging;
+        #endregion
     }
 }

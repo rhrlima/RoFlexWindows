@@ -1,94 +1,41 @@
 using RO_Flex_UI.Components;
 using UnityEditor;
-using UnityEngine.UI;
+using UnityEditor.UI;
 
 namespace RO_Flex_UI.Editor
 {
-    [CustomEditor(typeof(ROSlider))]
-    public class ROSliderEditor : UnityEditor.Editor
+    [CustomEditor(typeof(RoSlider))]
+    public class RoSlider2Editor : SliderEditor
     {
-        private SerializedProperty stepPercentProperty;
+        private SerializedProperty stepSize;
+        private SerializedProperty onDecreaseClick;
+        private SerializedProperty onIncreaseClick;
+        private SerializedProperty onPointerUp;
 
-        private SerializedProperty orientationProperty;
-
-        private SerializedProperty onValueChangedProperty;
-
-        private ROSlider sliderTarget;
-
-        private void OnEnable()
+        protected override void OnEnable()
         {
-            sliderTarget = (ROSlider)target;
+            base.OnEnable();
 
-            stepPercentProperty =
-                serializedObject.FindProperty("stepPercent");
-
-            orientationProperty =
-                serializedObject.FindProperty("direction");
-
-            onValueChangedProperty =
-                serializedObject.FindProperty("onValueChanged");
+            stepSize = serializedObject.FindProperty("stepSize");
+            onDecreaseClick = serializedObject.FindProperty("onDecreaseClick");
+            onIncreaseClick = serializedObject.FindProperty("onIncreaseClick");
+            onPointerUp = serializedObject.FindProperty("onPointerUp");
         }
 
         public override void OnInspectorGUI()
         {
-            DrawDefaultInspector();
+            base.OnInspectorGUI();
 
             serializedObject.Update();
 
             EditorGUILayout.Space();
+            EditorGUILayout.Slider(stepSize, 0f, 1f);
 
-            DrawBehaviorSection();
+            EditorGUILayout.PropertyField(onDecreaseClick);
+            EditorGUILayout.PropertyField(onIncreaseClick);
+            EditorGUILayout.PropertyField(onPointerUp);
 
             serializedObject.ApplyModifiedProperties();
-
-            EditorUtility.SetDirty(sliderTarget);
-        }
-
-        private void DrawBehaviorSection()
-        {
-            EditorGUILayout.LabelField(
-                "Behavior",
-                EditorStyles.boldLabel);
-
-            EditorGUI.BeginChangeCheck();
-
-            sliderTarget.Interactable = EditorGUILayout.Toggle(
-                "Interactable",
-                sliderTarget.Interactable
-            );
-
-            sliderTarget.Direction = (Slider.Direction)EditorGUILayout.EnumPopup(
-                "Direction",
-                sliderTarget.Direction
-            );
-
-            sliderTarget.MinValue = EditorGUILayout.FloatField(
-                "Min Value",
-                sliderTarget.MinValue);
-
-            sliderTarget.MaxValue = EditorGUILayout.FloatField(
-                "Max Value",
-                sliderTarget.MaxValue);
-
-            sliderTarget.WholeNumbers = EditorGUILayout.Toggle(
-                "Whole Numbers",
-                sliderTarget.WholeNumbers);
-
-            sliderTarget.Value = EditorGUILayout.Slider(
-                "Value",
-                sliderTarget.Value,
-                sliderTarget.MinValue,
-                sliderTarget.MaxValue
-            );
-
-            EditorGUILayout.Slider(
-                    stepPercentProperty,
-                    0f,
-                    1f
-            );
-
-            EditorGUILayout.Space();
-            EditorGUILayout.PropertyField(onValueChangedProperty);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,110 +7,173 @@ using UnityEngine.UI;
 
 namespace RO_Flex_UI.Components
 {
-    public class ToggleSwitch : MonoBehaviour, IPointerClickHandler
+    public class ToggleSwitch : Slider, IPointerClickHandler
     {
-        [Header("Slider Setup")]
-        [SerializeField, Range(0, 1f)] private float sliderValue;
-        public bool currentValue { get; private set; }
-        private bool previousValue;
-
-        private Slider slider;
+        [Serializable]
+        public class ToggleEvent : UnityEvent<bool> { }
 
         [Header("Animation")]
-        [SerializeField, Range(0, 1f)] private float animationDuration = 0.2f;
-        [SerializeField]
-        private AnimationCurve slideEase =
-            AnimationCurve.EaseInOut(0, 0, 1, 1);
-
-        private Coroutine animateSliderCoroutine;
+        [SerializeField, Min(0f)] private float animationDuration = 0.2f;
+        [SerializeField] private AnimationCurve slideEase = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
         [Header("Events")]
-        [SerializeField] private UnityEvent onToggleOn;
-        [SerializeField] private UnityEvent onToggleOff;
+        public ToggleEvent onToggle = new();
+        public UnityEvent onToggleOn = new();
+        public UnityEvent onToggleOff = new();
 
-        // private ToggleSwitchGroupManager toggleSwitchGroupManager;
+        private Coroutine animateSliderCoroutine;
+        private bool committedState;
+        private bool targetState;
 
-        protected void OnValidate()
+        public bool IsOn => Mathf.Approximately(value, maxValue);
+
+        protected override void Awake()
         {
-            SetupToggleComponent();
-            slider.value = sliderValue;
+            base.Awake();
+
+            SetupToggleSemantics();
+            SyncStateFromValue();
         }
 
-        private void SetupToggleComponent()
+        protected override void OnEnable()
         {
-            if (slider != null) return;
+            base.OnEnable();
 
-            SetupSliderComponent();
+            SetupToggleSemantics();
+            SyncStateFromValue();
         }
 
-        private void SetupSliderComponent()
+        protected override void OnDisable()
         {
-            slider = GetComponent<Slider>();
-
-            if (slider == null)
+            if (animateSliderCoroutine != null)
             {
-                Debug.Log("No slider found!", this);
+                StopCoroutine(animateSliderCoroutine);
+                animateSliderCoroutine = null;
+            }
+
+            base.OnDisable();
+        }
+
+        protected override void OnValidate()
+        {
+            base.OnValidate();
+
+            SetupToggleSemantics();
+            value = Mathf.Clamp01(value);
+            SyncStateFromValue();
+        }
+
+        public void SetIsOn(bool isOn, bool notify = true, bool animated = true)
+        {
+            var previousState = committedState;
+            targetState = isOn;
+
+            if (animateSliderCoroutine != null)
+            {
+                StopCoroutine(animateSliderCoroutine);
+                animateSliderCoroutine = null;
+            }
+
+            if (!animated || animationDuration <= 0f || !isActiveAndEnabled)
+            {
+                SetValueWithoutNotify(GetValueForState(isOn));
+                CompleteToggle(previousState, isOn, notify);
                 return;
             }
 
-            slider.interactable = false;
-            slider.transition = Selectable.Transition.None;
-        }
-
-        private void Awake()
-        {
-            SetupToggleComponent();
+            animateSliderCoroutine = StartCoroutine(AnimateSlider(previousState, isOn, notify));
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            Toggle();
+            if (!MayToggle(eventData))
+                return;
+
+            if (animateSliderCoroutine == null)
+                SyncStateFromValue();
+
+            SetIsOn(!targetState);
         }
 
-        private void Toggle()
+        public override void OnDrag(PointerEventData eventData)
         {
-            SetStateAndStartAnimation(!currentValue);
         }
 
-        private void SetStateAndStartAnimation(bool value)
+        public override void OnPointerDown(PointerEventData eventData)
         {
-            previousValue = currentValue;
-            currentValue = value;
+        }
 
-            if (previousValue != currentValue)
+        public override void OnMove(AxisEventData eventData)
+        {
+        }
+
+        public override void OnInitializePotentialDrag(PointerEventData eventData)
+        {
+            if (eventData != null)
+                eventData.useDragThreshold = true;
+        }
+
+        private IEnumerator AnimateSlider(bool previousState, bool isOn, bool notify)
+        {
+            var startValue = value;
+            var endValue = GetValueForState(isOn);
+            var elapsed = 0f;
+
+            while (elapsed < animationDuration)
             {
-                if (currentValue)
-                {
-                    onToggleOn?.Invoke();
-                }
-                else
-                {
-                    onToggleOff?.Invoke();
-                }
+                elapsed += Time.deltaTime;
+                var normalizedTime = Mathf.Clamp01(elapsed / animationDuration);
+                var easedTime = slideEase != null ? slideEase.Evaluate(normalizedTime) : normalizedTime;
+                SetValueWithoutNotify(Mathf.Lerp(startValue, endValue, easedTime));
+
+                yield return null;
             }
 
-            animateSliderCoroutine = StartCoroutine(AnimateSlider());
+            SetValueWithoutNotify(endValue);
+            animateSliderCoroutine = null;
+            CompleteToggle(previousState, isOn, notify);
         }
 
-        private IEnumerator AnimateSlider()
+        private void CompleteToggle(bool previousState, bool isOn, bool notify)
         {
-            float startValue = slider.value;
-            float endValue = currentValue ? 1 : 0;
+            committedState = isOn;
+            targetState = isOn;
 
-            float time = 0;
-            if (animationDuration > 0)
-            {
-                while (time < animationDuration)
-                {
-                    time += Time.deltaTime;
-                    float lerpFactor = slideEase.Evaluate(time / animationDuration);
-                    slider.value = Mathf.Lerp(startValue, endValue, lerpFactor);
+            if (!notify || previousState == isOn)
+                return;
 
-                    yield return null;
-                }
-            }
+            onToggle?.Invoke(isOn);
 
-            slider.value = endValue;
+            if (isOn)
+                onToggleOn?.Invoke();
+            else
+                onToggleOff?.Invoke();
+        }
+
+        private void SyncStateFromValue()
+        {
+            committedState = IsOn;
+            targetState = committedState;
+        }
+
+        private void SetupToggleSemantics()
+        {
+            minValue = 0f;
+            maxValue = 1f;
+            wholeNumbers = false;
+        }
+
+        private bool MayToggle(PointerEventData eventData)
+        {
+            return IsActive()
+                && IsInteractable()
+                && eventData != null
+                && eventData.button == PointerEventData.InputButton.Left;
+        }
+
+        private static float GetValueForState(bool isOn)
+        {
+            return isOn ? 1f : 0f;
         }
     }
 }

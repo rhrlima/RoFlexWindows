@@ -13,7 +13,7 @@ namespace RO_Flex_UI.Components
         public UnityEvent OnItemFocused = new UnityEvent();
         public UnityEvent OnItemActivated = new UnityEvent();
 
-        [Header("Double Click Timing")]
+        [Tooltip("Max time between clicks to register a double click (in Seconds).")]
         [SerializeField] private float doubleClickLimit = 0.25f;
         private float lastClickTime;
 

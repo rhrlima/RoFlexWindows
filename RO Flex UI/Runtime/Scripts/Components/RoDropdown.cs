@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace RO_Flex_UI.Components
 {
     [RequireComponent(typeof(Image))]
-    public class RoButton : Button
+    public class RoDropdown : TMP_Dropdown
     {
     }
 }

@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 
 /*
- * RO Flex UI - Tools
+ * ROFlexUI - Tools
  * File: Tools.cs
- * Description: Utility helpers used across the RO Flex UI runtime code.
+ * Description: Utility helpers used across the ROFlexUI runtime code.
  */
 
 namespace RO_Flex_UI.Utils
 {
     /// <summary>
-    /// Collection of utility helper methods for the RO Flex UI runtime.
+    /// Collection of utility helper methods for the ROFlexUI runtime.
     /// </summary>
     public static class Tools
     {
@@ -30,6 +30,11 @@ namespace RO_Flex_UI.Utils
                 size.y = target.sizeDelta.y;
 
             return size;
+        }
+
+        public static void LogMissingReference(MonoBehaviour caller, string referenceName)
+        {
+            Debug.LogError($"[{caller.name}] Missing reference: {referenceName}.", caller);
         }
     }
 }
