@@ -13,11 +13,6 @@ namespace RO_Flex_UI.Utils
         [SerializeField] private TMP_FontAsset fontAsset;
         [SerializeField] private float fontSize = 16;
 
-        private void Start()
-        {
-            ApplyFontToSceneTexts();
-        }
-
         public void ApplyFontToSceneTexts()
         {
             if (fontAsset == null)

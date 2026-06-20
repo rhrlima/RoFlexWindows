@@ -9,7 +9,7 @@ namespace RO_Flex_UI.Windows
     {
 
         [SerializeField] private TextMeshProUGUI itemsTotalText;
-        [SerializeField] private List<ItemsPanel> panels;
+        [SerializeField] private List<FillPanel> panels;
 
         public void Start()
         {

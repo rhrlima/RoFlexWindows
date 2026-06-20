@@ -38,7 +38,7 @@ namespace RO_Flex_UI.Editor
                 // ),
             };
 
-        [MenuItem("Tools/RO Flex UI/Rebuild Samples")]
+        [MenuItem("Tools/ROFlexUI/Rebuild Samples")]
         public static void RebuildSamples()
         {
             ValidatePackageFolder();

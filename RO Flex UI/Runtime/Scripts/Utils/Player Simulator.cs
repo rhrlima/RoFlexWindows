@@ -12,21 +12,21 @@ namespace RO_Flex_UI.Samples
         [Header("UI Components")]
         public TMP_InputField playerNameInput;
         public TMP_InputField jobNameInput;
-        public ROSlider hpSlider;
+        public RoSlider hpSlider;
         public TMP_InputField hpInput;
-        public ROSlider spSlider;
+        public RoSlider spSlider;
         public TMP_InputField spInput;
-        public ROSlider baseLvSlider;
+        public RoSlider baseLvSlider;
         public TMP_InputField baseLvInput;
-        public ROSlider jobLvSlider;
+        public RoSlider jobLvSlider;
         public TMP_InputField jobLvInput;
-        public ROSlider baseExpSlider;
+        public RoSlider baseExpSlider;
         public TMP_InputField baseExpInput;
-        public ROSlider jobExpSlider;
+        public RoSlider jobExpSlider;
         public TMP_InputField jobExpInput;
-        public ROSlider weightSlider;
+        public RoSlider weightSlider;
         public TMP_InputField weightInput;
-        public ROSlider zenySlider;
+        public RoSlider zenySlider;
         public TMP_InputField zenyInput;
 
         public void Start()
@@ -35,28 +35,28 @@ namespace RO_Flex_UI.Samples
             jobNameInput.text = playerData.jobName;
 
             hpInput.text = playerData.maxHp.ToString();
-            hpSlider.Value = (float)playerData.currentHp / playerData.maxHp;
+            hpSlider.value = (float)playerData.currentHp / playerData.maxHp;
 
             spInput.text = playerData.maxSp.ToString();
-            spSlider.Value = (float)playerData.currentSp / playerData.maxSp;
+            spSlider.value = (float)playerData.currentSp / playerData.maxSp;
 
             baseLvInput.text = playerData.maxBaseLevel.ToString();
-            baseLvSlider.Value = (float)playerData.baseLevel / playerData.maxBaseLevel;
+            baseLvSlider.value = (float)playerData.baseLevel / playerData.maxBaseLevel;
 
             jobLvInput.text = playerData.maxJobLevel.ToString();
-            jobLvSlider.Value = (float)playerData.jobLevel / playerData.maxJobLevel;
+            jobLvSlider.value = (float)playerData.jobLevel / playerData.maxJobLevel;
 
             baseExpInput.text = playerData.maxBaseExp.ToString();
-            baseExpSlider.Value = (float)playerData.currentBaseExp / playerData.maxBaseExp;
+            baseExpSlider.value = (float)playerData.currentBaseExp / playerData.maxBaseExp;
 
             jobExpInput.text = playerData.maxJobExp.ToString();
-            jobExpSlider.Value = (float)playerData.currentJobExp / playerData.maxJobExp;
+            jobExpSlider.value = (float)playerData.currentJobExp / playerData.maxJobExp;
 
             weightInput.text = playerData.maxWeight.ToString();
-            weightSlider.Value = (float)playerData.currentWeight / playerData.maxWeight;
+            weightSlider.value = (float)playerData.currentWeight / playerData.maxWeight;
 
             zenyInput.text = playerData.maxZeny.ToString();
-            zenySlider.Value = (float)playerData.currentZeny / playerData.maxZeny;
+            zenySlider.value = (float)playerData.currentZeny / playerData.maxZeny;
         }
 
         public void UpdatePlayerName()
@@ -72,56 +72,56 @@ namespace RO_Flex_UI.Samples
         public void UpdateHP()
         {
             int maxHp = int.Parse(hpInput.text);
-            int currentHp = Mathf.RoundToInt(hpSlider.Value * maxHp);
+            int currentHp = Mathf.RoundToInt(hpSlider.value * maxHp);
             playerData.SetHP(currentHp, maxHp);
         }
 
         public void UpdateSP()
         {
             int maxSp = int.Parse(spInput.text);
-            int currentSp = Mathf.RoundToInt(spSlider.Value * maxSp);
+            int currentSp = Mathf.RoundToInt(spSlider.value * maxSp);
             playerData.SetSP(currentSp, maxSp);
         }
 
         public void UpdateBaseLevel()
         {
             int maxBaseLevel = int.Parse(baseLvInput.text);
-            int currentBaseLevel = Mathf.RoundToInt(baseLvSlider.Value * maxBaseLevel);
+            int currentBaseLevel = Mathf.RoundToInt(baseLvSlider.value * maxBaseLevel);
             playerData.SetBaseLevel(currentBaseLevel, maxBaseLevel);
         }
 
         public void UpdateJobLevel()
         {
             int maxJobLevel = int.Parse(jobLvInput.text);
-            int currentJobLevel = Mathf.RoundToInt(jobLvSlider.Value * maxJobLevel);
+            int currentJobLevel = Mathf.RoundToInt(jobLvSlider.value * maxJobLevel);
             playerData.SetJobLevel(currentJobLevel, maxJobLevel);
         }
 
         public void UpdateBaseExp()
         {
             int maxBaseExp = int.Parse(baseExpInput.text);
-            int currentBaseExp = Mathf.RoundToInt(baseExpSlider.Value * maxBaseExp);
+            int currentBaseExp = Mathf.RoundToInt(baseExpSlider.value * maxBaseExp);
             playerData.SetBaseExp(currentBaseExp, maxBaseExp);
         }
 
         public void UpdateJobExp()
         {
             int maxJobExp = int.Parse(jobExpInput.text);
-            int currentJobExp = Mathf.RoundToInt(jobExpSlider.Value * maxJobExp);
+            int currentJobExp = Mathf.RoundToInt(jobExpSlider.value * maxJobExp);
             playerData.SetJobExp(currentJobExp, maxJobExp);
         }
 
         public void UpdateWeight()
         {
             int maxWeight = int.Parse(weightInput.text);
-            int currentWeight = Mathf.RoundToInt(weightSlider.Value * maxWeight);
+            int currentWeight = Mathf.RoundToInt(weightSlider.value * maxWeight);
             playerData.SetWeight(currentWeight, maxWeight);
         }
 
         public void UpdateZeny()
         {
             int maxZeny = int.Parse(zenyInput.text);
-            int currentZeny = Mathf.RoundToInt(zenySlider.Value * maxZeny);
+            int currentZeny = Mathf.RoundToInt(zenySlider.value * maxZeny);
             playerData.SetZeny(currentZeny, maxZeny);
         }
     }
