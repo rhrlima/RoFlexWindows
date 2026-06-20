@@ -50,6 +50,6 @@ Material:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ShadowColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ShadowColor: {r: 0.90588236, g: 0.90588236, b: 0.90588236, a: 1}
     - _ShadowOffset: {r: 1, g: -1, b: 0, a: 0}
   m_BuildTextureStacks: []
