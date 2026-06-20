@@ -1,28 +1,26 @@
 ﻿using RO_Flex_UI.Components;
 using RO_Flex_UI.Utils;
-using RO_Flex_UI.Windows;
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace RO_Flex_UI.Panels
 {
-    public class SkillBarPanel : IPanel
+    public class SkillBarPanel : MonoBehaviour, IPanel
     {
         [Serializable]
         private class SkillBarLine
         {
             public int id;
-            public bool visible;
+            // public bool visible;
             public GameObject bar;
-            public List<ItemEntry> slots;
+            public List<IconAmount> slots;
         }
 
         [Header("References")]
-        [SerializeField] private ItemEntry slotTemplate;
+        [SerializeField] private IconAmount slotTemplate;
         [SerializeField] private GameObject barTemplate; // FIXME enforce type
         [SerializeField] private GameObject rightPanel;
         private Resizable resizable;
@@ -116,6 +114,11 @@ namespace RO_Flex_UI.Panels
             {
                 bar.bar.gameObject.SetActive(bar.id < rectSize.y / 34);
             }
+        }
+
+        bool IPanel.EnsureReferences()
+        {
+            return EnsureReferences();
         }
     }
 }

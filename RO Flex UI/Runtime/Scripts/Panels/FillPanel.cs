@@ -8,8 +8,8 @@ using UnityEngine.UI;
 namespace RO_Flex_UI.Panels
 {
     // TODO add custom editor
-    [RequireComponent(typeof(GridLayoutGroup), typeof(RectTransform))]
-    public class ItemsPanel : MonoBehaviour
+    [RequireComponent(typeof(GridLayoutGroup))]
+    public class FillPanel : MonoBehaviour
     {
         [Header("Panel References")]
         [SerializeField] private RectTransform windowRect;
@@ -21,7 +21,7 @@ namespace RO_Flex_UI.Panels
         private Resizable resizable;
 
         [Space]
-        [SerializeField] public ItemEntry slotPrefab;
+        [SerializeField] public IconAmount slotPrefab;
 
         [Space]
         [Header("Grid Config")]
@@ -34,7 +34,7 @@ namespace RO_Flex_UI.Panels
         [SerializeField] private int MaxRows = 10;
 
         private int numSlots;
-        private List<ItemEntry> items;
+        private List<IconAmount> items;
         private bool isUpdatingGrid = false;
         private bool hasPendingGridChange;
         private Vector2 lastWindowSize;
@@ -82,8 +82,8 @@ namespace RO_Flex_UI.Panels
             for (var i = 0; i < visibleCount; i++)
             {
                 items[i].gameObject.SetActive(true);
-                items[i].itemAmount = i < numItems ? 1 : 0;
-                items[i].Refresh();
+                // items[i].itemAmount = i < numItems ? 1 : 0;
+                // items[i].Refresh();
             }
 
             for (var i = visibleCount; i < items.Count; i++)
@@ -140,7 +140,7 @@ namespace RO_Flex_UI.Panels
 
         private void EnsureReferences()
         {
-            items ??= new List<ItemEntry>();
+            items ??= new List<IconAmount>();
 
             if (panelRect == null)
                 panelRect = GetComponent<RectTransform>();
@@ -148,6 +148,7 @@ namespace RO_Flex_UI.Panels
             if (gridLayout == null)
                 gridLayout = GetComponent<GridLayoutGroup>();
 
+            // FIXME avoid depend on Window
             if (windowRect == null)
                 windowRect = GetComponentInParent<IWindow>(true)?.transform;
 
@@ -156,6 +157,10 @@ namespace RO_Flex_UI.Panels
 
             if (slotPrefab != null && slotPrefab.transform.parent == transform)
                 slotPrefab.gameObject.SetActive(false);
+
+            // TODO review this
+            if (viewportRect == null)
+                viewportRect = transform as RectTransform;
         }
 
         private void EnsureSlotPool()

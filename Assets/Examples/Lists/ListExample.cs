@@ -1,3 +1,4 @@
+using RO_Flex_UI.Components;
 using RO_Flex_UI.Panels;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class ListExample : MonoBehaviour
     [Header("List of mixed prefabs")]
     public ListPanel listMixedPrefabs;
     public List<GameObject> mixPrefabs;
+    public ListPanel listGears;
 
     private void Start()
     {
@@ -20,7 +22,7 @@ public class ListExample : MonoBehaviour
             items.Add($"Option {i + 1}");
         }
 
-        listScrollPanel.SetOptions(items, (item, data) =>
+        listScrollPanel.AddItems(items, (item, data) =>
             {
                 item.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = data;
             }
@@ -31,12 +33,24 @@ public class ListExample : MonoBehaviour
         {
             items2.Add($"Option {i + 1}");
         }
-        listPanel.SetOptions(items2, (item, data) =>
+        listPanel.AddItems(items2, (item, data) =>
             {
                 item.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = data;
             }
         );
 
-        listMixedPrefabs.AddCustomObjects(mixPrefabs);
+        var mixedItems = new List<ListItem>();
+        foreach (var prefab in mixPrefabs)
+        {
+            if (prefab != null && prefab.TryGetComponent<ListItem>(out var item))
+                mixedItems.Add(item);
+        }
+        listMixedPrefabs.AddItems(mixedItems);
+
+        listGears.AddItems(items, (item, data) =>
+        {
+            var gearSlot = item.GetComponent<IconText>();
+            gearSlot.Text = data;
+        });
     }
 }
