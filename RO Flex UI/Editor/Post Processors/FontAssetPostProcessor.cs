@@ -29,7 +29,7 @@ namespace RO_Flex_UI.Editor
                     continue;
                 }
 
-                if (!assetPath.Contains("Samples/RO Flex UI"))
+                if (!assetPath.Contains("Samples/ROFlexUI"))
                 {
                     continue;
                 }

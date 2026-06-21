@@ -1,180 +1,174 @@
 ﻿using RO_Flex_UI.Components;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace RO_Flex_UI.Panels
 {
-    public class ListPanel : IPanel
+    public class ListPanel : MonoBehaviour, IPanel
     {
-        [Header("Layout & Scroll Settings")]
-        // [Tooltip("The rolling content container of the ScrollRect which holds the items.")]
-        private RectTransform contentTransform;
         [Tooltip("The viewport mask window area of the ScrollRect.")]
         [SerializeField] private RectTransform viewport;
-
-        [Header("Template Configuration")]
-        [SerializeField] private ListItem defaultTemplate;
-
-        [Header("Navigation Settings")]
+        [FormerlySerializedAs("defaultTemplate")]
+        [SerializeField] private ListItem template;
         [SerializeField] private bool loopNavigation = true;
         [SerializeField] private bool autoScroll = true;
+        [FormerlySerializedAs("listItems")]
+        [FormerlySerializedAs("initialItems")]
+        [SerializeField] private List<ListItem> items = new();
 
-        private List<ListItem> listItems = new();
+        private RectTransform contentTransform;
         public ListItem FocusedItem { get; private set; }
         public ListItem ActivatedItem { get; private set; }
 
-        private void Awake()
+        private void Start()
         {
-            if (contentTransform == null && transform is RectTransform)
-                contentTransform = transform as RectTransform;
+            if (!EnsureReferences()) return;
 
-            if (defaultTemplate != null)
-                defaultTemplate.gameObject.SetActive(false);
-
-            GrabExistingChildren();
-        }
-
-        private void OnEnable()
-        {
-            SelectOption(0);
-        }
-
-        public void GrabExistingChildren()
-        {
-            listItems.Clear();
-            if (contentTransform == null) return;
-
-            foreach (Transform child in contentTransform)
-            {
-                // Only grab it if it's active (meaning it's a visible editor asset, not a sleeping template)
-                if (!child.gameObject.activeInHierarchy) continue;
-
-                var item = EnsureListItemRequirements(child.gameObject);
-                if (item != null && !listItems.Contains(item))
-                {
-                    item.BindToPanel(this);
-                    listItems.Add(item);
-                }
-            }
+            ValidateItems();
             UpdateNavigation();
         }
 
-        private void RegisterItem(ListItem item)
+        public bool EnsureReferences()
         {
-            if (!listItems.Contains(item))
-            {
-                listItems.Add(item);
-                item.BindToPanel(this);
-            }
+            if (contentTransform == null)
+                contentTransform = transform as RectTransform;
+
+            if (template != null)
+                template.gameObject.SetActive(false);
+
+            return contentTransform != null;
         }
 
-        private ListItem EnsureListItemRequirements(GameObject targetObj)
+        private void OnDisable()
         {
-            if (targetObj == null) return null;
-
-            if (!targetObj.TryGetComponent<Button>(out var btn)) btn = targetObj.AddComponent<Button>();
-            if (!targetObj.TryGetComponent<ListItem>(out var listItem)) listItem = targetObj.AddComponent<ListItem>();
-
-            listItem.EnsureButtonCached();
-            return listItem;
-        }
-
-        public void Clear()
-        {
-            foreach (var item in listItems)
-            {
-                // Only destroy it if it lives inside an active scene context (prevents deleting pure assets)
-                if (item != null && item.gameObject.scene.name != null)
-                    Destroy(item.gameObject);
-            }
-            listItems.Clear();
             FocusedItem = null;
             ActivatedItem = null;
         }
 
-        // --- Simplified Generation APIs ---
-
-        public void SetOptions<TData>(IEnumerable<TData> data, System.Action<ListItem, TData> onBind, ListItem specificTemplate = null)
+        private bool ValidateItem(ListItem item)
         {
-            Clear();
-            ListItem template = specificTemplate != null ? specificTemplate : defaultTemplate;
-            if (template == null || contentTransform == null) return;
+            //FIXME template is allowed to used as item
+            // if (item == null || item == template) return false;
+            if (item == null) return false;
+
+            if (item.transform.parent != contentTransform)
+                item.transform.SetParent(contentTransform, false);
+
+            item.gameObject.SetActive(true);
+            item.EnsureButtonCached();
+            item.BindToPanel(this);
+            return true;
+        }
+
+        private void ValidateItems()
+        {
+            var uniqueItems = new HashSet<ListItem>();
+
+            for (var i = 0; i < items.Count; i++)
+            {
+                var item = items[i];
+                if (uniqueItems.Add(item) && ValidateItem(item)) continue;
+
+                items.RemoveAt(i);
+                i--;
+            }
+        }
+
+        public void Clear()
+        {
+            //TODO should I really destroy GameObjects here?
+            // foreach (var item in items)
+            // {
+            //     if (item != null) Destroy(item.gameObject);
+            // }
+            items.Clear();
+            FocusedItem = null;
+            ActivatedItem = null;
+        }
+
+        public void AddItem(ListItem item)
+        {
+            if (!EnsureReferences() || items.Contains(item) || !ValidateItem(item)) return;
+
+            items.Add(item);
+            UpdateNavigation();
+        }
+
+        public void AddItems(IEnumerable<ListItem> newItems)
+        {
+            if (!EnsureReferences() || newItems == null) return;
+
+            AddItemsInternal(newItems);
+            UpdateNavigation();
+        }
+
+        public void AddItems<TData>(IEnumerable<TData> data, Action<ListItem, TData> bind, ListItem itemTemplate = null)
+        {
+            if (!EnsureReferences() || data == null) return;
+
+            var sourceTemplate = itemTemplate != null ? itemTemplate : template;
+            if (sourceTemplate == null)
+            {
+                Debug.LogError($"Failed to add items because Item Template is Null.", this);
+                return;
+            }
 
             foreach (var dataEntry in data)
             {
-                ListItem instance = Instantiate(template, contentTransform);
-                instance.gameObject.SetActive(true); // Force instance on, keeping template off
-                RegisterItem(instance);
-                onBind?.Invoke(instance, dataEntry);
+                var instance = Instantiate(sourceTemplate, contentTransform);
+                if (!ValidateItem(instance)) continue;
+
+                items.Add(instance);
+                bind?.Invoke(instance, dataEntry);
             }
             UpdateNavigation();
         }
 
-        public void AddCustomObjects(IEnumerable<GameObject> objects)
+        private void AddItemsInternal(IEnumerable<ListItem> newItems)
         {
-            if (contentTransform == null) return;
+            if (newItems == null) return;
 
-            foreach (var obj in objects)
+            foreach (var item in newItems)
             {
-                if (obj == null) continue;
-                if (obj.transform.parent != contentTransform) obj.transform.SetParent(contentTransform, false);
+                if (items.Contains(item) || !ValidateItem(item)) continue;
 
-                obj.SetActive(true);
-                ListItem itemComponent = EnsureListItemRequirements(obj);
-                RegisterItem(itemComponent);
+                items.Add(item);
             }
-            UpdateNavigation();
         }
 
         // --- Dynamic Navigation & Scrolling Layout Systems ---
 
-        public void UpdateNavigation()
+        private void UpdateNavigation()
         {
-            // Clean out any null references that might have been destroyed upstream
-            listItems.RemoveAll(item => item == null);
+            items.RemoveAll(item => item == null);
 
-            int count = listItems.Count;
-            if (count < 2) return; // No navigation paths to map if there's only 1 or 0 items
+            var count = items.Count;
 
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
-                ListItem item = listItems[i];
-                Button currentButton = item.TargetButton;
+                var item = items[i];
+                var currentButton = item.TargetButton;
 
                 if (currentButton == null) continue;
 
-                // Wipe out past configurations cleanly via a pristine struct instantiation
-                Navigation cleanNav = new Navigation
+                var cleanNav = new Navigation
                 {
-                    mode = Navigation.Mode.Explicit
+                    mode = Navigation.Mode.Explicit,
                 };
 
-                // Link Previous (Up) based strictly on currentItems positioning
-                if (i == 0)
+                if (count > 1)
                 {
-                    cleanNav.selectOnUp = loopNavigation ? listItems[count - 1].TargetButton : null;
-                }
-                else
-                {
-                    cleanNav.selectOnUp = listItems[i - 1].TargetButton;
-                }
-
-                // Link Next (Down) based strictly on currentItems positioning
-                if (i == count - 1)
-                {
-                    cleanNav.selectOnDown = loopNavigation ? listItems[0].TargetButton : null;
-                }
-                else
-                {
-                    cleanNav.selectOnDown = listItems[i + 1].TargetButton;
+                    cleanNav.selectOnUp = i > 0
+                        ? items[i - 1].TargetButton
+                        : loopNavigation ? items[count - 1].TargetButton : null;
+                    cleanNav.selectOnDown = i < count - 1
+                        ? items[i + 1].TargetButton
+                        : loopNavigation ? items[0].TargetButton : null;
                 }
 
-                // Hard lock horizontal pathways so selection stays bound inside this specific list panel
-                cleanNav.selectOnLeft = null;
-                cleanNav.selectOnRight = null;
-
-                // Apply back onto the UI Button
                 currentButton.navigation = cleanNav;
             }
         }
@@ -195,17 +189,17 @@ namespace RO_Flex_UI.Panels
         {
             if (!autoScroll || viewport == null || contentTransform == null) return;
 
-            RectTransform itemRect = item.transform as RectTransform;
+            var itemRect = item.transform as RectTransform;
             if (itemRect == null) return;
 
-            float itemHeight = itemRect.rect.height;
-            float itemYPos = itemRect.localPosition.y;
-            float viewportHeight = viewport.rect.height;
+            var itemHeight = itemRect.rect.height;
+            var itemYPos = itemRect.localPosition.y;
+            var viewportHeight = viewport.rect.height;
 
-            float currentContentY = contentTransform.localPosition.y - viewportHeight / 2;
+            var currentContentY = contentTransform.localPosition.y - viewportHeight / 2;
 
-            float targetTopY = currentContentY + itemYPos;
-            float targetBottomY = -itemYPos + itemHeight - viewportHeight - currentContentY;
+            var targetTopY = currentContentY + itemYPos;
+            var targetBottomY = -itemYPos + itemHeight - viewportHeight - currentContentY;
 
             if (targetBottomY > 0)
             {
@@ -220,10 +214,29 @@ namespace RO_Flex_UI.Panels
 
         public void SelectOption(int index)
         {
-            if (index >= listItems.Count)
-                return;
+            if (index < 0 || index >= items.Count) return;
 
-            listItems[index].TargetButton.Select();
+            var button = items[index].TargetButton;
+            if (button == null || !button.IsActive() || !button.IsInteractable()) return;
+
+            button.Select();
         }
+
+        #region Getter & Setter
+        public bool LoopNavigation
+        {
+            get => loopNavigation;
+            set
+            {
+                loopNavigation = value;
+                UpdateNavigation();
+            }
+        }
+        public bool AutoScroll
+        {
+            get => autoScroll;
+            set => autoScroll = value;
+        }
+        #endregion
     }
 }

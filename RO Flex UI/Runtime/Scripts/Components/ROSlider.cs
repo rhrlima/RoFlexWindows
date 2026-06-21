@@ -1,246 +1,201 @@
-﻿using UnityEngine;
+﻿using RO_Flex_UI.Utils;
+using System;
+using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace RO_Flex_UI.Components
 {
-    public class ROSlider : MonoBehaviour
+    [Serializable]
+    public struct ButtonSprites
     {
-        [SerializeField] private Button decreaseButton;
-        [SerializeField] private Slider slider;
-        [SerializeField] private Button increaseButton;
-        private Slider.Direction direction = Slider.Direction.LeftToRight;
-        [HideInInspector][SerializeField] private float stepPercent = 0.1f; // 10%
-        [HideInInspector][SerializeField] private Slider.SliderEvent onValueChanged = new();
+        [SerializeField] private Sprite leftSprite;
+        [SerializeField] private Sprite rightSprite;
+        [SerializeField] private Sprite upSprite;
+        [SerializeField] private Sprite downSprite;
 
-        private void Awake()
+        public readonly Sprite GetDecreaseSprite(Slider.Direction direction)
         {
-            BindEvents();
-            SyncExternalEvent();
-        }
-
-        private void OnDestroy()
-        {
-            UnbindEvents();
-        }
-
-        private void OnValidate()
-        {
-            if (slider == null)
-                return;
-
-            stepPercent = Mathf.Clamp(stepPercent, 0.01f, 1f);
-        }
-
-        private void ApplyOrientation()
-        {
-            if (slider == null)
-                return;
-
-            var rect = transform as RectTransform;
-
-            switch (direction)
+            return direction switch
             {
-                case Slider.Direction.LeftToRight:
-                    {
-                        slider.direction = Slider.Direction.LeftToRight;
-                        rect.localRotation = Quaternion.identity;
-                        break;
-                    }
+                Slider.Direction.LeftToRight => leftSprite,
+                Slider.Direction.RightToLeft => rightSprite,
+                Slider.Direction.BottomToTop => downSprite,
+                Slider.Direction.TopToBottom => upSprite,
+                _ => leftSprite
+            };
+        }
 
-                case Slider.Direction.RightToLeft:
-                    {
-                        slider.direction = Slider.Direction.RightToLeft;
-                        rect.localRotation = Quaternion.identity;
-                        break;
-                    }
+        public readonly Sprite GetIncreaseSprite(Slider.Direction direction)
+        {
+            return direction switch
+            {
+                Slider.Direction.LeftToRight => rightSprite,
+                Slider.Direction.RightToLeft => leftSprite,
+                Slider.Direction.BottomToTop => upSprite,
+                Slider.Direction.TopToBottom => downSprite,
+                _ => rightSprite
+            };
+        }
+    }
 
-                case Slider.Direction.BottomToTop:
-                    {
-                        slider.direction = Slider.Direction.LeftToRight;
-                        rect.localRotation = Quaternion.Euler(0f, 0f, 90f);
-                        break;
-                    }
+    public class RoSlider : Slider, IComponent
+    {
+        [SerializeField] private float stepSize = 0.2f;
+        [SerializeField] private RoButton decreaseButton;
+        [SerializeField] private RoButton increaseButton;
+        [SerializeField] private RectTransform dragArea;
+        [SerializeField] private ButtonSprites buttonSprites;
 
-                case Slider.Direction.TopToBottom:
-                    {
-                        slider.direction = Slider.Direction.RightToLeft;
-                        rect.localRotation = Quaternion.Euler(0f, 0f, 90f);
-                        break;
-                    }
+        public SliderEvent onDecreaseClick;
+        public SliderEvent onIncreaseClick;
+        public SliderEvent onPointerUp;
+
+        private bool dragStartedInDragArea;
+
+        protected override void Start()
+        {
+            base.Start();
+
+            if (!EnsureReferences()) return;
+        }
+
+        public bool EnsureReferences()
+        {
+            if (decreaseButton == null)
+            {
+                Tools.LogMissingReference(this, nameof(decreaseButton));
+            }
+            if (increaseButton == null)
+            {
+                Tools.LogMissingReference(this, nameof(increaseButton));
+            }
+            if (dragArea == null)
+            {
+                Tools.LogMissingReference(this, nameof(dragArea));
+            }
+            return true;
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+
+            ApplyButtonSprites();
+
+            if (decreaseButton != null)
+                decreaseButton.onClick.AddListener(OnDecreaseClick);
+
+            if (increaseButton != null)
+                increaseButton.onClick.AddListener(OnIncreaseClick);
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+
+            dragStartedInDragArea = false;
+
+            if (decreaseButton != null)
+                decreaseButton.onClick.RemoveListener(OnDecreaseClick);
+
+            if (increaseButton != null)
+                increaseButton.onClick.RemoveListener(OnIncreaseClick);
+        }
+
+        protected override void OnValidate()
+        {
+            base.OnValidate();
+            ApplyButtonSprites();
+        }
+
+        private void OnDecreaseClick()
+        {
+            value -= GetStepSize();
+            onDecreaseClick?.Invoke(value);
+        }
+
+        private void OnIncreaseClick()
+        {
+            value += GetStepSize();
+            onIncreaseClick?.Invoke(value);
+        }
+
+        private float GetStepSize()
+        {
+            return maxValue * stepSize;
+        }
+
+        public override void OnPointerDown(PointerEventData eventData)
+        {
+            dragStartedInDragArea = MayDrag(eventData) && IsPointerInsideDragArea(eventData);
+
+            if (!dragStartedInDragArea)
+                return;
+
+            base.OnPointerDown(eventData);
+        }
+
+        public override void OnDrag(PointerEventData eventData)
+        {
+            if (!dragStartedInDragArea)
+                return;
+
+            base.OnDrag(eventData);
+        }
+
+        public override void OnPointerUp(PointerEventData eventData)
+        {
+            if (!dragStartedInDragArea)
+                return;
+
+            dragStartedInDragArea = false;
+
+            base.OnPointerUp(eventData);
+
+            if (MayDrag(eventData))
+            {
+                Debug.Log("OnPointerUp");
             }
         }
 
-        private void BindEvents()
+        private bool MayDrag(PointerEventData eventData)
         {
-            if (decreaseButton != null)
-                decreaseButton.onClick.AddListener(OnDecreaseClicked);
-
-            if (increaseButton != null)
-                increaseButton.onClick.AddListener(OnIncreaseClicked);
-
-            if (slider != null)
-                slider.onValueChanged.AddListener(OnSliderValueChanged);
-        }
-
-        private void UnbindEvents()
-        {
-            if (decreaseButton != null)
-                decreaseButton.onClick.RemoveListener(OnDecreaseClicked);
-
-            if (increaseButton != null)
-                increaseButton.onClick.RemoveListener(OnIncreaseClicked);
-
-            if (slider != null)
-                slider.onValueChanged.RemoveListener(OnSliderValueChanged);
-        }
-
-        private void OnSliderValueChanged(float value)
-        {
-            onValueChanged.Invoke(value);
-        }
-
-        private void SyncExternalEvent()
-        {
-            if (slider == null)
-                return;
-
-            onValueChanged.Invoke(slider.value);
-        }
-
-        private void OnDecreaseClicked()
-        {
-            ChangeBy(-GetSignedStep());
-        }
-
-        private void OnIncreaseClicked()
-        {
-            ChangeBy(GetSignedStep());
-        }
-
-        /// <summary>
-        /// If slider is RightToLeft, visual increase means lower numeric value.
-        /// So buttons automatically invert behavior.
-        /// </summary>
-        private float GetSignedStep()
-        {
-            float step = (slider.maxValue - slider.minValue) * stepPercent;
-
-            if (slider.direction == Slider.Direction.RightToLeft)
-                step *= -1f;
-
-            return step;
-        }
-
-        private void ChangeBy(float delta)
-        {
-            SetValue(slider.value + delta);
-        }
-
-        public void SetValue(float value)
-        {
-            if (slider == null)
-                return;
-
-            value = Mathf.Clamp(value, slider.minValue, slider.maxValue);
-
-            if (slider.wholeNumbers)
-                value = Mathf.Round(value);
-
-            slider.value = value;
-        }
-
-        public float GetValue()
-        {
-            return slider != null ? slider.value : 0f;
-        }
-
-        public void SetRange(float min, float max)
-        {
-            if (slider == null)
-                return;
-
-            slider.minValue = min;
-            slider.maxValue = max;
-
-            SetValue(slider.value);
-        }
-
-        public void SetInteractable(bool interactable)
-        {
-            if (slider != null)
-                slider.interactable = interactable;
-
-            if (decreaseButton != null)
-                decreaseButton.interactable = interactable;
-
-            if (increaseButton != null)
-                increaseButton.interactable = interactable;
-        }
-
-        public void SetDirection(Slider.Direction direction)
-        {
-            if (slider == null)
-                return;
-
-            slider.direction = direction;
-        }
-
-        #region Proxy Properties
-
-        public float Value
-        {
-            get => slider.value;
-            set => SetValue(value);
-        }
-
-        public float MinValue
-        {
-            get => slider.minValue;
-            set => slider.minValue = value;
-        }
-
-        public float MaxValue
-        {
-            get => slider.maxValue;
-            set => slider.maxValue = value;
-        }
-
-        public bool WholeNumbers
-        {
-            get => slider.wholeNumbers;
-            set => slider.wholeNumbers = value;
-        }
-
-        public float StepPercent
-        {
-            get => stepPercent;
-            set => stepPercent = value;
-        }
-
-        public Slider.Direction Direction
-        {
-            get => direction;
-            set
+            if (IsActive() && IsInteractable())
             {
-                direction = value;
-                ApplyOrientation();
+                return eventData.button == PointerEventData.InputButton.Left;
             }
+
+            return false;
         }
 
-        public bool Interactable
+        private bool IsPointerInsideDragArea(PointerEventData eventData)
         {
-            get => slider.interactable;
-            set => slider.interactable = value;
+            return RectTransformUtility.RectangleContainsScreenPoint(
+                       dragArea,
+                       eventData.position,
+                       eventData.pressEventCamera);
         }
 
-        public void SetValueWithoutNotify(float value)
+        private void ApplyButtonSprites()
         {
-            if (slider == null)
+            SetButtonSprite(decreaseButton, buttonSprites.GetDecreaseSprite(direction));
+            SetButtonSprite(increaseButton, buttonSprites.GetIncreaseSprite(direction));
+        }
+
+        private static void SetButtonSprite(RoButton button, Sprite sprite)
+        {
+            if (button == null || sprite == null)
                 return;
 
-            slider.SetValueWithoutNotify(value);
-        }
+            if (button.targetGraphic is Image image)
+            {
+                image.sprite = sprite;
+                return;
+            }
 
-        #endregion
+            if (button.TryGetComponent(out Image buttonImage))
+                buttonImage.sprite = sprite;
+        }
     }
 }

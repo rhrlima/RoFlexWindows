@@ -1,45 +1,52 @@
 ﻿using RO_Flex_UI.Components;
+using RO_Flex_UI.Utils;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace RO_Flex_UI.Panels
 {
-    public class GearPanel : IPanel
+    public class GearPanel : MonoBehaviour, IPanel
     {
         [SerializeField] private int slotsPerPanel;
-        [SerializeField] private GearSlot template;
+        [SerializeField] private IconText template;
         [SerializeField] private RectTransform leftPanel;
         [SerializeField] private RectTransform rightPanel;
 
         private void Awake()
         {
-            if (template == null)
-                Debug.LogError("No prefab of type GearSlot was assigned to template.");
-
-            if (leftPanel == null || rightPanel == null)
-            {
-                Debug.LogError("Left and Right Panels cannot be null.");
-                return;
-            }
+            if (!EnsureReferences()) return;
 
             InitializePanels();
         }
 
+        public bool EnsureReferences()
+        {
+            if (template == null)
+            {
+                Tools.LogMissingReference(this, nameof(template));
+                return false;
+            }
+            if (leftPanel == null)
+            {
+                Tools.LogMissingReference(this, nameof(leftPanel));
+                return false;
+            }
+            if (rightPanel == null)
+            {
+                Tools.LogMissingReference(this, nameof(rightPanel));
+                return false;
+            }
+            return true;
+        }
+
         private void InitializePanels()
         {
-            var placeholder = leftPanel.GetComponentInChildren<GearSlot>();
-            if (placeholder != null) placeholder.gameObject.SetActive(false);
-
-            placeholder = rightPanel.GetComponentInChildren<GearSlot>();
-            if (placeholder != null) placeholder.gameObject.SetActive(false);
+            template.gameObject.SetActive(false);
 
             for (var i = 0; i < slotsPerPanel * 2; i++)
             {
                 var instance = Instantiate(template, (i < slotsPerPanel) ? leftPanel : rightPanel);
                 instance.gameObject.SetActive(true);
-
-                if (i >= slotsPerPanel)
-                    instance.GetComponent<HorizontalLayoutGroup>().reverseArrangement = true;
+                instance.FlipElements(i >= slotsPerPanel);
             }
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace RO_Flex_UI.Components
 {
-    public class ItemLine : MonoBehaviour
+    public class ItemLine : MonoBehaviour, IComponent
     {
         [SerializeField] private bool isSockets = false;
         // [SerializeField] private GameObject socketPanel;
@@ -36,6 +36,11 @@ namespace RO_Flex_UI.Components
             {
                 SetText(text);
             }
+        }
+
+        public bool EnsureReferences()
+        {
+            throw new System.NotImplementedException();
         }
 
         public void SetText(string text)

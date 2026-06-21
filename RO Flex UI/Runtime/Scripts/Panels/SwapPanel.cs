@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace RO_Flex_UI.Panels
 {
-    public class SwapPanel : IPanel
+    public class SwapPanel : MonoBehaviour, IPanel
     {
         [Serializable]
         private class SwapablePanel
@@ -96,6 +96,11 @@ namespace RO_Flex_UI.Panels
                     .Distinct()
                     .ToList();
             }
+        }
+
+        public bool EnsureReferences()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -30,7 +30,7 @@ namespace RoFlexUI.Editor
         }}
 ";
 
-        [MenuItem("Tools/RO Flex UI/Regenerate Prefab Menu")]
+        [MenuItem("Tools/ROFlexUI/Regenerate Prefab Menu")]
         public static void BakeMenu()
         {
             var guids = AssetDatabase.FindAssets("t:Prefab", new[] { PREFABS_ROOT });

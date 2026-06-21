@@ -4,7 +4,7 @@
 
 ## Overview
 
-The `Draggable` component enables UI elements and game objects to be moved by the user with click-and-drag or touch input. It is designed for flexible drag interactions in the RO Flex UI system and works with common panel and container layouts.
+The `Draggable` component enables UI elements and game objects to be moved by the user with click-and-drag or touch input. It is designed for flexible drag interactions in the ROFlexUI system and works with common panel and container layouts.
 
 ### Key Concepts
 

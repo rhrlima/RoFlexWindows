@@ -88,12 +88,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d32da1e8c4c49546bbd37b4732a524d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetTransform: {fileID: 0}
   minSize: {x: 100, y: 100}
   maxSize: {x: 1000, y: 1000}
-  snapToStep: 1
+  snapToStep: 0
+  ignoreAnchor: 0
   stepSize: {x: 50, y: 50}
-  offset: {x: 40, y: 50}
-  window: {fileID: 0}
-  OnResize:
-    m_PersistentCalls:
-      m_Calls: []
+  borderOffset: {x: 0, y: 0}

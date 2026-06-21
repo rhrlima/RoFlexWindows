@@ -1,56 +1,61 @@
 ﻿using RO_Flex_UI.Panels;
+using RO_Flex_UI.Utils;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 namespace RO_Flex_UI.Components
 {
-    public class Resizable : MonoBehaviour, IDragHandler, IBeginDragHandler
+    public class Resizable : MonoBehaviour, IComponent, IDragHandler, IBeginDragHandler, IEndDragHandler
     {
+        public class ResizeEvent : UnityEvent<PointerEventData> { }
+
+        [SerializeField] private RectTransform targetTransform;
         [SerializeField] private Vector2 minSize = new(100, 100);
         [SerializeField] private Vector2 maxSize = new(400, 400);
         [SerializeField] private bool snapToStep = false;
         [SerializeField] private bool ignoreAnchor = false;
         [SerializeField] private Vector2 stepSize = new(50, 50);
-        [SerializeField] private Vector2 borderOffset = new(0, 0);
+        [SerializeField] private Vector2 borderOffset = new(0, 0); // FIXME calculate this
 
-        [Tooltip("Optional. If not set, will try to find a Window component in parents.")]
-        [SerializeField] private RectTransform window;
-
-        [Space]
-        [SerializeField] private UnityEvent OnResize;
         private Vector2 startMousePos;
         private Vector2 startWinPos;
         private Vector2 startWinSize;
 
-        private void Awake()
+        public ResizeEvent onBeginResize;
+        public ResizeEvent onResize;
+        public ResizeEvent onEndResize;
+
+        private void Start()
         {
-            if (window == null)
+            if (!EnsureReferences()) return;
+        }
+
+        public bool EnsureReferences()
+        {
+            if (targetTransform == null)
             {
-                var parent = GetComponentInParent<IWindow>(true);
-
-                if (parent == null)
-                {
-                    Debug.LogError("Resizable must be a child of a Window.");
-                    return;
-                }
-
-                window = parent.transform;
+                Tools.LogMissingReference(this, nameof(targetTransform));
+                return false;
             }
+
+            return true;
         }
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            if (window == null) return;
+            if (targetTransform == null) return;
 
             startMousePos = eventData.position;
-            startWinPos = window.anchoredPosition;
-            startWinSize = window.sizeDelta;
+            startWinPos = targetTransform.anchoredPosition;
+            startWinSize = targetTransform.sizeDelta;
+
+            onBeginResize?.Invoke(eventData);
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (window == null) return;
+            if (targetTransform == null) return;
 
             if (eventData.button != PointerEventData.InputButton.Left)
                 return;
@@ -59,7 +64,7 @@ namespace RO_Flex_UI.Components
 
             // grabs mouse difference and inverts Y axis
             var mouseDelta = (eventData.position - startMousePos) * new Vector2(1, -1);
-            var newWinSize = startWinSize + mouseDelta / window.transform.lossyScale;
+            var newWinSize = startWinSize + mouseDelta / targetTransform.transform.lossyScale;
 
             if (snapToStep)
             {
@@ -70,17 +75,22 @@ namespace RO_Flex_UI.Components
             newWinSize.x = Mathf.Clamp(newWinSize.x, minSize.x, maxSize.x);
             newWinSize.y = Mathf.Clamp(newWinSize.y, minSize.y, maxSize.y);
 
-            window.sizeDelta = newWinSize;
+            targetTransform.sizeDelta = newWinSize;
 
             // Keep the window fixed relative to its anchor point when resizing.
             // ignoreAnchor will always uses a top-left anchor point
             var dSize = newWinSize - startWinSize;
-            var anchorPoint = ignoreAnchor ? new Vector2(0f, 1f) : (window.anchorMin + window.anchorMax) * 0.5f;
-            var pivotOffset = window.pivot - anchorPoint;
+            var anchorPoint = ignoreAnchor ? new Vector2(0f, 1f) : (targetTransform.anchorMin + targetTransform.anchorMax) * 0.5f;
+            var pivotOffset = targetTransform.pivot - anchorPoint;
 
-            window.anchoredPosition = startWinPos + Vector2.Scale(dSize, pivotOffset);
+            targetTransform.anchoredPosition = startWinPos + Vector2.Scale(dSize, pivotOffset);
 
-            OnResize.Invoke();
+            onResize?.Invoke(eventData);
+        }
+
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            onEndResize?.Invoke(eventData);
         }
 
         #region Getter & Setter

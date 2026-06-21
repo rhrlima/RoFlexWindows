@@ -8,10 +8,10 @@ namespace RO_Flex_UI.Editor
 {
     public class FontAssetGenerator
     {
-        // private const string fontsPath = "Assets/Samples/RO Flex UI";
+        // private const string fontsPath = "Assets/Samples/ROFlexUI";
         private const string fontsPath = "Assets/Fonts";
 
-        [MenuItem("Tools/RO Flex UI/Regenerate TMP Fonts")]
+        [MenuItem("Tools/ROFlexUI/Regenerate TMP Fonts")]
         public static void GenerateAll()
         {
             var guids = AssetDatabase.FindAssets("t:Font", new[] { fontsPath });

@@ -2,22 +2,23 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace RO_Flex_UI.Components
 {
-    [RequireComponent(typeof(Button))]
+    [RequireComponent(typeof(RoButton))]
     public class ListItem : MonoBehaviour, IPointerEnterHandler, ISelectHandler, ISubmitHandler, IPointerClickHandler
     {
-        [Header("Simplified Events")]
-        public UnityEvent OnItemFocused = new UnityEvent();
-        public UnityEvent OnItemActivated = new UnityEvent();
+        public class ListEvent : UnityEvent { }
 
-        [Header("Double Click Timing")]
+        [Header("Simplified Events")]
+        public ListEvent OnItemFocused = new();
+        public ListEvent OnItemActivated = new();
+
+        [Tooltip("Max time between clicks to register a double click (in Seconds).")]
         [SerializeField] private float doubleClickLimit = 0.25f;
         private float lastClickTime;
 
-        public Button TargetButton { get; private set; }
+        public RoButton TargetButton { get; private set; }
         protected ListPanel parentPanel;
 
         protected virtual void Awake()
@@ -29,7 +30,7 @@ namespace RO_Flex_UI.Components
         {
             if (TargetButton == null)
             {
-                TargetButton = GetComponent<Button>();
+                TargetButton = GetComponent<RoButton>();
                 TargetButton.onClick.RemoveAllListeners();
                 TargetButton.onClick.AddListener(HandleSingleClickFocus);
             }
@@ -40,7 +41,7 @@ namespace RO_Flex_UI.Components
             parentPanel = panel;
         }
 
-        // --- Focus / Selection Pipeline ---
+        #region Focus / Selection
         public void OnPointerEnter(PointerEventData eventData) => FocusItem();
         public void OnSelect(BaseEventData eventData) => FocusItem();
 
@@ -58,8 +59,9 @@ namespace RO_Flex_UI.Components
             OnItemFocused?.Invoke();
             parentPanel?.NotifyItemFocused(this);
         }
+        #endregion
 
-        // --- Activation Pipeline ---
+        #region Submit
         public void OnPointerClick(PointerEventData eventData)
         {
             if (Time.time - lastClickTime < doubleClickLimit)
@@ -79,5 +81,6 @@ namespace RO_Flex_UI.Components
             OnItemActivated?.Invoke();
             parentPanel?.NotifyItemActivated(this);
         }
+        #endregion
     }
 }
