@@ -28,7 +28,7 @@ namespace RO_Flex_UI.Components
             if (canDrag)
             {
                 HideItem();
-                dragHandler.SetData(new DragPayload(null, this, sprite, amount));
+                dragHandler.SetData(new DragPayload(eventData.position, null, this, sprite, amount));
                 dragHandler.HandleStartDrag(eventData);
             }
         }

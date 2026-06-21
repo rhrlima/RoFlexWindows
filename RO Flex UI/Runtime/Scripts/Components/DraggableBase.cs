@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace RO_Flex_UI.Components
@@ -12,8 +10,8 @@ namespace RO_Flex_UI.Components
         [SerializeField] protected bool returnToOrigin;
 
         protected Canvas canvas;
-        protected bool isBeingDragged = false;
         protected Vector2 originPosition;
+        protected bool dragging = false;
 
         public virtual void Start()
         {
@@ -47,8 +45,6 @@ namespace RO_Flex_UI.Components
         {
             if (draggedRect == null) return;
 
-
-
             HandleOnDrag(eventData);
         }
 
@@ -56,7 +52,7 @@ namespace RO_Flex_UI.Components
         {
             if (draggedRect == null) return;
 
-            isBeingDragged = true;
+            dragging = true;
             HandleStartDrag(eventData);
         }
 
@@ -64,7 +60,7 @@ namespace RO_Flex_UI.Components
         {
             if (draggedRect == null) return;
 
-            isBeingDragged = false;
+            dragging = false;
             HandleEndDrag(eventData);
         }
 

@@ -22,7 +22,7 @@ namespace RO_Flex_UI.Components
             if (eventData.button != PointerEventData.InputButton.Left)
                 return;
 
-            if (!isBeingDragged)
+            if (!dragging)
                 return;
 
             draggedRect.anchoredPosition += eventData.delta / canvas.scaleFactor;
