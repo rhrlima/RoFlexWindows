@@ -1,78 +1,108 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 namespace RO_Flex_UI.Components
 {
-    public abstract class DraggableBase : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
+    public class DraggableBase : MonoBehaviour, IComponent, IBeginDragHandler, IEndDragHandler, IDragHandler
     {
-        [Tooltip("Object to be dragged. Defaults to the current GameObject.")]
-        [SerializeField] protected RectTransform draggedRect;
-        [SerializeField] protected bool returnToOrigin;
+        [Serializable]
+        public class DragEvent : UnityEvent<PointerEventData> { }
 
+        [Tooltip("Transform to be dragged. Defaults to current GameObject.")]
+        [SerializeField] private RectTransform targetTransform;
+        [SerializeField] private bool returnToOrigin;
         protected Canvas canvas;
         protected Vector2 originPosition;
         protected bool dragging = false;
+
+        public DragEvent onBeginDrag;
+        public DragEvent onDrag;
+        public DragEvent onEndDrag;
 
         public virtual void Start()
         {
             if (!EnsureReferences()) return;
         }
 
-        private bool EnsureReferences()
+        public virtual bool EnsureReferences()
         {
-            canvas = FindAnyObjectByType<Canvas>();
+            canvas = GetComponentInParent<Canvas>();
             if (canvas == null)
             {
-                Debug.LogError($"[{name}] No Canvas found in the scene.");
+                Debug.LogWarning($"[{name}] Draggable must be placed inside a Canvas.");
                 return false;
             }
 
-            if (draggedRect == null)
+            if (targetTransform == null)
             {
-                draggedRect = transform as RectTransform;
+                targetTransform = transform as RectTransform;
             }
 
-            return true;
+            return targetTransform != null;
         }
 
-        protected void StoreOriginPosition()
+        private void StoreOriginPosition()
         {
-            if (draggedRect != null)
-                originPosition = draggedRect.anchoredPosition;
+            if (targetTransform != null)
+                originPosition = targetTransform.anchoredPosition;
         }
 
-        public void OnDrag(PointerEventData eventData)
+        public virtual void OnBeginDrag(PointerEventData eventData)
         {
-            if (draggedRect == null) return;
+            if (!EnsureReferences()) return;
 
-            HandleOnDrag(eventData);
-        }
+            if (canvas == null) return;
+            if (targetTransform == null) return;
 
-        public void OnPointerDown(PointerEventData eventData)
-        {
-            if (draggedRect == null) return;
+            if (eventData.button != PointerEventData.InputButton.Left)
+                return;
+
+            eventData.useDragThreshold = false;
+
+            StoreOriginPosition();
+
+            //FIXME maybe remove this from here, and add to Window Manager
+            // targetTransform.transform.SetAsLastSibling();
 
             dragging = true;
-            HandleStartDrag(eventData);
+
+            onBeginDrag?.Invoke(eventData);
         }
 
-        public void OnPointerUp(PointerEventData eventData)
+        public virtual void OnDrag(PointerEventData eventData)
         {
-            if (draggedRect == null) return;
+            if (canvas == null || targetTransform == null) return;
+
+            if (!dragging) return;
+
+            targetTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+
+            onDrag?.Invoke(eventData);
+        }
+
+        public virtual void OnEndDrag(PointerEventData eventData)
+        {
+            if (!dragging) return;
 
             dragging = false;
-            HandleEndDrag(eventData);
+
+            if (targetTransform == null) return;
+
+            if (returnToOrigin)
+                targetTransform.anchoredPosition = originPosition;
+
+            onEndDrag?.Invoke(eventData);
         }
 
-        public abstract void HandleStartDrag(PointerEventData eventData);
-        public abstract void HandleEndDrag(PointerEventData eventData);
-        public abstract void HandleOnDrag(PointerEventData eventData);
-
+        #region Getter & Setter
         public bool ReturnToOrigin
         {
             get => returnToOrigin;
             set => returnToOrigin = value;
-
         }
+        public bool Dragging => dragging;
+        #endregion
     }
 }

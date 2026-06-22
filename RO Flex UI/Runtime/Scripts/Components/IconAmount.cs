@@ -34,21 +34,23 @@ namespace RO_Flex_UI.Components
         {
             iconText.gameObject.SetActive(active);
         }
+        public void SetActive(bool value)
+        {
+            iconSprite.gameObject.SetActive(value);
+            iconText.gameObject.SetActive(value);
+        }
 
         #region Getter & Setter
-
         public Sprite Sprite
         {
             get => iconSprite.sprite;
             set => iconSprite.sprite = value;
         }
-
         public string Text
         {
             get => iconText.text;
             set => iconText.text = value;
         }
-
         #endregion
     }
 }

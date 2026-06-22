@@ -30,49 +30,59 @@ namespace RO_Flex_UI.Components
 
     public class DraggableItem : DraggableBase
     {
-        [SerializeField] private Image image;
-        [SerializeField] private TMP_Text amount;
-
-        private CanvasGroup canvasGroup;
+        [SerializeField] private IconAmount target;
+        private IconAmount source;
 
         public override void Start()
         {
             base.Start();
-
-            canvasGroup = transform.GetComponent<CanvasGroup>();
-            canvasGroup.blocksRaycasts = true;
-            image.gameObject.SetActive(false);
-            amount.gameObject.SetActive(false);
+            if (!EnsureReferences()) return;
         }
 
-        public override void HandleStartDrag(PointerEventData eventData)
+        public override bool EnsureReferences()
         {
-            canvasGroup.blocksRaycasts = false;
-            transform.position = eventData.position;
-
-            gameObject.SetActive(true);
-            image.gameObject.SetActive(true);
-            amount.gameObject.SetActive(true);
+            source = GetComponent<IconAmount>();
+            return base.EnsureReferences() && target.EnsureReferences();
         }
 
-        public override void HandleEndDrag(PointerEventData eventData)
+        public override void OnBeginDrag(PointerEventData eventData)
         {
-            canvasGroup.blocksRaycasts = true;
+            base.OnBeginDrag(eventData);
 
-            image.gameObject.SetActive(false);
-            amount.gameObject.SetActive(false);
-            gameObject.SetActive(false);
+            target.Sprite = source.Sprite;
+            target.Text = source.Text;
+            target.transform.position = eventData.position;
+
+            source.SetActive(false);
+            target.SetActive(true);
         }
 
-        public void SetData(DragPayload payload)
+        public override void OnDrag(PointerEventData eventData)
         {
-            image.sprite = payload.Sprite;
-            amount.text = payload.Amount.ToString();
+            if (canvas == null || target == null) return;
+
+            if (!dragging) return;
+
+            var rectTransform = target.transform as RectTransform;
+            rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
         }
 
-        public override void HandleOnDrag(PointerEventData eventData)
+        public override void OnEndDrag(PointerEventData eventData)
         {
-            transform.position = eventData.position;
+            base.OnEndDrag(eventData);
+            target.SetActive(false);
+            source.SetActive(true);
         }
+
+        // public void SetData(DragPayload payload)
+        // {
+        //     image.sprite = payload.Sprite;
+        //     amount.text = payload.Amount.ToString();
+        // }
+
+        // public void OnDrag(PointerEventData eventData)
+        // {
+        //     transform.position = eventData.position;
+        // }
     }
 }
