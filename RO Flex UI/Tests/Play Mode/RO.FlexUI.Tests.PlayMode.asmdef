@@ -3,7 +3,8 @@
     "rootNamespace": "RO_Flex_UI",
     "references": [
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "ROFlexUI"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
