@@ -50,8 +50,6 @@ namespace RO_Flex_UI.Panels
 
         private bool ValidateItem(ListItem item)
         {
-            //FIXME template is allowed to used as item
-            // if (item == null || item == template) return false;
             if (item == null) return false;
 
             if (item.transform.parent != contentTransform)

@@ -39,7 +39,7 @@ namespace RO_Flex_UI.Tests
         }
 
         [Test]
-        public void ConfiguredItemsIgnoreTemplate()
+        public void ConfiguredItemsCanUseTemplate()
         {
             var fixture = CreatePanelFixture();
             var item = CreateListItem("Item", fixture.Root.transform);
@@ -49,8 +49,12 @@ namespace RO_Flex_UI.Tests
             SetConfiguredItems(fixture.Panel, template, item);
             InvokeStart(fixture.Panel);
 
-            Assert.IsFalse(template.gameObject.activeSelf);
-            Assert.AreEqual(1, GetRuntimeItems(fixture.Panel).Count);
+            var items = GetRuntimeItems(fixture.Panel);
+            Assert.IsTrue(template.gameObject.activeSelf);
+            Assert.AreEqual(2, items.Count);
+            Assert.AreSame(template, items[0]);
+            Assert.AreSame(item, items[1]);
+            Assert.AreSame(item.TargetButton, template.TargetButton.navigation.selectOnDown);
 
             Object.DestroyImmediate(fixture.Root);
         }

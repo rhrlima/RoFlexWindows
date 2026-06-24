@@ -6,41 +6,41 @@ using UnityEngine.UI;
 
 namespace RO_Flex_UI.Components
 {
-    [Serializable]
-    public struct ButtonSprites
-    {
-        [SerializeField] private Sprite leftSprite;
-        [SerializeField] private Sprite rightSprite;
-        [SerializeField] private Sprite upSprite;
-        [SerializeField] private Sprite downSprite;
-
-        public readonly Sprite GetDecreaseSprite(Slider.Direction direction)
-        {
-            return direction switch
-            {
-                Slider.Direction.LeftToRight => leftSprite,
-                Slider.Direction.RightToLeft => rightSprite,
-                Slider.Direction.BottomToTop => downSprite,
-                Slider.Direction.TopToBottom => upSprite,
-                _ => leftSprite
-            };
-        }
-
-        public readonly Sprite GetIncreaseSprite(Slider.Direction direction)
-        {
-            return direction switch
-            {
-                Slider.Direction.LeftToRight => rightSprite,
-                Slider.Direction.RightToLeft => leftSprite,
-                Slider.Direction.BottomToTop => upSprite,
-                Slider.Direction.TopToBottom => downSprite,
-                _ => rightSprite
-            };
-        }
-    }
-
     public class RoSlider : Slider, IComponent
     {
+        [Serializable]
+        public struct ButtonSprites
+        {
+            [SerializeField] private Sprite leftSprite;
+            [SerializeField] private Sprite rightSprite;
+            [SerializeField] private Sprite upSprite;
+            [SerializeField] private Sprite downSprite;
+
+            public readonly Sprite GetDecreaseSprite(Slider.Direction direction)
+            {
+                return direction switch
+                {
+                    Direction.LeftToRight => leftSprite,
+                    Direction.RightToLeft => rightSprite,
+                    Direction.BottomToTop => downSprite,
+                    Direction.TopToBottom => upSprite,
+                    _ => leftSprite
+                };
+            }
+
+            public readonly Sprite GetIncreaseSprite(Slider.Direction direction)
+            {
+                return direction switch
+                {
+                    Direction.LeftToRight => rightSprite,
+                    Direction.RightToLeft => leftSprite,
+                    Direction.BottomToTop => upSprite,
+                    Direction.TopToBottom => downSprite,
+                    _ => rightSprite
+                };
+            }
+        }
+
         [SerializeField] private float stepSize = 0.2f;
         [SerializeField] private RoButton decreaseButton;
         [SerializeField] private RoButton increaseButton;
