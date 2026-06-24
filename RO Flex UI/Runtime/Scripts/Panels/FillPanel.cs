@@ -1,205 +1,205 @@
-﻿using RO_Flex_UI.Components;
+﻿using RO_Flex_UI.Panels;
 using RO_Flex_UI.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace RO_Flex_UI.Panels
+[RequireComponent(typeof(GridLayoutGroup))]
+public class FillPanel2 : MonoBehaviour, IPanel
 {
-    // TODO add custom editor
-    [RequireComponent(typeof(GridLayoutGroup))]
-    public class FillPanel : MonoBehaviour
+    [Header("References")]
+    [SerializeField] private RectTransform viewportRect;
+    [SerializeField] private RectTransform contentRect;
+    [FormerlySerializedAs("slotTemplate")]
+    [SerializeField] private GameObject cellTemplate;
+
+    [Header("Configuration")]
+    [SerializeField] private int maxSlots = 100;
+    [FormerlySerializedAs("overflowCells")]
+    [SerializeField] private int filledCells;
+
+    private GridLayoutGroup gridLayout;
+    private readonly List<GameObject> cells = new();
+    private bool hasPendingGridChange;
+    private bool isUpdatingGrid;
+    private Vector2 lastViewportSize;
+
+    public int Columns { get; private set; }
+    public int Rows { get; private set; }
+    public int TotalCells { get; private set; }
+    public int FilledCells => filledCells;
+    public int EmptyCells => Mathf.Max(0, TotalCells - filledCells);
+
+    private void Start()
     {
-        [Header("Panel References")]
-        [SerializeField] private RectTransform windowRect;
-        [Tooltip("Border size to the content panel.")]
-        [SerializeField] private RectOffset windowOffset; // FIXME calculate this
-        [SerializeField] private RectTransform panelRect;
-        [SerializeField] private RectTransform viewportRect;
-        private GridLayoutGroup gridLayout;
-        private Resizable resizable;
+        if (!EnsureReferences())
+            return;
 
-        [Space]
-        [SerializeField] public IconAmount slotPrefab;
+        StartCoroutine(InitializeGrid());
+    }
 
-        [Space]
-        [Header("Grid Config")]
-        [SerializeField] private int maxSlots = 100;
-        [SerializeField] private int numItems; //TODO wire to Scriptable objects on item info
-        public int NumItems => numItems;
-        [SerializeField] private int MinColumns = 5;
-        [SerializeField] private int MaxColumns = 10;
-        [SerializeField] private int MinRows = 5;
-        [SerializeField] private int MaxRows = 10;
+    private IEnumerator InitializeGrid()
+    {
+        yield return null;
+        Refresh();
+    }
 
-        private int numSlots;
-        private List<IconAmount> items;
-        private bool isUpdatingGrid = false;
-        private bool hasPendingGridChange;
-        private Vector2 lastWindowSize;
-
-        public void Start()
-        {
-            EnsureReferences();
-            SetMinMaxSize();
-
-            StartCoroutine(InitializeGrid());
-        }
-
-        private IEnumerator InitializeGrid()
-        {
-            yield return null;
-
-            if (panelRect != null)
-            {
-                LayoutRebuilder.ForceRebuildLayoutImmediate(panelRect);
-            }
-
-            OnGridChange();
-        }
-
-        private void Update()
-        {
-            if (panelRect != null && Tools.GetRectSize(panelRect) != lastWindowSize)
-                hasPendingGridChange = true;
-
-            if (!hasPendingGridChange)
-                return;
-
-            hasPendingGridChange = false;
-            OnGridChange();
-        }
-
-        private void UpdateGrid()
-        {
-            if (slotPrefab == null)
-                return;
-
-            EnsureSlotPool();
-
-            var visibleCount = Mathf.Min(items.Count, numSlots);
-            for (var i = 0; i < visibleCount; i++)
-            {
-                items[i].gameObject.SetActive(true);
-                // items[i].itemAmount = i < numItems ? 1 : 0;
-                // items[i].Refresh();
-            }
-
-            for (var i = visibleCount; i < items.Count; i++)
-            {
-                items[i].gameObject.SetActive(false);
-            }
-        }
-
-        public void OnGridChange()
-        {
-            // try to avoid redo all for disabled panels
-            if (!isActiveAndEnabled || isUpdatingGrid)
-                return;
-
-            if (panelRect == null || !panelRect.gameObject.activeSelf)
-                return;
-
-            lastWindowSize = Tools.GetRectSize(panelRect);
-            isUpdatingGrid = true;
-
-            try
-            {
-                CalcTotalSlots();
-                UpdateGrid();
-            }
-            finally
-            {
-                isUpdatingGrid = false;
-            }
-        }
-
-        private void OnRectTransformDimensionsChange()
-        {
+    private void Update()
+    {
+        if (viewportRect != null && Tools.GetRectSize(viewportRect) != lastViewportSize)
             hasPendingGridChange = true;
-        }
 
-        private void CalcTotalSlots()
+        if (!hasPendingGridChange)
+            return;
+
+        hasPendingGridChange = false;
+        Refresh();
+    }
+
+    private void OnRectTransformDimensionsChange()
+    {
+        hasPendingGridChange = true;
+    }
+
+    public bool EnsureReferences()
+    {
+        if (contentRect == null)
+            contentRect = transform as RectTransform;
+
+        if (viewportRect == null)
+            viewportRect = contentRect;
+
+        if (gridLayout == null)
+            gridLayout = GetComponent<GridLayoutGroup>();
+
+        if (cellTemplate != null && cellTemplate.transform.parent == transform)
+            cellTemplate.SetActive(false);
+
+        if (contentRect == null)
         {
-            var viewportSize = Tools.GetRectSize(viewportRect);
-            var padding = gridLayout.padding;
-            var cellSize = gridLayout.cellSize;
-            var spacing = gridLayout.spacing;
-
-            var availableWidth = viewportSize.x - (padding.left + padding.right);
-            var availableHeight = viewportSize.y - (padding.top + padding.bottom);
-
-            var columns = Mathf.Clamp(Mathf.FloorToInt((availableWidth + spacing.x) / (cellSize.x + spacing.x)), MinColumns, MaxColumns);
-            var rows = Mathf.FloorToInt((availableHeight + spacing.y) / (cellSize.y + spacing.y));
-
-            // ensure there are enough slots to display full rows for all items
-            var itemsFullRows = Mathf.CeilToInt((float)numItems / Mathf.Max(1, columns)) * columns;
-            numSlots = Mathf.Max(rows * columns, itemsFullRows);
+            Tools.LogMissingReference(this, nameof(contentRect));
+            return false;
         }
 
-        private void EnsureReferences()
+        if (viewportRect == null)
         {
-            items ??= new List<IconAmount>();
-
-            if (panelRect == null)
-                panelRect = GetComponent<RectTransform>();
-
-            if (gridLayout == null)
-                gridLayout = GetComponent<GridLayoutGroup>();
-
-            // FIXME avoid depend on Window
-            if (windowRect == null)
-                windowRect = GetComponentInParent<IWindow>(true)?.transform;
-
-            if (resizable == null && windowRect != null)
-                resizable = windowRect.GetComponentInChildren<Resizable>(true);
-
-            if (slotPrefab != null && slotPrefab.transform.parent == transform)
-                slotPrefab.gameObject.SetActive(false);
-
-            // TODO review this
-            if (viewportRect == null)
-                viewportRect = transform as RectTransform;
+            Tools.LogMissingReference(this, nameof(viewportRect));
+            return false;
         }
 
-        private void EnsureSlotPool()
+        if (gridLayout == null)
         {
-            var targetSlots = Mathf.Min(GetMaxSlots(), Mathf.Max(1, numSlots));
-
-            while (items.Count < targetSlots)
-            {
-                var item = Instantiate(slotPrefab, transform);
-                item.gameObject.SetActive(false);
-                items.Add(item);
-            }
+            Tools.LogMissingReference(this, nameof(gridLayout));
+            return false;
         }
 
-        private int GetMaxSlots()
+        if (cellTemplate == null)
         {
-            return Mathf.Max(1, maxSlots);
+            Tools.LogMissingReference(this, nameof(cellTemplate));
+            return false;
         }
 
-        private void SetMinMaxSize()
+        return true;
+    }
+
+    public void SetFilledCells(int value)
+    {
+        filledCells = Mathf.Max(0, value);
+        hasPendingGridChange = true;
+    }
+
+    public void Refresh()
+    {
+        if (!isActiveAndEnabled || isUpdatingGrid || !EnsureReferences())
+            return;
+
+        isUpdatingGrid = true;
+
+        try
         {
-            if (windowRect == null || resizable == null)
-                return;
-
-            var padding = gridLayout.padding;
-            var cellSize = gridLayout.cellSize;
-            var spacing = gridLayout.spacing;
-
-            var minWin = new Vector2(
-                MinColumns * cellSize.x + (MinColumns - 1) * spacing.x + padding.horizontal + windowOffset.horizontal,
-                MinRows * cellSize.y + (MinRows - 1) * spacing.y + padding.vertical + windowOffset.vertical);
-
-            var maxWin = new Vector2(
-                MaxColumns * cellSize.x + (MaxColumns - 1) * spacing.x + padding.horizontal + windowOffset.horizontal,
-                MaxRows * cellSize.y + (MaxRows - 1) * spacing.y + padding.vertical + windowOffset.vertical);
-
-            resizable.MinSize = minWin;
-            resizable.MaxSize = maxWin;
-            windowRect.sizeDelta = minWin;
+            CalculateGrid();
+            UpdateSlots();
         }
+        finally
+        {
+            isUpdatingGrid = false;
+        }
+    }
+
+    private void CalculateGrid()
+    {
+        lastViewportSize = Tools.GetRectSize(viewportRect);
+
+        var padding = gridLayout.padding;
+        var cellSize = gridLayout.cellSize;
+        var spacing = gridLayout.spacing;
+
+        var availableWidth = Mathf.Max(0f, lastViewportSize.x - padding.horizontal);
+        var availableHeight = Mathf.Max(0f, lastViewportSize.y - padding.vertical);
+
+        var fittedColumns = CalculateFitCount(availableWidth, cellSize.x, spacing.x);
+        var fittedRows = CalculateFitCount(availableHeight, cellSize.y, spacing.y);
+        var baseCapacity = fittedColumns * fittedRows;
+
+        Columns = fittedColumns;
+        Rows = fittedRows;
+        TotalCells = baseCapacity;
+
+        if (filledCells <= baseCapacity)
+            return;
+
+        var rowExpandedRows = Mathf.CeilToInt((float)filledCells / fittedColumns);
+        var columnExpandedColumns = Mathf.CeilToInt((float)filledCells / fittedRows);
+
+        var rowExpandedAspect = GetGridAspect(fittedColumns, rowExpandedRows, cellSize, spacing, padding);
+        var columnExpandedAspect = GetGridAspect(columnExpandedColumns, fittedRows, cellSize, spacing, padding);
+        var viewportAspect = lastViewportSize.y > 0f ? lastViewportSize.x / lastViewportSize.y : 1f;
+
+        var rowAspectDelta = Mathf.Abs(rowExpandedAspect - viewportAspect);
+        var columnAspectDelta = Mathf.Abs(columnExpandedAspect - viewportAspect);
+
+        if (rowAspectDelta <= columnAspectDelta)
+        {
+            Rows = rowExpandedRows;
+        }
+        else
+        {
+            Columns = columnExpandedColumns;
+        }
+
+        TotalCells = Columns * Rows;
+    }
+
+    private static int CalculateFitCount(float availableSize, float cellSize, float spacing)
+    {
+        if (cellSize <= 0f)
+            return 1;
+
+        return Mathf.Max(1, Mathf.FloorToInt((availableSize + spacing) / (cellSize + spacing)));
+    }
+
+    private static float GetGridAspect(int columns, int rows, Vector2 cellSize, Vector2 spacing, RectOffset padding)
+    {
+        var size = new Vector2(
+            columns * cellSize.x + Mathf.Max(0, columns - 1) * spacing.x + padding.horizontal,
+            rows * cellSize.y + Mathf.Max(0, rows - 1) * spacing.y + padding.vertical);
+        return size.y > 0f ? size.x / size.y : 1f;
+    }
+
+    private void UpdateSlots()
+    {
+        var targetSlots = Mathf.Min(Mathf.Max(1, maxSlots), Mathf.Max(1, TotalCells));
+
+        while (cells.Count < targetSlots)
+        {
+            var cell = Instantiate(cellTemplate, contentRect);
+            cell.SetActive(false);
+            cells.Add(cell);
+        }
+
+        for (var i = 0; i < cells.Count; i++)
+            cells[i].SetActive(i < targetSlots && i < TotalCells);
     }
 }
