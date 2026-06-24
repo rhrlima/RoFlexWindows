@@ -65,14 +65,17 @@ namespace RO_Flex_UI.Components
             if (decreaseButton == null)
             {
                 Tools.LogMissingReference(this, nameof(decreaseButton));
+                return false;
             }
             if (increaseButton == null)
             {
                 Tools.LogMissingReference(this, nameof(increaseButton));
+                return false;
             }
             if (dragArea == null)
             {
                 Tools.LogMissingReference(this, nameof(dragArea));
+                return false;
             }
             return true;
         }
@@ -154,9 +157,7 @@ namespace RO_Flex_UI.Components
             base.OnPointerUp(eventData);
 
             if (MayDrag(eventData))
-            {
-                Debug.Log("OnPointerUp");
-            }
+                onPointerUp?.Invoke(value);
         }
 
         private bool MayDrag(PointerEventData eventData)

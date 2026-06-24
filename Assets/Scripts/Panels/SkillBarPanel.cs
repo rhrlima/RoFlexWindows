@@ -26,8 +26,8 @@ namespace RO_Flex_UI.Panels
         private Resizable resizable;
 
         [Header("Configurations")]
-        [SerializeField] private int numSlots;
-        [SerializeField] private int numBars;
+        [SerializeField, Min(1)] private int numSlots;
+        [SerializeField, Min(1)] private int numBars;
         [SerializeField] private List<SkillBarLine> bars;
 
         private void Start()
@@ -102,7 +102,8 @@ namespace RO_Flex_UI.Panels
             resizable = GetComponentInChildren<Resizable>(true);
             if (resizable == null)
             {
-                Debug.LogWarning($"[{name}] Missing Resizable component. Panel might not work properly.");
+                Tools.LogMissingReference(this, nameof(resizable));
+                return false;
             }
             return true;
         }

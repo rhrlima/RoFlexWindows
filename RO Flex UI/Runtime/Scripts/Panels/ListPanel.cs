@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
+//TODO small flick when passing mouse over list (adjust height to match items in it)
+//FIXME disable scroll dragging the panel
 namespace RO_Flex_UI.Panels
 {
     public class ListPanel : MonoBehaviour, IPanel
@@ -78,10 +80,10 @@ namespace RO_Flex_UI.Panels
         public void Clear()
         {
             //TODO should I really destroy GameObjects here?
-            // foreach (var item in items)
-            // {
-            //     if (item != null) Destroy(item.gameObject);
-            // }
+            foreach (var item in items)
+            {
+                if (item != null) Destroy(item.gameObject);
+            }
             items.Clear();
             FocusedItem = null;
             ActivatedItem = null;

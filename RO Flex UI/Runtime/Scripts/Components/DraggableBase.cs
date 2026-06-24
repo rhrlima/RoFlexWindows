@@ -26,6 +26,16 @@ namespace RO_Flex_UI.Components
             if (!EnsureReferences()) return;
         }
 
+        private void OnEnable()
+        {
+            if (!EnsureReferences()) return;
+        }
+
+        private void OnDisable()
+        {
+            OnEndDrag(null);
+        }
+
         public virtual bool EnsureReferences()
         {
             canvas = GetComponentInParent<Canvas>();
@@ -88,12 +98,12 @@ namespace RO_Flex_UI.Components
 
             dragging = false;
 
+            onEndDrag?.Invoke(eventData);
+
             if (targetTransform == null) return;
 
             if (returnToOrigin)
                 targetTransform.anchoredPosition = originPosition;
-
-            onEndDrag?.Invoke(eventData);
         }
 
         #region Getter & Setter

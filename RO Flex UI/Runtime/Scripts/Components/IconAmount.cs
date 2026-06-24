@@ -10,16 +10,7 @@ namespace RO_Flex_UI.Components
     {
         [SerializeField] private Image iconSprite;
         [SerializeField] private TextMeshProUGUI iconText;
-
-        private bool hasPresentationState;
-        private bool hasContent;
-        private bool showAmount;
-        private bool visible = true;
-
-        public bool IsVisible => isActiveAndEnabled
-            && gameObject.activeInHierarchy
-            && visible
-            && (!hasPresentationState || hasContent);
+        [SerializeField] private bool visible;
 
         private void Start()
         {
@@ -46,10 +37,9 @@ namespace RO_Flex_UI.Components
             iconText.gameObject.SetActive(active);
         }
 
-        public void Assign(Sprite sprite, int amount)
+        public void Set(Sprite sprite, int amount)
         {
-            if (!EnsureReferences())
-                return;
+            if (!EnsureReferences()) return;
 
             if (sprite == null || amount <= 0)
             {
@@ -57,12 +47,8 @@ namespace RO_Flex_UI.Components
                 return;
             }
 
-            hasPresentationState = true;
-            hasContent = true;
-            showAmount = amount > 1;
             iconSprite.sprite = sprite;
-            iconText.text = amount.ToString(CultureInfo.InvariantCulture);
-            RefreshVisibility();
+            iconText.text = amount.ToString();
         }
 
         public void Clear()
@@ -70,34 +56,14 @@ namespace RO_Flex_UI.Components
             if (!EnsureReferences())
                 return;
 
-            hasPresentationState = true;
-            hasContent = false;
-            showAmount = false;
             iconSprite.sprite = null;
             iconText.text = string.Empty;
-            RefreshVisibility();
         }
 
         public void SetActive(bool value)
         {
             visible = value;
-            RefreshVisibility();
-        }
-
-        private void RefreshVisibility()
-        {
-            if (!EnsureReferences())
-                return;
-
-            if (!hasPresentationState)
-            {
-                iconSprite.gameObject.SetActive(visible);
-                iconText.gameObject.SetActive(visible);
-                return;
-            }
-
-            iconSprite.gameObject.SetActive(visible && hasContent);
-            iconText.gameObject.SetActive(visible && hasContent && showAmount);
+            this.gameObject.SetActive(value);
         }
 
         #region Getter & Setter
@@ -111,6 +77,7 @@ namespace RO_Flex_UI.Components
             get => iconText.text;
             set => iconText.text = value;
         }
+        public bool IsVisible => visible;
         #endregion
     }
 }

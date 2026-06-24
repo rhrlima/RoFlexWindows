@@ -31,7 +31,7 @@ namespace RO_Flex_UI.Components
             if (TargetButton == null)
             {
                 TargetButton = GetComponent<RoButton>();
-                TargetButton.onClick.RemoveAllListeners();
+                TargetButton.onClick.RemoveListener(HandleSingleClickFocus);
                 TargetButton.onClick.AddListener(HandleSingleClickFocus);
             }
         }

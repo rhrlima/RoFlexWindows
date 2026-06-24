@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,18 +7,16 @@ namespace RO_Flex_UI.Components
 {
     public class ItemLine : MonoBehaviour, IComponent
     {
-        [SerializeField] private bool isSockets = false;
-        // [SerializeField] private GameObject socketPanel;
-        [SerializeField] private Transform socketsContainer;
-        [SerializeField] private GameObject socketTemplate;
-        [SerializeField] private TextMeshProUGUI textObj;
-        [SerializeField] private Sprite openSocket;
-        [SerializeField] private Sprite closedSocket;
-        [SerializeField] private int totalSockets;
-        [SerializeField] private int openSockets;
-        [SerializeField] private string text;
+        [SerializeField] private List<IconAmount> sockets;
+        [SerializeField] private TMP_Text text;
+        public int numSockets => sockets == null ? 0 : sockets.Count;
 
         private void Awake()
+        {
+            if (!EnsureReferences()) return;
+        }
+
+        public bool EnsureReferences()
         {
             if (socketsContainer != null)
             {
@@ -36,11 +35,6 @@ namespace RO_Flex_UI.Components
             {
                 SetText(text);
             }
-        }
-
-        public bool EnsureReferences()
-        {
-            throw new System.NotImplementedException();
         }
 
         public void SetText(string text)

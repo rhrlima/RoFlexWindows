@@ -41,7 +41,7 @@ public class DropPanel : DropZone
         if (!CanDrop(payload) || !payload.TryGetSource<IconAmount>(out var source))
             return false;
 
-        iconAmount.Assign(payload.Sprite, payload.Amount);
+        iconAmount.Set(payload.Sprite, payload.Amount);
         source.Clear();
 
         var destinationDraggable = GetComponent<DraggableItem>();

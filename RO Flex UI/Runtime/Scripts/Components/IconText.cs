@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// TODO add drag-n-drop
 namespace RO_Flex_UI.Components
 {
     [RequireComponent(typeof(HorizontalOrVerticalLayoutGroup))]
@@ -50,19 +49,16 @@ namespace RO_Flex_UI.Components
         }
 
         #region Getter & Setter
-
         public string Text
         {
             get => iconText.text;
             set => iconText.text = value;
         }
-
         public Sprite Sprite
         {
             get => iconSprite.sprite;
             set => iconSprite.sprite = value;
         }
-
         #endregion
     }
 }
