@@ -26,30 +26,14 @@ namespace RO_Flex_UI.Components
         {
             if (!EnsureReferences()) return;
         }
+
         public bool EnsureReferences()
         {
-            if (Tools.IsValid(this, skillNameText)) return false; //TODO good?
-
-            if (skillLevelText == null)
-            {
-                Tools.LogMissingReference(this, nameof(skillLevelText));
-                return false;
-            }
-            if (skillCostText == null)
-            {
-                Tools.LogMissingReference(this, nameof(skillCostText));
-                return false;
-            }
-            if (skillLevelDown == null)
-            {
-                Tools.LogMissingReference(this, nameof(skillLevelDown));
-                return false;
-            }
-            if (skillLevelUp == null)
-            {
-                Tools.LogMissingReference(this, nameof(skillLevelUp));
-                return false;
-            }
+            if (!Tools.IsValid(this, skillNameText)) return false;
+            if (!Tools.IsValid(this, skillLevelText)) return false;
+            if (!Tools.IsValid(this, skillCostText)) return false;
+            if (!Tools.IsValid(this, skillLevelDown)) return false;
+            if (!Tools.IsValid(this, skillLevelUp)) return false;
             return true;
         }
 
