@@ -1,63 +1,52 @@
-﻿using System.Collections.Generic;
+﻿using RO_Flex_UI.Utils;
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 namespace RO_Flex_UI.Components
 {
     public class ItemLine : MonoBehaviour, IComponent
     {
-        [SerializeField] private List<IconAmount> sockets;
+        [Serializable]
+        public class Socket
+        {
+            public bool open;
+            public IconAmount slot;
+        }
+
+        [SerializeField] private IconAmount socketTemplate;
         [SerializeField] private TMP_Text text;
+        [SerializeField] private List<Socket> sockets = new();
         public int numSockets => sockets == null ? 0 : sockets.Count;
+
+        public string Text
+        {
+            get => text.text;
+            set => text.text = value;
+        }
 
         private void Awake()
         {
             if (!EnsureReferences()) return;
+            Setup();
         }
 
         public bool EnsureReferences()
         {
-            if (socketsContainer != null)
+            if (text == null)
             {
-                socketsContainer.gameObject.SetActive(false);
-                socketTemplate.SetActive(false);
+                Tools.LogMissingReference(this, nameof(text));
+                return false;
             }
-
-            if (textObj != null)
-                textObj.gameObject.SetActive(false);
-
-            if (isSockets)
-            {
-                SetNumSockets(totalSockets, openSockets);
-            }
-            else
-            {
-                SetText(text);
-            }
+            return true;
         }
 
-        public void SetText(string text)
+        private void Setup()
         {
-            textObj.text = text;
-            textObj.gameObject.SetActive(true);
-        }
-
-        public void SetNumSockets(int totalSockets, int openSockets = 0)
-        {
-            this.totalSockets = totalSockets;
-            this.openSockets = openSockets;
-
-            for (int i = 0; i < totalSockets; i++)
-            {
-                var socket = Instantiate(socketTemplate, socketsContainer);
-                socket.SetActive(isSockets);
-
-                if (i < openSockets)
-                    socket.GetComponent<Image>().sprite = openSocket;
-            }
-
-            socketsContainer.gameObject.SetActive(true);
+            socketTemplate.gameObject.SetActive(false);
         }
     }
 }

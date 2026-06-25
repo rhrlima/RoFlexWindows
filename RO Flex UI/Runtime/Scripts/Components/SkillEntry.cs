@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using RO_Flex_UI.Utils;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -21,12 +22,34 @@ namespace RO_Flex_UI.Components
         public SkillEvent onIncreaseLevel;
         public SkillEvent onDecreaseLevel;
 
-        private void Start()
+        private void Awake()
         {
             if (!EnsureReferences()) return;
         }
         public bool EnsureReferences()
         {
+            if (Tools.IsValid(this, skillNameText)) return false; //TODO good?
+
+            if (skillLevelText == null)
+            {
+                Tools.LogMissingReference(this, nameof(skillLevelText));
+                return false;
+            }
+            if (skillCostText == null)
+            {
+                Tools.LogMissingReference(this, nameof(skillCostText));
+                return false;
+            }
+            if (skillLevelDown == null)
+            {
+                Tools.LogMissingReference(this, nameof(skillLevelDown));
+                return false;
+            }
+            if (skillLevelUp == null)
+            {
+                Tools.LogMissingReference(this, nameof(skillLevelUp));
+                return false;
+            }
             return true;
         }
 

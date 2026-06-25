@@ -58,7 +58,6 @@ namespace RO_Flex_UI.Panels
                 item.transform.SetParent(contentTransform, false);
 
             item.gameObject.SetActive(true);
-            item.EnsureButtonCached();
             item.BindToPanel(this);
             return true;
         }

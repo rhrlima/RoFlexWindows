@@ -36,5 +36,15 @@ namespace RO_Flex_UI.Utils
         {
             Debug.LogError($"[{caller.name}] Missing reference: {referenceName}.", caller);
         }
+
+        public static bool IsValid(MonoBehaviour caller, object obj)
+        {
+            if (obj == null)
+            {
+                LogMissingReference(caller, nameof(obj));
+                return false;
+            }
+            return true;
+        }
     }
 }

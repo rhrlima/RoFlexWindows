@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 namespace RO_Flex_UI.Components
 {
     [RequireComponent(typeof(RoButton))]
-    public class ListItem : MonoBehaviour, IPointerEnterHandler, ISelectHandler, ISubmitHandler, IPointerClickHandler
+    public class ListItem : MonoBehaviour, IComponent, IPointerEnterHandler, ISelectHandler, ISubmitHandler, IPointerClickHandler
     {
         public class ListEvent : UnityEvent { }
 
@@ -16,24 +16,36 @@ namespace RO_Flex_UI.Components
 
         [Tooltip("Max time between clicks to register a double click (in Seconds).")]
         [SerializeField] private float doubleClickLimit = 0.25f;
-        private float lastClickTime;
+        private float lastClickTime = -1f;
 
         public RoButton TargetButton { get; private set; }
         protected ListPanel parentPanel;
 
         protected virtual void Awake()
         {
-            EnsureButtonCached();
+            OnEnable();
         }
 
-        public void EnsureButtonCached()
+        public bool EnsureReferences()
         {
-            if (TargetButton == null)
-            {
-                TargetButton = GetComponent<RoButton>();
-                TargetButton.onClick.RemoveListener(HandleSingleClickFocus);
-                TargetButton.onClick.AddListener(HandleSingleClickFocus);
-            }
+            TargetButton = GetComponent<RoButton>();
+            if (TargetButton == null) return false;
+
+            return true;
+        }
+
+        private void OnEnable()
+        {
+            if (!EnsureReferences()) return;
+
+            TargetButton.onClick.AddListener(HandleSingleClickFocus);
+        }
+
+        private void OnDisable()
+        {
+            if (!EnsureReferences()) return;
+
+            TargetButton.onClick.RemoveListener(HandleSingleClickFocus);
         }
 
         public virtual void BindToPanel(ListPanel panel)
@@ -64,18 +76,18 @@ namespace RO_Flex_UI.Components
         #region Submit
         public void OnPointerClick(PointerEventData eventData)
         {
+            if (eventData.button != PointerEventData.InputButton.Left) return;
+
             if (Time.time - lastClickTime < doubleClickLimit)
             {
                 ActivateItem();
             }
             lastClickTime = Time.time;
         }
-
         public void OnSubmit(BaseEventData eventData)
         {
             ActivateItem();
         }
-
         private void ActivateItem()
         {
             OnItemActivated?.Invoke();

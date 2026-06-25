@@ -41,7 +41,7 @@ namespace RO_Flex_UI.Components
             }
         }
 
-        [SerializeField] private float stepSize = 0.2f;
+        [SerializeField] private float stepPerc = 0.2f;
         [SerializeField] private RoButton decreaseButton;
         [SerializeField] private RoButton increaseButton;
         [SerializeField] private RectTransform dragArea;
@@ -53,9 +53,9 @@ namespace RO_Flex_UI.Components
 
         private bool dragStartedInDragArea;
 
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
 
             if (!EnsureReferences()) return;
         }
@@ -126,7 +126,8 @@ namespace RO_Flex_UI.Components
 
         private float GetStepSize()
         {
-            return maxValue * stepSize;
+            var stepSize = (maxValue - minValue) * stepPerc;
+            return wholeNumbers ? Mathf.RoundToInt(stepSize) : stepSize;
         }
 
         public override void OnPointerDown(PointerEventData eventData)

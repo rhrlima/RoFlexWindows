@@ -37,7 +37,7 @@ namespace RO_Flex_UI.Components
             iconText.gameObject.SetActive(active);
         }
 
-        public void Set(Sprite sprite, int amount)
+        public void Assign(Sprite sprite, int amount)
         {
             if (!EnsureReferences()) return;
 

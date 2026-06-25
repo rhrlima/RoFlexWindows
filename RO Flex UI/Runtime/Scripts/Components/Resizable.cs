@@ -15,7 +15,7 @@ namespace RO_Flex_UI.Components
         [SerializeField] private Vector2 maxSize = new(400, 400);
         [SerializeField] private bool snapToStep = false;
         [SerializeField] private bool ignoreAnchor = false;
-        [SerializeField] private Vector2 stepSize = new(50, 50);
+        [SerializeField, Min(1f)] private Vector2 stepSize = new(50, 50);
         [SerializeField] private Vector2 borderOffset = new(0, 0); // FIXME calculate this
 
         private Vector2 startMousePos;
