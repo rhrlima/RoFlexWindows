@@ -11,7 +11,6 @@ namespace RO_Flex_UI.Panels
         [SerializeField] private Sprite tabIdle;
 
         private bool isActive;
-        public TabGroup TabGroup { get; set; }
 
         protected override void Start()
         {
