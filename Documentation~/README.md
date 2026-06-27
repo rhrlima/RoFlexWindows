@@ -8,6 +8,8 @@
 ## Panels
 
 - [Flex Panel](Panels/flex-panel.md)
-- [Swap Panel](Panels/flex-panel.md)
+- [List Panel](Panels/list-panel.md)
+- [Swap Panel](Panels/swap-panel.md)
+- [Tabs Panel](Panels/tabs-panel.md)
 
 ## Windows

@@ -1,32 +1,39 @@
-﻿using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using RO_Flex_UI.Components;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace RO_Flex_UI.Panels
 {
     [RequireComponent(typeof(Image))]
-    public class TabButton : MonoBehaviour, IPointerClickHandler
+    public class TabButton : RoButton, IComponent
     {
-        public TabGroup TabGroup { get; set; }
-        private Image background;
-
         [SerializeField] private Sprite tabActive;
         [SerializeField] private Sprite tabIdle;
 
-        void Start()
+        private bool isActive;
+        public TabGroup TabGroup { get; set; }
+
+        protected override void Start()
         {
-            background = GetComponent<Image>();
+            base.Start();
+            if (!EnsureReferences()) return;
         }
 
-        public void OnPointerClick(PointerEventData eventData)
+        public override bool EnsureReferences()
         {
-            TabGroup.OnTabSelected(this);
-            TabGroup.OnTabEnter(this);
+            if (image == null)
+                image = GetComponent<Image>();
+
+            return image != null;
         }
 
-        public void SetActive(bool isActive)
+        public void SetActive(bool value)
         {
-            background.sprite = isActive ? tabActive : tabIdle;
+            isActive = value;
+
+            if (!EnsureReferences()) return;
+
+            image.sprite = isActive ? tabActive : tabIdle;
         }
     }
 }
