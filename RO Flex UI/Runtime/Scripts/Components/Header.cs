@@ -1,6 +1,7 @@
 ﻿using RO_Flex_UI.Utils;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RO_Flex_UI.Components
 {
@@ -10,6 +11,10 @@ namespace RO_Flex_UI.Components
         [SerializeField] private RoButton minButton;
         [SerializeField] private RoButton closeButton;
         [SerializeField] private TMP_Text title;
+
+        [SerializeField] private Button.ButtonClickedEvent onFunButtonClick;
+        [SerializeField] private Button.ButtonClickedEvent onMinButtonClick;
+        [SerializeField] private Button.ButtonClickedEvent onCloseButtonClick;
 
         private void Awake()
         {
@@ -24,5 +29,45 @@ namespace RO_Flex_UI.Components
             if (!Tools.IsValid(this, title)) return false;
             return true;
         }
+
+        private void OnEnable()
+        {
+            funButton.onClick.AddListener(HandleFunButtonClick);
+            minButton.onClick.AddListener(HandleMinButtonClick);
+            closeButton.onClick.AddListener(HandleCloseButtonClick);
+        }
+
+        private void OnDisable()
+        {
+            funButton.onClick.RemoveListener(HandleFunButtonClick);
+            minButton.onClick.RemoveListener(HandleMinButtonClick);
+            closeButton.onClick.RemoveListener(HandleCloseButtonClick);
+        }
+
+        private void HandleFunButtonClick()
+        {
+            onFunButtonClick?.Invoke();
+        }
+
+        private void HandleMinButtonClick()
+        {
+            onMinButtonClick?.Invoke();
+        }
+
+        private void HandleCloseButtonClick()
+        {
+            onCloseButtonClick?.Invoke();
+        }
+
+        #region Getter & Setter
+        public string Text
+        {
+            get => title.text;
+            set => title.text = value;
+        }
+        public Button.ButtonClickedEvent OnFunButtonClick => onFunButtonClick;
+        public Button.ButtonClickedEvent OnMinButtonClick => onMinButtonClick;
+        public Button.ButtonClickedEvent OnCloseButtonClick => onCloseButtonClick;
+        #endregion
     }
 }
