@@ -1,62 +1,106 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace RO_Flex_UI.Panels
 {
     public class TabsPanel : MonoBehaviour
     {
-        /* TODO
-            dont depend on Flex Panel
-            make orientation just adjust values on LayoutGroup
-            list of tabs/panels? or assign containers?
-        */
+        [Serializable]
+        public class TabEvent : UnityEvent<int> { }
 
-        // private class ContentTabPanel { }
-        // private class TabButton { }
+        [Serializable]
+        private class Entry
+        {
+            public bool active;
+            public TabButton tabButton;
+            public GameObject tabPanel;
+            [FormerlySerializedAs("onTabEnter")]
+            public TabEvent onPanelEnter = new();
+            [FormerlySerializedAs("onTabExit")]
+            public TabEvent onPanelExit = new();
+        }
 
-        // [SerializeField] private GameObject buttonGroup;
-        // [SerializeField] private GameObject panelGroup;
-        // protected List<TabButton> buttons;
-        // protected List<TabPanel> panels;
+        [SerializeField] private List<Entry> entries = new();
+        [SerializeField] private int defaultTabIndex;
+        [SerializeField] private bool selectDefaultOnStart = true;
 
-        // public void Start()
-        // {
-        //     buttons = new List<TabButton>(
-        //         buttonGroup.GetComponentsInChildren<TabButton>(true)
-        //     );
-        //     panels = new List<TabPanel>(
-        //         panelGroup.GetComponentsInChildren<TabPanel>(true)
-        //     );
+        private int currentIndex = -1;
+        public int CurrentIndex => currentIndex;
 
-        //     foreach (TabButton button in buttons)
-        //     {
-        //         button.TabGroup = this;
-        //     }
-        // }
+        private void Start()
+        {
+            RegisterTabButtons();
+            InitializeTabs();
+        }
 
-        // public virtual void OnTabEnter(TabButton button)
-        // {
-        //     ResetTabs();
-        //     button.SetActive(true);
-        //     panels[button.transform.GetSiblingIndex()].gameObject.SetActive(true);
-        // }
+        private void RegisterTabButtons()
+        {
+            if (entries == null)
+                return;
 
-        // public virtual void OnTabExit(TabButton button)
-        // {
+            for (var i = 0; i < entries.Count; i++)
+            {
+                var index = i;
+                var entry = entries[index];
 
-        // }
+                if (entry?.tabButton == null)
+                    continue;
 
-        // public virtual void OnTabSelected(TabButton button)
-        // {
+                entry.tabButton.onClick.AddListener(() => SetActiveTab(index));
+            }
+        }
 
-        // }
+        private void InitializeTabs()
+        {
+            currentIndex = -1;
 
-        // public void ResetTabs()
-        // {
-        //     for (int i = 0; i < buttons.Count; i++)
-        //     {
-        //         buttons[i].SetActive(false);
-        //         panels[i].gameObject.SetActive(false);
-        //     }
-        // }
+            if (entries == null)
+                return;
+
+            foreach (var entry in entries)
+                SetEntryActive(entry, false);
+
+            if (selectDefaultOnStart)
+                SetActiveTab(defaultTabIndex);
+        }
+
+        public void SetActiveTab(int index)
+        {
+            if (entries == null)
+                return;
+
+            if (index < 0 || index >= entries.Count || index == currentIndex)
+                return;
+
+            if (currentIndex >= 0 && currentIndex < entries.Count)
+            {
+                var currentEntry = entries[currentIndex];
+                currentEntry?.onPanelExit?.Invoke(currentIndex);
+                SetEntryActive(currentEntry, false);
+            }
+
+            currentIndex = index;
+
+            var nextEntry = entries[currentIndex];
+            SetEntryActive(nextEntry, true);
+            nextEntry?.onPanelEnter?.Invoke(currentIndex);
+        }
+
+        private static void SetEntryActive(Entry entry, bool active)
+        {
+            if (entry == null)
+                return;
+
+            entry.active = active;
+
+            if (entry.tabPanel != null)
+                entry.tabPanel.SetActive(active);
+
+            if (entry.tabButton != null)
+                entry.tabButton.SetActive(active);
+        }
     }
 }
