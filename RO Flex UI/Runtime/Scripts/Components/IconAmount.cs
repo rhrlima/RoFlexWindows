@@ -32,9 +32,10 @@ namespace RO_Flex_UI.Components
 
             return true;
         }
-        public void ToggleText(bool active)
+
+        public void ToggleText(bool value)
         {
-            iconText.gameObject.SetActive(active);
+            iconText.gameObject.SetActive(value);
         }
 
         public void Assign(Sprite sprite, int amount)
@@ -63,7 +64,9 @@ namespace RO_Flex_UI.Components
         public void SetActive(bool value)
         {
             visible = value;
-            this.gameObject.SetActive(value);
+            gameObject.SetActive(value);
+            iconSprite.gameObject.SetActive(value);
+            ToggleText(value);
         }
 
         #region Getter & Setter

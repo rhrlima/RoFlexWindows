@@ -5,7 +5,7 @@ using UnityEditor.UI;
 namespace RO_Flex_UI.Editor
 {
     [CustomEditor(typeof(RoSlider))]
-    public class RoSlider2Editor : SliderEditor
+    public class RoSliderEditor : SliderEditor
     {
         private SerializedProperty stepSize;
         private SerializedProperty onDecreaseClick;
@@ -16,7 +16,7 @@ namespace RO_Flex_UI.Editor
         {
             base.OnEnable();
 
-            stepSize = serializedObject.FindProperty("stepSize");
+            stepSize = serializedObject.FindProperty("stepPerc");
             onDecreaseClick = serializedObject.FindProperty("onDecreaseClick");
             onIncreaseClick = serializedObject.FindProperty("onIncreaseClick");
             onPointerUp = serializedObject.FindProperty("onPointerUp");

@@ -26,7 +26,7 @@ namespace RO_Flex_UI.Panels
         [SerializeField] private List<int> groups;
         [SerializeField] public int activeGroup = 0;
         [SerializeField] private int selectedIndex = 0;
-        [SerializeField] private UnityEvent onSwapEvent;
+        public Action onSwapEvent;
 
         private void Start()
         {

@@ -8,8 +8,10 @@ namespace RO_Flex_UI.Components
     [RequireComponent(typeof(HorizontalOrVerticalLayoutGroup))]
     public class IconText : MonoBehaviour, IComponent
     {
-        [SerializeField] private TextMeshProUGUI iconText;
         [SerializeField] private Image iconSprite;
+        [SerializeField] private TextMeshProUGUI iconText;
+        [SerializeField] private TextMeshProUGUI iconAmount;
+        [SerializeField] private bool hideAmount = false;
         private HorizontalOrVerticalLayoutGroup layoutGroup;
 
         private void Start()
@@ -53,6 +55,11 @@ namespace RO_Flex_UI.Components
         {
             get => iconText.text;
             set => iconText.text = value;
+        }
+        public string Amount
+        {
+            get => iconAmount.text;
+            set => iconAmount.text = value;
         }
         public Sprite Sprite
         {

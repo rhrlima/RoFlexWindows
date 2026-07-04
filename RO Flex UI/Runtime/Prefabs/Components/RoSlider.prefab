@@ -705,7 +705,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -737,7 +737,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  stepSize: 0.2
+  stepPerc: 0.2
   decreaseButton: {fileID: 7508774385649887810}
   increaseButton: {fileID: 1732421767444316232}
   dragArea: {fileID: 4872739122320356577}
