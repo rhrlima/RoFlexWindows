@@ -1,86 +1,76 @@
 ﻿using RO_Flex_UI.Utils;
-using System.Globalization;
+using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace RO_Flex_UI.Components
 {
+    [ExecuteAlways]
     public class IconAmount : MonoBehaviour, IComponent
     {
-        [SerializeField] private Image iconSprite;
-        [SerializeField] private TextMeshProUGUI iconText;
-        [SerializeField] private bool visible;
+        [SerializeField] protected Image iconSprite;
+        [SerializeField] protected TextMeshProUGUI iconAmount;
+        [SerializeField] protected bool disableIcon = false;
+        [SerializeField] protected bool disableAmount = false;
+        [SerializeField] protected bool visible = true;
 
-        private void Start()
+        protected virtual void Start()
         {
             if (!EnsureReferences()) return;
         }
 
-        public bool EnsureReferences()
+        public virtual bool EnsureReferences()
         {
-            if (iconSprite == null)
-            {
-                Tools.LogMissingReference(this, nameof(iconSprite));
-                return false;
-            }
-            if (iconText == null)
-            {
-                Tools.LogMissingReference(this, nameof(iconText));
-                return false;
-            }
-
+            if (!Tools.IsValid(this, iconSprite)) return false;
+            if (!Tools.IsValid(this, iconAmount)) return false;
             return true;
         }
 
-        public void ToggleText(bool value)
+        public void ToggleAmount(bool active)
         {
-            iconText.gameObject.SetActive(value);
+            // disableAmount = !active;
+            iconAmount.gameObject.SetActive(active);
         }
 
-        public void Assign(Sprite sprite, int amount)
+        public void ToggleIcon(bool active)
+        {
+            // disableIcon = !active;
+            iconSprite.gameObject.SetActive(active);
+        }
+
+        public virtual void SetActive(bool value)
+        {
+            ToggleIcon(value);
+            ToggleAmount(value);
+        }
+
+        public virtual void Assign(Sprite sprite, string amount)
         {
             if (!EnsureReferences()) return;
 
-            if (sprite == null || amount <= 0)
-            {
-                Clear();
-                return;
-            }
-
             iconSprite.sprite = sprite;
-            iconText.text = amount.ToString();
+            iconAmount.text = amount.ToString();
         }
 
-        public void Clear()
+        public virtual void Clear()
         {
-            if (!EnsureReferences())
-                return;
+            if (!EnsureReferences()) return;
 
             iconSprite.sprite = null;
-            iconText.text = string.Empty;
+            iconAmount.text = string.Empty;
         }
 
-        public void SetActive(bool value)
+        protected virtual void OnValidate()
         {
-            visible = value;
-            gameObject.SetActive(value);
-            iconSprite.gameObject.SetActive(value);
-            ToggleText(value);
+            ToggleIcon(visible && !disableIcon);
+            ToggleAmount(visible && !disableAmount);
         }
 
         #region Getter & Setter
-        public Sprite Sprite
-        {
-            get => iconSprite.sprite;
-            set => iconSprite.sprite = value;
-        }
-        public string Text
-        {
-            get => iconText.text;
-            set => iconText.text = value;
-        }
-        public bool IsVisible => visible;
+        public Sprite Sprite => iconSprite.sprite;
+        public string Amount => iconAmount.text;
+        public bool IsVisible => visible && (!disableIcon || !disableAmount);
         #endregion
     }
 }

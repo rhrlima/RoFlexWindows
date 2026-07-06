@@ -41,7 +41,7 @@ namespace RO_Flex_UI.Utils
         {
             if (obj == null)
             {
-                LogMissingReference(caller, nameof(obj));
+                LogMissingReference(caller, obj.GetType().Name);
                 return false;
             }
             return true;

@@ -14,7 +14,7 @@ namespace RO_Flex_UI.Tests
         {
             var data = new object();
             var source = "inventory";
-            var payload = new DragPayload(null, new Vector2(2f, 3f), data, source, null, 4);
+            var payload = new DragPayload(null, new Vector2(2f, 3f), data, source, null, "4");
 
             Assert.IsTrue(payload.TryGetData<object>(out var typedData));
             Assert.AreSame(data, typedData);
@@ -140,15 +140,15 @@ namespace RO_Flex_UI.Tests
             var texture = new Texture2D(1, 1);
             var sprite = Sprite.Create(texture, new Rect(0, 0, 1, 1), Vector2.zero);
 
-            iconAmount.Assign(sprite, 3);
+            iconAmount.Assign(sprite, "3");
 
             Assert.IsTrue(iconAmount.IsVisible);
             Assert.AreSame(sprite, iconAmount.Sprite);
-            Assert.AreEqual("3", iconAmount.Text);
+            Assert.AreEqual("3", iconAmount.Amount);
             Assert.IsTrue(image.gameObject.activeSelf);
             Assert.IsTrue(amountObject.activeSelf);
 
-            iconAmount.Assign(sprite, 1);
+            iconAmount.Assign(sprite, "1");
             Assert.IsTrue(image.gameObject.activeSelf);
             Assert.IsFalse(amountObject.activeSelf);
 
@@ -157,7 +157,7 @@ namespace RO_Flex_UI.Tests
 
             Assert.IsNull(iconAmount.Sprite);
             Assert.IsFalse(iconAmount.IsVisible);
-            Assert.AreEqual(string.Empty, iconAmount.Text);
+            Assert.AreEqual(string.Empty, iconAmount.Amount);
             Assert.IsFalse(image.gameObject.activeSelf);
             Assert.IsFalse(amountObject.activeSelf);
 
@@ -175,7 +175,7 @@ namespace RO_Flex_UI.Tests
             var serializedItem = new SerializedObject(item);
             serializedItem.FindProperty("target").objectReferenceValue = proxy;
             serializedItem.ApplyModifiedPropertiesWithoutUndo();
-            item.Configure("potion", source, 3);
+            item.Configure("potion", source);
             Assert.IsTrue(item.EnsureReferences());
             proxy.SetActive(false);
 

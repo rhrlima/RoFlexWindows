@@ -12,7 +12,7 @@ namespace RO_Flex_UI.Components
         public object Data { get; }
         public object Source { get; }
         public Sprite Sprite { get; }
-        public int Amount { get; }
+        public string Amount { get; }
 
         public DragPayload(
             DraggableItem item,
@@ -20,7 +20,7 @@ namespace RO_Flex_UI.Components
             object data,
             object source,
             Sprite sprite,
-            int amount = 0)
+            string amount = "0")
         {
             Item = item;
             OriginPosition = originPosition;
@@ -83,7 +83,6 @@ namespace RO_Flex_UI.Components
         private CanvasGroup targetCanvasGroup;
         private object data;
         private object sourceContext;
-        private int amount;
         private bool dragging;
         private bool dropResolved;
         private DragPayload currentPayload;
@@ -112,11 +111,10 @@ namespace RO_Flex_UI.Components
             }
         }
 
-        public void Configure(object itemData, object itemSource = null, int itemAmount = 0)
+        public void Configure(object itemData, object itemSource = null)
         {
             data = itemData;
             sourceContext = itemSource;
-            amount = itemAmount;
         }
 
         public bool EnsureReferences()
@@ -168,15 +166,9 @@ namespace RO_Flex_UI.Components
                 data,
                 sourceContext ?? source,
                 source.Sprite,
-                amount);
+                source.Amount);
 
-            if (amount > 0)
-                target.Assign(source.Sprite, amount);
-            else
-            {
-                target.Sprite = source.Sprite;
-                target.Text = source.Text;
-            }
+            target.Assign(source.Sprite, source.Amount);
             targetRect.anchoredPosition = originPosition;
             target.SetActive(true);
             source.SetActive(false);

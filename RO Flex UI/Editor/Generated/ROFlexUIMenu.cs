@@ -7,6 +7,12 @@ namespace RoFlexUI.Editor
 {
     public static class ROFlexUI_PrefabsMenu
     {
+        [MenuItem("GameObject/ROFlexUI/Components/Draggable Proxy", false, 10)]
+        public static void Create_Components_DraggableProxy(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Components/Draggable Proxy.prefab", command.context as GameObject);
+        }
+
         [MenuItem("GameObject/ROFlexUI/Components/Draggable", false, 10)]
         public static void Create_Components_Draggable(MenuCommand command)
         {
@@ -103,6 +109,12 @@ namespace RoFlexUI.Editor
             CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Components/Toggle.prefab", command.context as GameObject);
         }
 
+        [MenuItem("GameObject/ROFlexUI/Components/Tooltip Panel", false, 10)]
+        public static void Create_Components_TooltipPanel(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Components/Tooltip Panel.prefab", command.context as GameObject);
+        }
+
         [MenuItem("GameObject/ROFlexUI/Panels/Fill Panel", false, 10)]
         public static void Create_Panels_FillPanel(MenuCommand command)
         {
@@ -145,16 +157,16 @@ namespace RoFlexUI.Editor
             CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Panels/Swap Panel.prefab", command.context as GameObject);
         }
 
-        [MenuItem("GameObject/ROFlexUI/Panels/Tab Panel Horizontal", false, 10)]
-        public static void Create_Panels_TabPanelHorizontal(MenuCommand command)
+        [MenuItem("GameObject/ROFlexUI/Panels/Tabs Panel H", false, 10)]
+        public static void Create_Panels_TabsPanelH(MenuCommand command)
         {
-            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Panels/Tab Panel Horizontal.prefab", command.context as GameObject);
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Panels/Tabs Panel H.prefab", command.context as GameObject);
         }
 
-        [MenuItem("GameObject/ROFlexUI/Panels/Tab Panel Vertical", false, 10)]
-        public static void Create_Panels_TabPanelVertical(MenuCommand command)
+        [MenuItem("GameObject/ROFlexUI/Panels/Tabs Panel V", false, 10)]
+        public static void Create_Panels_TabsPanelV(MenuCommand command)
         {
-            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Panels/Tab Panel Vertical.prefab", command.context as GameObject);
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Panels/Tabs Panel V.prefab", command.context as GameObject);
         }
 
         [MenuItem("GameObject/ROFlexUI/Utils/Player Simulator", false, 10)]

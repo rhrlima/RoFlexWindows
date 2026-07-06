@@ -15,7 +15,7 @@ namespace RO_Flex_UI.Components
             public IconAmount slot;
         }
 
-        [SerializeField] private IconAmount socketTemplate;
+        [SerializeField] private GameObject socketTemplate;
         [SerializeField] private TMP_Text text;
         [SerializeField] private List<Socket> sockets = new();
         public int numSockets => sockets == null ? 0 : sockets.Count;

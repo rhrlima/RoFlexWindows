@@ -6,41 +6,25 @@ using UnityEngine.UI;
 namespace RO_Flex_UI.Components
 {
     [RequireComponent(typeof(HorizontalOrVerticalLayoutGroup))]
-    public class IconText : MonoBehaviour, IComponent
+    public class IconText : IconAmount
     {
-        [SerializeField] private Image iconSprite;
         [SerializeField] private TextMeshProUGUI iconText;
-        [SerializeField] private TextMeshProUGUI iconAmount;
-        [SerializeField] private bool hideAmount = false;
+        [SerializeField] private bool disableText = false;
+        [SerializeField] private bool flipElements = false;
         private HorizontalOrVerticalLayoutGroup layoutGroup;
 
-        private void Start()
+        protected override void Start()
         {
-            if (!EnsureReferences()) return;
+            base.Start();
         }
 
-        public bool EnsureReferences()
+        public override bool EnsureReferences()
         {
-            if (iconSprite == null)
-            {
-                Tools.LogMissingReference(this, nameof(iconSprite));
-                return false;
-            }
-
-            if (iconText == null)
-            {
-                Tools.LogMissingReference(this, nameof(iconText));
-                return false;
-            }
-
             layoutGroup = GetComponent<HorizontalOrVerticalLayoutGroup>();
-            if (layoutGroup == null)
-            {
-                Tools.LogMissingReference(this, nameof(layoutGroup));
-                return false;
-            }
 
-            return true;
+            if (!Tools.IsValid(this, iconText)) return false;
+            if (!Tools.IsValid(this, layoutGroup)) return false;
+            return base.EnsureReferences(); ;
         }
 
         public void FlipElements(bool flip)
@@ -50,22 +34,45 @@ namespace RO_Flex_UI.Components
             layoutGroup.reverseArrangement = flip;
         }
 
+        public void ToggleText(bool active)
+        {
+            disableText = !active;
+            iconText.gameObject.SetActive(active);
+        }
+
+        public override void SetActive(bool value)
+        {
+            base.SetActive(value);
+            ToggleText(value);
+        }
+
+        public void Assign(Sprite sprite, string amount, string text)
+        {
+            base.Assign(sprite, amount);
+
+            if (!EnsureReferences()) return;
+
+            iconText.text = text;
+        }
+
+        public override void Clear()
+        {
+            base.Clear();
+            iconText.text = string.Empty;
+        }
+
+        protected override void OnValidate()
+        {
+            if (!EnsureReferences()) return;
+
+            base.OnValidate();
+            ToggleText(visible && !disableText);
+            layoutGroup.reverseArrangement = flipElements;
+        }
+
         #region Getter & Setter
-        public string Text
-        {
-            get => iconText.text;
-            set => iconText.text = value;
-        }
-        public string Amount
-        {
-            get => iconAmount.text;
-            set => iconAmount.text = value;
-        }
-        public Sprite Sprite
-        {
-            get => iconSprite.sprite;
-            set => iconSprite.sprite = value;
-        }
+        public string Text => iconText.text;
+        public new bool IsVisible => visible && (!disableIcon || !disableAmount || !disableText);
         #endregion
     }
 }
