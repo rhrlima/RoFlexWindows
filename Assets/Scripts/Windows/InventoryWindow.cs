@@ -24,7 +24,7 @@ namespace RO_Flex_UI.Windows
             var totalItems = 0;
             foreach (var panel in panels)
             {
-                totalItems += panel.NumItems;
+                // totalItems += panel.NumItems;
             }
 
             itemsTotalText.SetText("{0}/100", totalItems);

@@ -50,7 +50,7 @@ public class ListExample : MonoBehaviour
         listGears.AddItems(items, (item, data) =>
         {
             var gearSlot = item.GetComponent<IconText>();
-            gearSlot.Text = data;
+            gearSlot.Assign(null, "0", data);
         });
     }
 }

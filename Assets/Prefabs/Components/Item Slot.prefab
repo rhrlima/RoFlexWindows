@@ -346,7 +346,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconSprite: {fileID: 9095816663702642915}
-  iconText: {fileID: 1900134609242849460}
+  iconAmount: {fileID: 1900134609242849460}
+  disableIcon: 0
+  disableAmount: 0
+  visible: 1
 --- !u!114 &5339117058427475350
 MonoBehaviour:
   m_ObjectHideFlags: 0

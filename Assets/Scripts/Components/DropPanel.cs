@@ -22,7 +22,7 @@ public class DropPanel : DropZone
 
         var draggableItem = GetComponent<DraggableItem>();
         if (draggableItem != null)
-            draggableItem.Configure(iconAmount, iconAmount, ParseAmount(iconAmount.Text));
+            draggableItem.Configure(iconAmount, iconAmount);
     }
 
     public override bool CanDrop(DragPayload payload)
@@ -31,7 +31,7 @@ public class DropPanel : DropZone
             && payload.Item != null
             && payload.Item.gameObject != gameObject
             && payload.Sprite != null
-            && payload.Amount > 0
+            && payload.Amount != null
             && iconAmount != null
             && iconAmount.Sprite == null;
     }
@@ -46,9 +46,9 @@ public class DropPanel : DropZone
 
         var destinationDraggable = GetComponent<DraggableItem>();
         if (destinationDraggable != null)
-            destinationDraggable.Configure(payload.Data, iconAmount, payload.Amount);
+            destinationDraggable.Configure(payload.Data, iconAmount);
 
-        payload.Item.Configure(null, source, 0);
+        payload.Item.Configure(null, source);
         return true;
     }
 

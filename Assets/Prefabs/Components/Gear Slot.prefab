@@ -414,9 +414,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3394a18f7ea2bb4895608632580474a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemName: {fileID: 3754932388976176949}
-  _itemIcon: {fileID: 51196049174532573}
-  flipPanel: 1
+  iconSprite: {fileID: 51196049174532573}
+  iconAmount: {fileID: 3754932388976176949}
+  disableIcon: 0
+  disableAmount: 0
+  visible: 1
+  iconText: {fileID: 3754932388976176949}
+  disableText: 0
+  flipElements: 0
 --- !u!222 &4525805943453343411
 CanvasRenderer:
   m_ObjectHideFlags: 0
