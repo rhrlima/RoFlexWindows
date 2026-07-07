@@ -1,8 +1,8 @@
-﻿using RO_Flex_UI.Panels;
+﻿using RO_Flex_UI.Components;
+using RO_Flex_UI.Panels;
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace RO_Flex_UI.Windows
 {
@@ -11,7 +11,7 @@ namespace RO_Flex_UI.Windows
         public delegate void InputCallback(string inputValue);
         private InputCallback currentCallback;
         [SerializeField] private TMP_InputField inputField;
-        [SerializeField] private Button confirmBtn;
+        [SerializeField] private RoButton confirmBtn;
 
         protected override void Awake()
         {

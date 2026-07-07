@@ -109,23 +109,20 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
-  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -154,7 +151,6 @@ GameObject:
   - component: {fileID: 5423158918437417930}
   - component: {fileID: 1935157845607069756}
   - component: {fileID: 2293623589481647315}
-  - component: {fileID: 7018088243214090202}
   m_Layer: 5
   m_Name: Panel2
   m_TagString: Untagged
@@ -219,18 +215,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7018088243214090202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2906492730170386103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25c943f932af17d47a57883bc1c95ad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4695124564917816767
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,23 +392,20 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
-  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -453,7 +434,6 @@ GameObject:
   - component: {fileID: 6505413072190035876}
   - component: {fileID: 5788925022905250293}
   - component: {fileID: 4752874201759799946}
-  - component: {fileID: 8724253224971955291}
   m_Layer: 5
   m_Name: Panel1
   m_TagString: Untagged
@@ -518,18 +498,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8724253224971955291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4726698569102841619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25c943f932af17d47a57883bc1c95ad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5667532735618933774
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,7 +604,6 @@ GameObject:
   - component: {fileID: 2641453826856226594}
   - component: {fileID: 4630858115044675453}
   - component: {fileID: 9121287279198136091}
-  - component: {fileID: 5343245977332869430}
   m_Layer: 5
   m_Name: Panel3
   m_TagString: Untagged
@@ -701,18 +668,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5343245977332869430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6360513891957931616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25c943f932af17d47a57883bc1c95ad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6523142711413556926
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,6 +778,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8fccea024fb38f43b92c9402651a2e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ROFlexUI::RO_Flex_UI.Panels.TabButton
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 4904205020608899609}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
   tabActive: {fileID: 1712444593, guid: 552acdb6bec35e64ab8e87384d05c396, type: 3}
   tabIdle: {fileID: -77387923, guid: 552acdb6bec35e64ab8e87384d05c396, type: 3}
 --- !u!1 &6864526890897163878
@@ -935,6 +922,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8fccea024fb38f43b92c9402651a2e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ROFlexUI::RO_Flex_UI.Panels.TabButton
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 6355935954363429057}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
   tabActive: {fileID: 1712444593, guid: 552acdb6bec35e64ab8e87384d05c396, type: 3}
   tabIdle: {fileID: -77387923, guid: 552acdb6bec35e64ab8e87384d05c396, type: 3}
 --- !u!1 &6878647929057312448
@@ -947,8 +966,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2164879099866706024}
   - component: {fileID: 3518013392348389294}
-  - component: {fileID: 4801460221146772781}
   - component: {fileID: 7429291329209517368}
+  - component: {fileID: 7763096387302912740}
   m_Layer: 5
   m_Name: Tab Panel Vertical
   m_TagString: Untagged
@@ -985,20 +1004,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6878647929057312448}
   m_CullTransparentMesh: 1
---- !u!114 &4801460221146772781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6878647929057312448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ab1c3734f2b3394185e673508b8227f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: ROFlexUI::RO_Flex_UI.Panels.TabGroup
-  buttonGroup: {fileID: 5667532735618933774}
-  panelGroup: {fileID: 4695124564917816767}
 --- !u!114 &7429291329209517368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1025,6 +1030,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 1
+--- !u!114 &7763096387302912740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6878647929057312448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1df21974d9f9154fbff09b162b500cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entries: []
+  defaultTabIndex: 0
+  selectDefaultOnStart: 1
 --- !u!1 &7499072751718865441
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,23 +1154,20 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
-  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -1278,5 +1295,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8fccea024fb38f43b92c9402651a2e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ROFlexUI::RO_Flex_UI.Panels.TabButton
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 3763358233208813013}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
   tabActive: {fileID: 1712444593, guid: 552acdb6bec35e64ab8e87384d05c396, type: 3}
   tabIdle: {fileID: -77387923, guid: 552acdb6bec35e64ab8e87384d05c396, type: 3}

@@ -7,6 +7,12 @@ namespace RoFlexUI.Editor
 {
     public static class ROFlexUI_PrefabsMenu
     {
+        [MenuItem("GameObject/ROFlexUI/Components/Draggable Item", false, 10)]
+        public static void Create_Components_DraggableItem(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Components/Draggable Item.prefab", command.context as GameObject);
+        }
+
         [MenuItem("GameObject/ROFlexUI/Components/Draggable Proxy", false, 10)]
         public static void Create_Components_DraggableProxy(MenuCommand command)
         {
@@ -109,10 +115,16 @@ namespace RoFlexUI.Editor
             CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Components/Toggle.prefab", command.context as GameObject);
         }
 
-        [MenuItem("GameObject/ROFlexUI/Components/Tooltip Panel", false, 10)]
-        public static void Create_Components_TooltipPanel(MenuCommand command)
+        [MenuItem("GameObject/ROFlexUI/Components/Toolip Trigger", false, 10)]
+        public static void Create_Components_ToolipTrigger(MenuCommand command)
         {
-            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Components/Tooltip Panel.prefab", command.context as GameObject);
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Components/Toolip Trigger.prefab", command.context as GameObject);
+        }
+
+        [MenuItem("GameObject/ROFlexUI/Components/Tooltip Proxy", false, 10)]
+        public static void Create_Components_TooltipProxy(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Components/Tooltip Proxy.prefab", command.context as GameObject);
         }
 
         [MenuItem("GameObject/ROFlexUI/Panels/Fill Panel", false, 10)]

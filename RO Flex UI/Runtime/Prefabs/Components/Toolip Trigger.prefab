@@ -197,6 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipEnabled: 1
   tooltipComponent: {fileID: 0}
+  tooltipText: Tooltip Text
 --- !u!114 &8971407325692543124
 MonoBehaviour:
   m_ObjectHideFlags: 0

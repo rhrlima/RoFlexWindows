@@ -10,7 +10,7 @@ namespace RO_Flex_UI.Panels
         [SerializeField] private bool resetToCenter;
         [SerializeField] private bool isDraggable;
         [SerializeField] private bool isResizable;
-        [SerializeField] private bool keepWindowInScreen = true;
+        [SerializeField] private bool keepWindowInScreen = false;
         [SerializeField] private bool returnToOrigin;
 
         private Draggable draggableComponent;
@@ -94,12 +94,6 @@ namespace RO_Flex_UI.Panels
 
         public virtual void ShowWindow()
         {
-            // TODO manager to close using ESC
-            // var mgr = WindowManager.GetInstance();
-            // if (!mgr.Contains(this))
-            //     mgr.PushWindow(this);
-
-            // bring it forward
             transform.SetAsLastSibling();
 
             if (!isActiveAndEnabled)
@@ -110,7 +104,6 @@ namespace RO_Flex_UI.Panels
         {
             gameObject.SetActive(false);
         }
-
 
         public void CenterWindow()
         {

@@ -46,13 +46,16 @@ namespace RO_Flex_UI.Components
             ToggleText(value);
         }
 
-        public void Assign(Sprite sprite, string amount, string text)
+        public void Assign(Sprite sprite, string text, string amount = "")
         {
             base.Assign(sprite, amount);
 
             if (!EnsureReferences()) return;
 
             iconText.text = text;
+
+            if (string.IsNullOrEmpty(amount))
+                disableAmount = true;
         }
 
         public override void Clear()
