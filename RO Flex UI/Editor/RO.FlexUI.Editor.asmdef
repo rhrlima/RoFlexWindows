@@ -3,7 +3,8 @@
     "rootNamespace": "RO_Flex_UI",
     "references": [
         "GUID:f298a362c5427a14abacc5f8333142e5",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:6546d7765b4165b40850b3667f981c26"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
