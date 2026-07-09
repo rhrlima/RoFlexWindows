@@ -21,13 +21,17 @@ namespace RO_Flex_UI.Editor
         private static readonly IReadOnlyList<CopyEntry> Copies =
             new List<CopyEntry>
             {
+                // new(
+                //     source: "Assets/Samples/Demos",
+                //     destination: SamplesOutput + "/Demos"
+                // ),
                 new(
-                    source: "Assets/Samples/Demos",
-                    destination: SamplesOutput + "/Demos"
+                    source: "Assets/Fonts",
+                    destination: SamplesOutput + "/Fonts"
                 ),
                 new(
-                    source: "Assets/Samples/Fonts",
-                    destination: SamplesOutput + "/Fonts"
+                    source: "Assets/Prefabs/Windows",
+                    destination: SamplesOutput + "/Demos/Windows"
                 ),
 
                 // Add more samples later:

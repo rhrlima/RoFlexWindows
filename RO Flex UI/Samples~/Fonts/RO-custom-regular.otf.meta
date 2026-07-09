@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3ecbc352c7bb0b0439f6d5ceaddd32d5
+guid: 6c61f5005fda543d2bea5e2b8b1fbdec
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
   fontSize: 16
-  forceTextureCase: 3
+  forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1

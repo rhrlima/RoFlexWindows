@@ -19,9 +19,9 @@
             "path": "Samples~/Fonts"
         },
         {
-            "displayName": "Classic UI Demo",
+            "displayName": "Windows Samples",
             "description": "Example Windows using classic UI style.",
-            "path": "Samples~/Demos/Classic UI"
+            "path": "Samples~/Demos/Windows"
         }
     ],
     "hideInEditor": false
