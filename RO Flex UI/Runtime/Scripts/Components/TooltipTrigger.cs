@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace RO_Flex_UI.Components
@@ -8,7 +9,13 @@ namespace RO_Flex_UI.Components
         [SerializeField] private bool tooltipEnabled = true;
         [SerializeField] private TooltipBox tooltipComponent;
         [SerializeField] private string tooltipText;
+        public bool Enabled
+        {
+            get => tooltipEnabled;
+            set => tooltipEnabled = value;
+        }
         public string TooltipText => tooltipText;
+        public Action OnTrigger;
 
         private void OnDisable()
         {
@@ -27,6 +34,8 @@ namespace RO_Flex_UI.Components
                 tooltipComponent?.HideTooltip();
                 return;
             }
+
+            OnTrigger?.Invoke();
 
             tooltipComponent.SetText(tooltipText);
             tooltipComponent.ShowTooltip();

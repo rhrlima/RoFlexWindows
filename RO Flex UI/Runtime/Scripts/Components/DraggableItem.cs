@@ -148,6 +148,8 @@ namespace RO_Flex_UI.Components
             if (!EnsureReferences())
                 return;
 
+            if (!source.IsVisible) return;
+
             eventData.useDragThreshold = false;
             dragging = true;
             dropResolved = false;

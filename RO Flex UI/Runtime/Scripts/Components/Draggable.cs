@@ -4,3 +4,5 @@
     {
     }
 }
+
+//TODO Dragged window gets transparent

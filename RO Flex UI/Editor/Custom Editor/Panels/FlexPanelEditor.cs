@@ -50,7 +50,6 @@ namespace RO_Flex_UI.Editor
                 EditorUtility.SetDirty(panelTarget);
             }
 
-            EditorGUILayout.PropertyField(spacing);
             DrawEntries();
 
             serializedObject.ApplyModifiedProperties();

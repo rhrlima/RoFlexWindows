@@ -43,6 +43,10 @@ namespace RO_Flex_UI.Components
         {
             ToggleIcon(value);
             ToggleAmount(value);
+
+            disableAmount = !value;
+            disableIcon = !value;
+            visible = value;
         }
 
         public virtual void Assign(Sprite sprite, string amount)

@@ -19,7 +19,6 @@ namespace RO_Flex_UI.Panels
             public float proportion = 1f;
         }
 
-        [SerializeField] private float spacing = 0f;
         [SerializeField] private Orientation orientation = Orientation.Vertical;
         [SerializeField] private List<Entry> entries;
 
@@ -29,11 +28,6 @@ namespace RO_Flex_UI.Panels
         private void Apply()
         {
             AutoFillEntries();
-
-            if (TryGetComponent<HorizontalOrVerticalLayoutGroup>(out var layoutGroup))
-            {
-                layoutGroup.spacing = spacing;
-            }
 
             foreach (var entry in entries)
             {
