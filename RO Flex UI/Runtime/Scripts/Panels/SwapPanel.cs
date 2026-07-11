@@ -31,22 +31,22 @@ namespace RO_Flex_UI.Panels
         private void Start()
         {
             AutoFillEntries();
-            SwapByIndex(0);
+            SwapByIndex(0, false);
         }
 
-        public void SwapByGroup(int group)
-        {
-            if (!groups.Contains(group)) return;
-            SetActiveGroup(group);
-        }
-
-        public void SwapByIndex(int index)
+        public void SwapByIndex(int index, bool notify = true)
         {
             if (index < 0 || index >= groups.Count) return;
-            SwapByGroup(groups[index]);
+            SwapByGroup(groups[index], notify);
         }
 
-        private void SetActiveGroup(int group)
+        public void SwapByGroup(int group, bool notify = true)
+        {
+            if (!groups.Contains(group)) return;
+            SetActiveGroup(group, notify);
+        }
+
+        private void SetActiveGroup(int group, bool notify = true)
         {
             if (panels == null || panels.Count == 0) return;
 
@@ -58,19 +58,20 @@ namespace RO_Flex_UI.Panels
                 panels[i].TogglePanel(panels[i].groupId == group);
             }
 
-            onSwapEvent?.Invoke();
+            if (notify)
+                onSwapEvent?.Invoke();
         }
 
-        public void GetNextGroup()
+        public void GetNextGroup(bool notify = true)
         {
             var index = (selectedIndex + 1) % groups.Count;
-            SwapByIndex(index);
+            SwapByIndex(index, notify);
         }
 
-        public void GetPreviousGroup()
+        public void GetPreviousGroup(bool notify = true)
         {
             var index = (selectedIndex - 1 + groups.Count) % groups.Count;
-            SwapByIndex(index);
+            SwapByIndex(index, notify);
         }
 
         private void AutoFillEntries()
