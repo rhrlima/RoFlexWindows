@@ -5,7 +5,8 @@
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "ROFlexUI",
-        "RO.FlexUI.Editor"
+        "RO.FlexUI.Editor",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [
         "Editor"
