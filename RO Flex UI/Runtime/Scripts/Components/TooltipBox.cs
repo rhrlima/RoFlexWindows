@@ -59,8 +59,8 @@ namespace RO_Flex_UI.Components
 
         public void ShowTooltip()
         {
-            gameObject.SetActive(true);
             RefreshSize();
+            gameObject.SetActive(true);
         }
 
         public void HideTooltip()

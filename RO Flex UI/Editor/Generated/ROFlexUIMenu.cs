@@ -91,6 +91,12 @@ namespace RoFlexUI.Editor
             CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Components/RoSlider.prefab", command.context as GameObject);
         }
 
+        [MenuItem("GameObject/ROFlexUI/Components/RoText", false, 10)]
+        public static void Create_Components_RoText(MenuCommand command)
+        {
+            CreateUtils.CreatePrefab("Packages/com.ricric.roflexui/Runtime/Prefabs/Components/RoText.prefab", command.context as GameObject);
+        }
+
         [MenuItem("GameObject/ROFlexUI/Components/Skill Min Entry", false, 10)]
         public static void Create_Components_SkillMinEntry(MenuCommand command)
         {

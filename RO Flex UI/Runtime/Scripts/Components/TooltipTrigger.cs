@@ -29,13 +29,13 @@ namespace RO_Flex_UI.Components
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            OnTrigger?.Invoke();
+
             if (!CanShowTooltip(eventData))
             {
                 tooltipComponent?.HideTooltip();
                 return;
             }
-
-            OnTrigger?.Invoke();
 
             tooltipComponent.SetText(tooltipText);
             tooltipComponent.ShowTooltip();
@@ -59,14 +59,14 @@ namespace RO_Flex_UI.Components
             if (eventData == null)
                 return true;
 
-            if (eventData.dragging)
-                return false;
+            // if (eventData.dragging)
+            //     return false;
 
             var draggedItem = eventData.pointerDrag != null
                 ? eventData.pointerDrag.GetComponentInParent<DraggableItem>()
                 : null;
 
-            return draggedItem == null || !draggedItem.Dragging;
+            return draggedItem == null;// || !draggedItem.Dragging;
         }
     }
 }
