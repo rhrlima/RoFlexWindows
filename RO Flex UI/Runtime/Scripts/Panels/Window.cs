@@ -1,4 +1,5 @@
 ﻿using RO_Flex_UI.Components;
+using RO_Flex_UI.Windows;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -6,6 +7,9 @@ namespace RO_Flex_UI.Panels
 {
     public class Window : MonoBehaviour, IWindow, IPointerDownHandler
     {
+        public KeyCode shortcutKey = KeyCode.None;
+        public WindowId windowId = WindowId.NONE;
+
         [Header("Window Settings")]
         [SerializeField] private bool resetToCenter;
         [SerializeField] private bool isDraggable;
@@ -26,6 +30,9 @@ namespace RO_Flex_UI.Panels
 
             OnValidate();
             SyncReturnToOriginFlag();
+
+            UiManager.Instance.RegisterWindow(windowId, this, shortcutKey);
+            HideWindow();
         }
 
         private void OnEnable()
