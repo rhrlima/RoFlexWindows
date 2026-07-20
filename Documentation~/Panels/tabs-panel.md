@@ -98,4 +98,9 @@ public class TabLogger : MonoBehaviour
 Assign these methods to an entry's `onPanelEnter` and `onPanelExit` events in
 the Inspector.
 
+## Related Components
+
+- [RoButton](../Components/ro-button.md)
+- [SwapPanel](swap-panel.md)
+
 [Go Back](../README.md)

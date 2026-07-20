@@ -5,8 +5,8 @@
 ## Description
 
 `RoButton` is a clickable Unity UI component for RO Flex UI. It extends
-`UnityEngine.UI.Button` without adding custom behavior and requires an `Image`
-component on the same GameObject.
+`UnityEngine.UI.Button`, implements the package's `IComponent` reference-check
+contract, and requires an `Image` component on the same GameObject.
 
 ## Displayed Data
 
@@ -22,14 +22,14 @@ icons, and other content can be added as child UI elements.
 
 ## Public API
 
-`RoButton` adds no public properties, methods, or events. It inherits its API
-from `UnityEngine.UI.Button`.
+`RoButton` inherits its interaction API from `UnityEngine.UI.Button`.
 
 | Member | Type | Description |
 | --- | --- | --- |
 | `interactable` | `bool` | Enables or disables user interaction. |
 | `onClick` | `ButtonClickedEvent` | Invoked when the user clicks the button. |
 | `Select()` | Method | Selects the button through Unity's event system. |
+| `EnsureReferences()` | Method | Currently returns `true`; available for subclasses that validate additional references. |
 
 ## Examples
 
@@ -63,5 +63,11 @@ public void SetCanConfirm(bool canConfirm)
     confirmButton.interactable = canConfirm;
 }
 ```
+
+## Related Components
+
+- [Header](header.md)
+- [ListItem](list-item.md)
+- [TabsPanel](../Panels/tabs-panel.md)
 
 [Go Back](../README.md)

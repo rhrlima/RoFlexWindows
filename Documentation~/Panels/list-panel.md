@@ -15,7 +15,7 @@ adding items when replacing the displayed content.
 
 | Data | Type | Description |
 | --- | --- | --- |
-| Initial items | `List<ListItem>` | Explicit Inspector references registered in their configured order during `Awake`. |
+| Items | `List<ListItem>` | Explicit Inspector references registered in their configured order during `Start`. |
 | Focused item | `ListItem` | Item most recently focused by pointer or UI selection. |
 | Activated item | `ListItem` | Item most recently submitted or double-clicked. |
 
@@ -27,9 +27,9 @@ adding items when replacing the displayed content.
 | `template` | Inactive `ListItem` cloned by the data-based `AddItems` overload. |
 | `loopNavigation` | Connects the first and last items when navigating vertically. |
 | `autoScroll` | Scrolls the focused item into the viewport. |
-| `initialItems` | Items registered from the Inspector when the panel initializes. |
+| `items` | Items registered from the Inspector when the panel initializes. Former `initialItems` and `listItems` data migrates to this field. |
 
-Only entries referenced by `initialItems` are registered automatically. Other
+Only entries referenced by `items` are registered automatically. Other
 children of the panel are ignored.
 
 ## Public API
@@ -101,5 +101,11 @@ listPanel.SelectOption(0);
 listPanel.Clear();
 listPanel.AddItems(itemNames, BindItem, compactItemTemplate);
 ```
+
+## Related Components
+
+- [ListItem](../Components/list-item.md)
+- [RoButton](../Components/ro-button.md)
+- [Scroll Panel](scroll-panel.md)
 
 [Go Back](../README.md)
