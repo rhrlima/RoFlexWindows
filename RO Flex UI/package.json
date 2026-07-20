@@ -1,9 +1,9 @@
 {
     "name": "com.ricric.roflexui",
-    "version": "1.0.0",
+    "version": "0.1.1",
     "displayName": "RO Flex UI",
     "description": "Modular RO-based UI framework for Unity.",
-    "unity": "2022.1",
+    "unity": "6000.3",
     "author": {
         "name": "RicRic"
     },
@@ -23,6 +23,5 @@
             "description": "Example Windows using classic UI style.",
             "path": "Samples~/Demos/Windows"
         }
-    ],
-    "hideInEditor": false
+    ]
 }
