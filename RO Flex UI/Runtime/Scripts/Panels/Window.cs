@@ -28,7 +28,7 @@ namespace RO_Flex_UI.Panels
             SyncReturnToOriginFlag();
         }
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             if (resetToCenter)
                 CenterWindow();
@@ -36,13 +36,13 @@ namespace RO_Flex_UI.Panels
                 FitWindowIntoPlayArea();
         }
 
-        private void LateUpdate()
+        protected void LateUpdate()
         {
             if (keepWindowInScreen)
                 FitWindowIntoPlayArea();
         }
 
-        private void OnValidate()
+        protected void OnValidate()
         {
             ToggleDraggable();
             ToggleResisable();
@@ -100,7 +100,7 @@ namespace RO_Flex_UI.Panels
                 gameObject.SetActive(true);
         }
 
-        public void HideWindow()
+        public virtual void HideWindow()
         {
             gameObject.SetActive(false);
         }
