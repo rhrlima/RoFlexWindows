@@ -8,7 +8,7 @@ namespace RO_Flex_UI.Editor
 {
     public static class ROFlexUIPackageBuilder
     {
-        private const string PackageRoot = "RO Flex UI";
+        private const string PackageRoot = "RoFlexUi";
         private const string SamplesOutput = PackageRoot + "/Samples~";
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace RO_Flex_UI.Editor
                 // Add more samples later:
                 //
                 // new(
-                //     source: "Assets/RO Flex UI Playground/Package Samples/Localization Example",
+                //     source: "Assets/RoFlexUi Playground/Package Samples/Localization Example",
                 //     destination: SamplesOutput + "/Localization Example"
                 // ),
             };
@@ -65,7 +65,7 @@ namespace RO_Flex_UI.Editor
             }
 
             Debug.Log(
-                $"RO Flex UI samples rebuilt successfully:\n{outputAbsolutePath}"
+                $"RoFlexUi samples rebuilt successfully:\n{outputAbsolutePath}"
             );
         }
 

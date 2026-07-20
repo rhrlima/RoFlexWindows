@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.ricric.roflexui": {
-      "version": "file:../RO Flex UI",
+      "version": "file:../RoFlexUi",
       "depth": 0,
       "source": "local",
       "dependencies": {
