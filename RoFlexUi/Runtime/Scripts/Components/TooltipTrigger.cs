@@ -25,6 +25,7 @@ namespace RO_Flex_UI.Components
         public void SetText(string text)
         {
             tooltipText = text;
+            tooltipComponent?.SetText(text);
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -56,17 +57,10 @@ namespace RO_Flex_UI.Components
             if (!tooltipEnabled || tooltipComponent == null)
                 return false;
 
-            if (eventData == null)
-                return true;
-
-            // if (eventData.dragging)
+            // if (eventData != null)
             //     return false;
 
-            var draggedItem = eventData.pointerDrag != null
-                ? eventData.pointerDrag.GetComponentInParent<DraggableItem>()
-                : null;
-
-            return draggedItem == null;// || !draggedItem.Dragging;
+            return true;
         }
     }
 }

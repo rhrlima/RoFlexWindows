@@ -286,7 +286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75bdac78df987478a8daeb260e787f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  proxyVisualComponent: {fileID: 0}
+  sourceVisualComponent: {fileID: 1158670040427044865}
   onBeginDrag:
     m_PersistentCalls:
       m_Calls: []

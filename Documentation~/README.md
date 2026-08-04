@@ -27,6 +27,16 @@ prefab or runtime API and links to closely related controls.
 - [ToggleSwitch](Components/toggle-switch.md)
 - [TooltipBox](Components/tooltip-box.md)
 - [TooltipTrigger](Components/tooltip-trigger.md)
+- [Button](Components/ro-button.md)
+- [Draggable RectTransform](Components/draggable.md)
+- [Drag and Drop](Components/drag-and-drop.md)
+  - [DragPayload](Components/drag-payload.md)
+  - [IDragSource](Components/idrag-source.md)
+  - [IDragTarget](Components/idrag-target.md)
+  - [DraggableManager](Components/draggable-manager.md)
+  - [DragTrigger](Components/drag-trigger.md)
+  - [DropTrigger](Components/drop-trigger.md)
+  - [DragDropTrigger](Components/drag-drop-trigger.md)
 
 ## Panels
 

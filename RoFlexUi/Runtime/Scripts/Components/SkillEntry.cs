@@ -10,14 +10,16 @@ namespace RO_Flex_UI.Components
     {
         public class SkillEvent : UnityEvent { }
 
+        [SerializeField] protected RoButton spriteButton;
         [SerializeField] private TextMeshProUGUI skillNameText;
         [SerializeField] private TextMeshProUGUI skillLevelText;
         [SerializeField] private TextMeshProUGUI skillCostText;
-        [SerializeField] private Button skillLevelDown;
-        [SerializeField] private Button skillLevelUp;
+        [SerializeField] private Button skillLevelDown; //FIXME use RoButton
+        [SerializeField] private Button skillLevelUp; //FIXME use RoButton
         [SerializeField] private bool isPassive;
         [SerializeField] private bool isFixedLevel;
 
+        public SkillEvent onSkillClick;
         public SkillEvent onSkillLevelUp;
         public SkillEvent onIncreaseLevel;
         public SkillEvent onDecreaseLevel;
@@ -42,11 +44,13 @@ namespace RO_Flex_UI.Components
             skillLevelUp.onClick.AddListener(HandleIncreaseLevel);
             skillLevelDown.onClick.AddListener(HandleDecreaseLevel);
         }
+
         private void OnDisable()
         {
             skillLevelUp.onClick.RemoveListener(HandleIncreaseLevel);
             skillLevelDown.onClick.RemoveListener(HandleDecreaseLevel);
         }
+
         public void HandleIncreaseLevel()
         {
             onIncreaseLevel?.Invoke();
@@ -57,7 +61,28 @@ namespace RO_Flex_UI.Components
             onDecreaseLevel?.Invoke();
         }
 
+        public void Assign(Sprite sprite, string name, int currLevel, int maxLevel, int cost, bool passive, bool fixedLevel)
+        {
+            spriteButton.image.sprite = sprite;
+            skillNameText.text = name;
+
+            if (fixedLevel)
+            {
+                skillLevelText.text = $"{currLevel}";
+            }
+            else
+            {
+                skillLevelText.text = $"{currLevel}/{maxLevel}";
+            }
+
+            skillLevelDown.gameObject.SetActive(!fixedLevel);
+            skillLevelUp.gameObject.SetActive(!fixedLevel);
+
+            skillCostText.text = passive ? "Passive" : cost.ToString();
+        }
+
         #region Getter & Setter
+        public Sprite Sprite => spriteButton.image.sprite;
         public string Name
         {
             get => skillNameText.text;

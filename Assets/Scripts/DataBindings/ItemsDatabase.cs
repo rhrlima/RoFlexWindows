@@ -1,14 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-
-[Serializable]
-public class Item
-{
-    public Sprite sprite;
-    public string name;
-    public int amount;
-}
 
 [DefaultExecutionOrder(-90)]
 public class ItemsDatabase : MonoBehaviour

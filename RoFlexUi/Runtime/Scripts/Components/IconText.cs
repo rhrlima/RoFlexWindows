@@ -22,9 +22,19 @@ namespace RO_Flex_UI.Components
         {
             layoutGroup = GetComponent<HorizontalOrVerticalLayoutGroup>();
 
-            if (!Tools.IsValid(this, iconText)) return false;
-            if (!Tools.IsValid(this, layoutGroup)) return false;
-            return base.EnsureReferences(); ;
+            if (iconText == null)
+            {
+                Tools.LogMissingReference(this, nameof(iconText));
+                return false;
+            }
+
+            if (layoutGroup == null)
+            {
+                Tools.LogMissingReference(this, nameof(layoutGroup));
+                return false;
+            }
+
+            return base.EnsureReferences();
         }
 
         public void FlipElements(bool flip)
@@ -37,12 +47,15 @@ namespace RO_Flex_UI.Components
         public void ToggleText(bool active)
         {
             disableText = !active;
+            if (iconText == null) return;
             iconText.gameObject.SetActive(active);
         }
 
         public override void SetActive(bool value)
         {
             base.SetActive(value);
+
+            disableText = !value;
             ToggleText(value);
         }
 
@@ -52,7 +65,7 @@ namespace RO_Flex_UI.Components
 
             if (!EnsureReferences()) return;
 
-            iconText.text = text;
+            iconText.text = text ?? string.Empty;
 
             if (string.IsNullOrEmpty(amount))
                 disableAmount = true;
@@ -61,11 +74,16 @@ namespace RO_Flex_UI.Components
         public override void Clear()
         {
             base.Clear();
-            iconText.text = string.Empty;
+            if (iconText != null)
+                iconText.text = string.Empty;
         }
 
         protected override void OnValidate()
         {
+            layoutGroup = GetComponent<HorizontalOrVerticalLayoutGroup>();
+            if (iconText == null || layoutGroup == null || iconSprite == null || iconAmount == null)
+                return;
+
             if (!EnsureReferences()) return;
 
             base.OnValidate();
@@ -74,8 +92,8 @@ namespace RO_Flex_UI.Components
         }
 
         #region Getter & Setter
-        public string Text => iconText.text;
-        public new bool IsVisible => visible && (!disableIcon || !disableAmount || !disableText);
+        public string Text => iconText != null ? iconText.text : string.Empty;
+        public override bool IsVisible => visible && (!disableIcon || !disableAmount || !disableText);
         #endregion
     }
 }

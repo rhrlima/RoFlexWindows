@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace RO_Flex_UI.Tests
 {
-    public class FillPanel2Tests
+    public class FillPanelTests
     {
         private static readonly Type PanelType = Type.GetType("FillPanel, Assembly-CSharp");
 
