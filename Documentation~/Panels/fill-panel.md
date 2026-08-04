@@ -49,7 +49,6 @@ foreach (var slot in fillPanel.GetCells<IconAmount>())
 ## Related Components
 
 - [IconAmount](../Components/icon-amount.md)
-- [DraggableItem](../Components/draggable-item.md)
-- [DropZone](../Components/drop-zone.md)
+- [Drag and Drop](../Components/drag-and-drop.md)
 
 [Go Back](../README.md)

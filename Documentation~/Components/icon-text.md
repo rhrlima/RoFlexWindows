@@ -5,8 +5,7 @@
 ## Description
 
 `IconText` extends [IconAmount](icon-amount.md) with a text label and a required
-horizontal or vertical layout group. It can reverse the layout order and carries
-sprite, amount, and text values through `IDragVisual`.
+horizontal or vertical layout group. It can also reverse the layout order.
 
 ## Displayed Data
 
@@ -45,8 +44,7 @@ entry.FlipElements(showIconOnRight);
 ## Related Components
 
 - [IconAmount](icon-amount.md)
-- [DraggableItem](draggable-item.md)
-- [DropZone](drop-zone.md)
+- [Drag and Drop](drag-and-drop.md)
 - [GearPanel](../Panels/gear-panel.md)
 
 [Go Back](../README.md)

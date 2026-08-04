@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace RO_Flex_UI.Components
 {
     [ExecuteAlways]
-    public class IconAmount : MonoBehaviour, IComponent
+    public class IconAmount : MonoBehaviour, IComponent, IDragVisual
     {
         [SerializeField] protected Image iconSprite;
         [SerializeField] protected TextMeshProUGUI iconAmount;
@@ -54,8 +54,13 @@ namespace RO_Flex_UI.Components
             disableIcon = !value;
             visible = value;
 
+<<<<<<< HEAD:RoFlexUi/Runtime/Scripts/Components/IconAmount.cs
             ToggleIcon(visible && !disableIcon);
             ToggleAmount(visible && !disableAmount);
+=======
+            ToggleIcon(value);
+            ToggleAmount(value);
+>>>>>>> 4b59f84 (refac: Rework draggable):RO Flex UI/Runtime/Scripts/Components/IconAmount.cs
         }
 
         public virtual void Assign(Sprite sprite, string amount)
@@ -64,6 +69,22 @@ namespace RO_Flex_UI.Components
 
             iconSprite.sprite = sprite;
             iconAmount.text = amount ?? string.Empty;
+<<<<<<< HEAD:RoFlexUi/Runtime/Scripts/Components/IconAmount.cs
+=======
+        }
+
+        public virtual DragPresentation CapturePresentation()
+        {
+            return new DragPresentation(Sprite, Amount);
+        }
+
+        public virtual bool TryApplyPresentation(DragPresentation presentation)
+        {
+            if (!EnsureReferences()) return false;
+
+            Assign(presentation.Sprite, presentation.Amount);
+            return true;
+>>>>>>> 4b59f84 (refac: Rework draggable):RO Flex UI/Runtime/Scripts/Components/IconAmount.cs
         }
 
         public virtual void Clear()
@@ -83,6 +104,10 @@ namespace RO_Flex_UI.Components
         }
 
         #region Getter & Setter
+<<<<<<< HEAD:RoFlexUi/Runtime/Scripts/Components/IconAmount.cs
+=======
+        public RectTransform RectTransform => transform as RectTransform;
+>>>>>>> 4b59f84 (refac: Rework draggable):RO Flex UI/Runtime/Scripts/Components/IconAmount.cs
         public Sprite Sprite => iconSprite != null ? iconSprite.sprite : null;
         public string Amount => iconAmount != null ? iconAmount.text : string.Empty;
         public virtual bool IsVisible => visible && (!disableIcon || !disableAmount);

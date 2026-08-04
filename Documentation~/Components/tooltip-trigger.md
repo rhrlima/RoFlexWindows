@@ -45,6 +45,6 @@ tooltipTrigger.OnTrigger += RefreshLiveDescription;
 ## Related Components
 
 - [TooltipBox](tooltip-box.md)
-- [DraggableItem](draggable-item.md)
+- [Drag and Drop](drag-and-drop.md)
 
 [Go Back](../README.md)

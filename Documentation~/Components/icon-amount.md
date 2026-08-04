@@ -5,8 +5,8 @@
 ## Description
 
 `IconAmount` displays a sprite and an amount label. It can show or hide either
-element, clear its contents, and participate in drag-and-drop presentation
-through `IDragVisual`.
+element and clear its contents. `DraggableManager` also uses an `IconAmount` as
+the shared visual proxy for payload-based drag-and-drop.
 
 ## Displayed Data
 
@@ -23,7 +23,6 @@ through `IDragVisual`.
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `RectTransform` | `RectTransform` | This component's UI transform. |
 | `Sprite` | `Sprite` | Current icon sprite. |
 | `Amount` | `string` | Current amount text. |
 | `IsVisible` | `bool` | Current logical visibility. |
@@ -38,8 +37,6 @@ through `IDragVisual`.
 | `ToggleIcon(active)` | Shows or hides only the icon GameObject. |
 | `ToggleAmount(active)` | Shows or hides only the amount GameObject. |
 | `Clear()` | Removes both values and hides the component. |
-| `CapturePresentation()` | Captures the sprite and amount as a `DragPresentation`. |
-| `TryApplyPresentation(presentation)` | Applies the presentation fields supported by this component. |
 
 ## Examples
 
@@ -54,8 +51,8 @@ if (item.Quantity == 0)
 ## Related Components
 
 - [IconText](icon-text.md)
-- [DraggableItem](draggable-item.md)
-- [DropZone](drop-zone.md)
+- [Drag and Drop](drag-and-drop.md)
+- [DraggableManager](draggable-manager.md)
 - [FillPanel](../Panels/fill-panel.md)
 
 [Go Back](../README.md)

@@ -7,8 +7,6 @@ prefab or runtime API and links to closely related controls.
 ## Components
 
 - [Draggable](Components/draggable.md)
-- [DraggableItem](Components/draggable-item.md)
-- [DropZone](Components/drop-zone.md)
 - [Header](Components/header.md)
 - [IconAmount](Components/icon-amount.md)
 - [IconText](Components/icon-text.md)
@@ -27,8 +25,6 @@ prefab or runtime API and links to closely related controls.
 - [ToggleSwitch](Components/toggle-switch.md)
 - [TooltipBox](Components/tooltip-box.md)
 - [TooltipTrigger](Components/tooltip-trigger.md)
-- [Button](Components/ro-button.md)
-- [Draggable RectTransform](Components/draggable.md)
 - [Drag and Drop](Components/drag-and-drop.md)
   - [DragPayload](Components/drag-payload.md)
   - [IDragSource](Components/idrag-source.md)
@@ -48,6 +44,7 @@ prefab or runtime API and links to closely related controls.
 - [Scroll Panel](Panels/scroll-panel.md)
 - [SwapPanel](Panels/swap-panel.md)
 - [TabsPanel](Panels/tabs-panel.md)
+- [Window](Panels/window.md)
 
 ## Other Topics
 
