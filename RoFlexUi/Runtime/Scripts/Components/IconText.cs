@@ -71,19 +71,6 @@ namespace RO_Flex_UI.Components
                 disableAmount = true;
         }
 
-        public override DragPresentation CapturePresentation()
-        {
-            return new DragPresentation(Sprite, Amount, Text);
-        }
-
-        public override bool TryApplyPresentation(DragPresentation presentation)
-        {
-            if (!EnsureReferences()) return false;
-
-            Assign(presentation.Sprite, presentation.Text, presentation.Amount);
-            return true;
-        }
-
         public override void Clear()
         {
             base.Clear();

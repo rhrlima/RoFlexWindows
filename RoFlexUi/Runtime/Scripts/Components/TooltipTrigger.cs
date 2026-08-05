@@ -57,33 +57,7 @@ namespace RO_Flex_UI.Components
             if (!tooltipEnabled || tooltipComponent == null)
                 return false;
 
-            // if (eventData != null)
-            //     return false;
-
-<<<<<<< HEAD:RoFlexUi/Runtime/Scripts/Components/TooltipTrigger.cs
             return true;
-=======
-            if (eventData.dragging)
-                return false;
-
-            var draggedItem = eventData.pointerDrag != null
-                ? FindDraggable(eventData.pointerDrag)
-                : null;
-
-            return draggedItem == null || !draggedItem.Dragging;
->>>>>>> 4b59f84 (refac: Rework draggable):RO Flex UI/Runtime/Scripts/Components/TooltipTrigger.cs
-        }
-
-        private static IDraggable FindDraggable(GameObject pointerDrag)
-        {
-            var behaviours = pointerDrag.GetComponentsInParent<MonoBehaviour>(true);
-            foreach (var behaviour in behaviours)
-            {
-                if (behaviour is IDraggable draggable)
-                    return draggable;
-            }
-
-            return null;
         }
     }
 }
